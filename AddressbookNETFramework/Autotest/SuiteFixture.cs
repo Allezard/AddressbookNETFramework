@@ -21,10 +21,10 @@ namespace AddressbookNETFramework
             ApplicationManager.GetInstance().Auth.Login(new AccountData("admin", "secret"));
         }
 
-        [OneTimeTearDown]
-        public void StopApplicationManager()
-        {
-            ApplicationManager.GetInstance().Stop();
-        }
+        //[OneTimeTearDown]
+        //public void StopApplicationManager()
+        //{
+        //    ApplicationManager.GetInstance().Stop();
+        //}
     }
 }

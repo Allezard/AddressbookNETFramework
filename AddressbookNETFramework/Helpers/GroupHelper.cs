@@ -38,7 +38,8 @@ namespace AddressbookNETFramework.Helpers
                 }
 
                 string allGroupNames = webDriver.FindElement(By.CssSelector("div#content form")).Text;
-                string[] parts = allGroupNames.Split("\n");
+                string[] parts = allGroupNames.Split(new string[] { "\n" },
+                    StringSplitOptions.RemoveEmptyEntries);
                 int shift = groupCache.Count - parts.Length;
                 for (int i = 0; i < groupCache.Count; i++)
                 {
@@ -113,6 +114,50 @@ namespace AddressbookNETFramework.Helpers
             // Возвращаемся на вкладку /addressbook/group по текстовой ссылке "group page".
             groupCache = null;
             // Очищаем кэш.
+        }
+
+        public void RemoveFirstGroupBD(GroupData group)
+        {
+            webDriver.FindElement(By.ClassName("admin")).Click();
+            // Переходим во вкладку "groups".
+            SelectGroupBD(group.Id);
+            // Выбираем группу из списка по id.
+            webDriver.FindElement(By.Name("delete")).Click();
+            // Выбираем и удаляем первую группу
+            webDriver.FindElement(By.LinkText("group page")).Click();
+            // Возвращаемся на вкладку /addressbook/group по текстовой ссылке "group page".
+            groupCache = null;
+            // Очищаем кэш.
+        }
+
+        public void EditFirstGroupBD(GroupData groups, GroupData group)
+        {
+            By locatorFooter = By.Name("group_footer");
+            string textFooter = groups.GroupFooter;
+
+            webDriver.FindElement(By.ClassName("admin")).Click();
+            // Переходим во вкладку "groups".
+            SelectGroupBD(group.Id);
+            // Выбираем группу из списка по id.
+            webDriver.FindElement(By.Name("edit")).Click();
+            // Выбираем и редактируем вторую группу
+            EditGropMethod(By.Name("group_name"), groups.GroupName);
+            EditGropMethod(By.Name("group_header"), groups.GroupHeader);
+            webDriver.FindElement(locatorFooter).Clear();
+            webDriver.FindElement(locatorFooter).SendKeys(textFooter);
+            // Очищаем и заполняем поля: "Group name", (Logo), (Comment). 
+            webDriver.FindElement(By.Name("update")).Click();
+            // Нажимаем на кнопку "Update".
+            webDriver.FindElement(By.LinkText("group page")).Click();
+            // Возвращаемся на вкладку /addressbook/group по текстовой ссылке "group page".
+            groupCache = null;
+            // Очищаем кэш.
+        }
+
+        public void SelectGroupBD(String id)
+        {
+            webDriver.FindElement(By.XPath("(//input[@name='selected[]' and @value='" + id + "'])")).Click();
+            // Выбираем группу из списка по id.
         }
 
         public void EditParentSecondGroup(int index)

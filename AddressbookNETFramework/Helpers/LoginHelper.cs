@@ -18,11 +18,11 @@ namespace AddressbookNETFramework.Helpers
         {
             if (IsloggedIn())
             {
-                //if (IsLoggedInUser(data))
-                //{
-                //    return;
-                //}        
-                //Logout();
+                if (IsLoggedInUser(data))
+                {
+                    return;
+                }
+                Logout();
 
                 return;
             }

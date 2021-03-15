@@ -55,17 +55,17 @@ namespace AddressbookNETFramework.Helpers
             }
         }
 
-        //~ApplicationManager()
-        //{
-        //    try
-        //    {
-        //        webDriver.Quit();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        Ignore errors if unable to close the browser
-        //    }
-        //}
+        ~ApplicationManager()
+        {
+            try
+            {
+                webDriver.Quit();
+            }
+            catch (Exception)
+            {
+                //Ignore errors if unable to close the browser
+            }
+        }
 
         public LoginHelper Auth
         {

@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressbookNETFramework", "AddressbookNETFramework\AddressbookNETFramework.csproj", "{EC092BE6-83FE-42F4-AA19-0ABFB61B8040}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGeneration", "DataGeneration\DataGeneration.csproj", "{3FB5DDB3-C3F4-4B11-A16D-E42C6A1DD110}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EC092BE6-83FE-42F4-AA19-0ABFB61B8040} = {EC092BE6-83FE-42F4-AA19-0ABFB61B8040}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +20,10 @@ Global
 		{EC092BE6-83FE-42F4-AA19-0ABFB61B8040}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC092BE6-83FE-42F4-AA19-0ABFB61B8040}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC092BE6-83FE-42F4-AA19-0ABFB61B8040}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FB5DDB3-C3F4-4B11-A16D-E42C6A1DD110}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FB5DDB3-C3F4-4B11-A16D-E42C6A1DD110}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FB5DDB3-C3F4-4B11-A16D-E42C6A1DD110}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FB5DDB3-C3F4-4B11-A16D-E42C6A1DD110}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

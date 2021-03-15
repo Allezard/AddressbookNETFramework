@@ -39,7 +39,8 @@ namespace AddressbookNETFramework.Helpers
                 }
 
                 string allContacntNames = webDriver.FindElement(By.CssSelector("div#content table")).Text;
-                string[] parts = allContacntNames.Split("\n");
+                string[] parts = allContacntNames.Split(new string[] { "\n" },
+                    StringSplitOptions.RemoveEmptyEntries);
                 int shift = contactCache.Count - parts.Length;
                 for (int i = 0; i < contactCache.Count; i++)
                 {

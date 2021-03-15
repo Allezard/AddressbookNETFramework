@@ -14,13 +14,13 @@ using OpenQA.Selenium.Support.UI;
 using AddressbookNETFramework.Helpers;
 using AddressbookNETFramework.Model;
 
-namespace AddressbookNETFramework
+namespace AddressbookNETFramework.Autotest
 {
-    public class TestingPackageForGroups : BaseClass
+    class TestingGroupsForDB : GroupBaseClass
     {
         public static IEnumerable<GroupData> GroupDataFromXmlFile()
         {
-            return (List<GroupData>) new XmlSerializer(typeof(List<GroupData>)).Deserialize(new StreamReader(@"groups.xml"));
+            return (List<GroupData>)new XmlSerializer(typeof(List<GroupData>)).Deserialize(new StreamReader(@"groups.xml"));
         }
 
         public static IEnumerable<GroupData> GroupDataFromJsonFile()
@@ -62,13 +62,13 @@ namespace AddressbookNETFramework
         }
 
         [Test]
-        public void CreateNewGroupTest()
+        public void DBCreateNewGroupTest()
         {
             //app.Navigation.GoToBaseUrl();
             //app.Auth.Login(new AccountData("admin", "secret"));
 
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
-            Console.Out.WriteLine("Начальное кол-во групп:  " + app.Groups.GetGroupCount() + "\n");
+            List<GroupData> oldGroups = GroupData.GetAll();
+            Console.Out.WriteLine("Начальное кол-во групп:  " + oldGroups.Count + "\n");
             // Записываем старые знаечения групп.
 
             GroupData generateData = new GroupData
@@ -83,8 +83,8 @@ namespace AddressbookNETFramework
 
             Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
 
-            List<GroupData> newGroups = app.Groups.GetGroupList();
-            Console.Out.WriteLine("Конечное кол-во групп:  " + app.Groups.GetGroupCount() + "\n");
+            List<GroupData> newGroups = GroupData.GetAll();
+            Console.Out.WriteLine("Конечное кол-во групп:  " + newGroups.Count + "\n");
             // Записываем новые знаечения групп.
 
             oldGroups.Add(generateData);
@@ -94,7 +94,7 @@ namespace AddressbookNETFramework
         }
 
         [Test]
-        public void EditFirstGroupTest()
+        public void DBEditFirstGroupTest()
         {
             //app.Navigation.GoToBaseUrl();
             //app.Auth.Login(new AccountData("admin", "secret"));
@@ -107,17 +107,17 @@ namespace AddressbookNETFramework
             };
             app.Groups.PreAddGroup(generateData, 0);
 
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
+            List<GroupData> oldGroups = GroupData.GetAll();
             Console.Out.WriteLine("Кол-во групп: " + app.Groups.GetGroupCount() + "\n");
             GroupData oldData = oldGroups[0];
             Console.Out.WriteLine("ID Группы: " + oldData.Id + "\n" + "Было:\n" + oldData + "\n");
 
-            app.Groups.EditFirstGroup(generateData, 0);
+            app.Groups.EditFirstGroupBD(generateData, oldData);
 
             Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupCount());
             Console.Out.WriteLine("ID Группы: " + oldData.Id + "\n" + "Стало:\n" + generateData + "\n");
 
-            List<GroupData> newGroups = app.Groups.GetGroupList();
+            List<GroupData> newGroups = GroupData.GetAll();
             oldGroups[0].GroupName = generateData.GroupName;
             oldGroups.Sort();
             newGroups.Sort();
@@ -141,7 +141,7 @@ namespace AddressbookNETFramework
         }
 
         [Test]
-        public void RemoveFirstGroupTest()
+        public void DBRemoveFirstGroupTest()
         {
             //app.Navigation.GoToBaseUrl();
             //app.Auth.Login(new AccountData("admin", "secret"));
@@ -153,14 +153,14 @@ namespace AddressbookNETFramework
             };
             app.Groups.PreAddGroup(generateData, 0);
 
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
+            List<GroupData> oldGroups = GroupData.GetAll();
             Console.Out.WriteLine("Изначальное кол-во групп: " + app.Groups.GetGroupCount() + "\n");
             GroupData oldValue = oldGroups[0];
 
-            app.Groups.RemoveFirstGroup(0);
+            app.Groups.RemoveFirstGroupBD(oldValue);
 
             Assert.AreEqual(oldGroups.Count - 1, app.Groups.GetGroupCount());
-            List<GroupData> newGroups = app.Groups.GetGroupList();
+            List<GroupData> newGroups = GroupData.GetAll();
             Console.Out.WriteLine("Кол-во групп после удаления: " + app.Groups.GetGroupCount() + " (ID удаленной группы: " + oldValue.Id + ")" + "\n" + "\n");
 
             oldGroups.RemoveAt(0);
@@ -172,6 +172,20 @@ namespace AddressbookNETFramework
                 Assert.AreNotEqual(group.Id, oldValue.Id);
                 Console.Out.WriteLine("ID Группы: " + group.Id);
             }
+        }
+
+        [Test]
+        public void DBConnectivityTest()
+        {
+            DateTime start = DateTime.Now;
+            _ = app.Groups.GetGroupList();
+            DateTime end = DateTime.Now;
+            Console.Out.WriteLine("Время считывания данных UI: " + end.Subtract(start));
+
+            DateTime startDb = DateTime.Now;
+            _ = GroupData.GetAll();
+            DateTime endDb = DateTime.Now;
+            Console.Out.WriteLine("Время считывания данных BD: " + endDb.Subtract(startDb));
         }
     }
 }

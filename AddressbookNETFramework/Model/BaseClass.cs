@@ -14,6 +14,8 @@ namespace AddressbookNETFramework.Model
     public class BaseClass
     {
         protected ApplicationManager app;
+        public static Random rnd = new Random();
+        public static bool PERFORM_LONG_UI_CHECKS = true;
 
         [SetUp]
         public void SetupApp()
@@ -23,7 +25,6 @@ namespace AddressbookNETFramework.Model
 
         public static string GenerateRandomString(int size, bool lowerCase = true)
         {
-            Random rnd = new Random();
             StringBuilder builder = new StringBuilder();
 
             char l;
