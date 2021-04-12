@@ -50,21 +50,31 @@ namespace AddressbookNETFramework.Model
 
         [Column(Name = "group_name")]
         public string GroupName { get; set; }
-
         [Column(Name = "group_header")]
         public string GroupHeader { get; set; }
-
         [Column(Name = "group_footer")]
         public string GroupFooter { get; set; }
-
         [Column(Name = "group_id"), PrimaryKey, Identity]
         public string Id { get; set; }
+        [Column(Name = "deprecated")]
+        public string Deprecated { get; set; }
+
 
         public static List<GroupData> GetAll()
         {
             using (AddressBookDB db = new AddressBookDB())
             {
                 return (from g in db.Groups select g).ToList();
+            }
+        }
+
+        public List<ContactData> GetContacts()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                return (from c in db.Contacts
+                        from gcr in db.GCR.Where(p => p.GroupID == Id && p.ContactID == c.Id && c.Deprecated == "0000-00-00 00:00:00")
+                        select c).Distinct().ToList();
             }
         }
     }

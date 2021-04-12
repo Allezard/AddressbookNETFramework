@@ -14,53 +14,10 @@ using OpenQA.Selenium.Support.UI;
 using AddressbookNETFramework.Helpers;
 using AddressbookNETFramework.Model;
 
-namespace AddressbookNETFramework.Autotest
+namespace AddressbookNETFramework
 {
-    class TestingGroupsForDB : GroupBaseClass
+    public class TestingGroupsForDB : GroupBaseClass
     {
-        public static IEnumerable<GroupData> GroupDataFromXmlFile()
-        {
-            return (List<GroupData>)new XmlSerializer(typeof(List<GroupData>)).Deserialize(new StreamReader(@"groups.xml"));
-        }
-
-        public static IEnumerable<GroupData> GroupDataFromJsonFile()
-        {
-            return JsonConvert.DeserializeObject<List<GroupData>>(File.ReadAllText(@"groups.json"));
-        }
-
-        [Test, TestCaseSource("GroupDataFromJsonFile")]
-        public void CreateNewGroupJsonTest()
-        {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
-            Console.Out.WriteLine("Начальное кол-во групп:  " + app.Groups.GetGroupCount() + "\n");
-            // Записываем старые знаечения групп.
-
-            GroupData generateData = new GroupData
-            {
-                GroupName = GenerateRandomString(10),
-                GroupHeader = GenerateRandomString(30),
-                GroupFooter = GenerateRandomString(30)
-            };
-
-            app.Groups.CreateNewGroup(generateData);
-            Console.Out.WriteLine(generateData);
-            // Создаем новую группу.
-
-            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
-
-            List<GroupData> newGroups = app.Groups.GetGroupList();
-            Console.Out.WriteLine("Конечное кол-во групп:  " + app.Groups.GetGroupCount() + "\n");
-            // Записываем новые знаечения групп.
-
-            oldGroups.Add(generateData);
-            oldGroups.Sort();
-            newGroups.Sort();
-            Assert.AreEqual(oldGroups, newGroups);
-        }
-
         [Test]
         public void DBCreateNewGroupTest()
         {
@@ -133,14 +90,6 @@ namespace AddressbookNETFramework.Autotest
         }
 
         [Test]
-        public void EditParentSecondGroupTest()
-        {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-            app.Groups.EditParentSecondGroup(1);
-        }
-
-        [Test]
         public void DBRemoveFirstGroupTest()
         {
             //app.Navigation.GoToBaseUrl();
@@ -177,15 +126,26 @@ namespace AddressbookNETFramework.Autotest
         [Test]
         public void DBConnectivityTest()
         {
-            DateTime start = DateTime.Now;
-            _ = app.Groups.GetGroupList();
-            DateTime end = DateTime.Now;
-            Console.Out.WriteLine("Время считывания данных UI: " + end.Subtract(start));
+            //DateTime start = DateTime.Now;
+            //_ = app.Groups.GetGroupList();
+            //DateTime end = DateTime.Now;
+            //Console.Out.WriteLine("Время считывания данных UI: " + end.Subtract(start));
 
-            DateTime startDb = DateTime.Now;
-            _ = GroupData.GetAll();
-            DateTime endDb = DateTime.Now;
-            Console.Out.WriteLine("Время считывания данных BD: " + endDb.Subtract(startDb));
+            //DateTime startDb = DateTime.Now;
+            //_ = GroupData.GetAll();
+            //DateTime endDb = DateTime.Now;
+            //Console.Out.WriteLine("Время считывания данных BD: " + endDb.Subtract(startDb));
+
+            //foreach (ContactData contact in GroupData.GetAll()[0].GetContacts())
+            //{
+            //    Console.Out.WriteLine("Контакт который входит в группу с нулевым индексом \n" + contact);
+            //}
+
+            foreach (ContactData contact in ContactData.GetAll())
+            {
+                Console.Out.WriteLine(contact.Deprecated);
+            }
+
         }
     }
 }

@@ -269,11 +269,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Autotest\SuiteFixture.cs" />
+    <Compile Include="Autotest\TestingAddingContactToGroup.cs" />
+    <Compile Include="Autotest\TestingContactsForDB.cs" />
     <Compile Include="Autotest\TestingGroupsForDB.cs" />
     <Compile Include="Autotest\TestingPackageForContacts.cs" />
     <Compile Include="Autotest\TestingPackageForGroups.cs" />
     <Compile Include="Autotest\TestingPackageForLogin.cs" />
-    <Compile Include="Autotest\UnitTest.cs" />
     <Compile Include="Helpers\ApplicationManager.cs" />
     <Compile Include="Helpers\BaseHelper.cs" />
     <Compile Include="Helpers\ContactHelper.cs" />
@@ -285,6 +286,7 @@
     <Compile Include="Model\BaseClass.cs" />
     <Compile Include="Model\ContactData.cs" />
     <Compile Include="Model\GroupBaseClass.cs" />
+    <Compile Include="Model\GroupContactRelation.cs" />
     <Compile Include="Model\GroupData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -340,4 +342,5 @@
   <Import Project="..\packages\Microsoft.CodeCoverage.16.9.1\build\netstandard1.0\Microsoft.CodeCoverage.targets" Condition="Exists('..\packages\Microsoft.CodeCoverage.16.9.1\build\netstandard1.0\Microsoft.CodeCoverage.targets')" />
   <Import Project="..\packages\Microsoft.NET.Test.Sdk.16.9.1\build\net45\Microsoft.NET.Test.Sdk.targets" Condition="Exists('..\packages\Microsoft.NET.Test.Sdk.16.9.1\build\net45\Microsoft.NET.Test.Sdk.targets')" />
   <Import Project="..\packages\MSTest.TestAdapter.2.2.1\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\packages\MSTest.TestAdapter.2.2.1\build\net45\MSTest.TestAdapter.targets')" />
+  <ProjectExtensions />
 </Project>

@@ -32,26 +32,21 @@ namespace AddressbookNETFramework.Helpers
                 ICollection<IWebElement> elements = webDriver.FindElements(By.Name("entry"));
                 foreach (IWebElement element in elements)
                 {
-                    contactCache.Add(new ContactData()
-                    {
-                        Id = element.FindElement(By.TagName("input")).GetAttribute("value")
-                    });
-                }
+                    ContactData contact = new ContactData();
+                    //List<IWebElement> elementsTd = new List<IWebElement>(element.FindElements(By.CssSelector("td")));
+                    var elementTd = element.FindElements(By.CssSelector("td"));
+                    string textFirstN = elementTd[2].Text;
+                    contact.FirstName = textFirstN;
+                    string textLastN = elementTd[1].Text;
+                    contact.LastName = textLastN;
+                    string textFullName = elementTd[1].Text + elementTd[2].Text;
+                    contact.FullName = textFullName;
+                    contactCache.Add(contact);
 
-                string allContacntNames = webDriver.FindElement(By.CssSelector("div#content table")).Text;
-                string[] parts = allContacntNames.Split(new string[] { "\n" },
-                    StringSplitOptions.RemoveEmptyEntries);
-                int shift = contactCache.Count - parts.Length;
-                for (int i = 0; i < contactCache.Count; i++)
-                {
-                    if (i < shift)
-                    {
-                        contactCache[i].FirstName = "";
-                    }
-                    else
-                    {
-                        contactCache[i].FirstName = parts[i - shift].Trim();
-                    }
+                    //contactCache.Add(new ContactData()
+                    //{
+                    //    Id = element.FindElement(By.TagName("input")).GetAttribute("value")
+                    //});
                 }
             }
             return new List<ContactData>(contactCache);
@@ -341,6 +336,60 @@ namespace AddressbookNETFramework.Helpers
             // Кликаем по селектору со списком групп.
             webDriver.FindElement(By.XPath("/html/body/div/div[4]/form[1]/select/option[2]")).Click();
             // Возвращаем видимость всех контактов. 
+        }
+
+        public void AddContactToGroupDB(ContactData contact, GroupData group)
+        {
+            webDriver.FindElement(By.LinkText("home")).Click();
+            // Переходим на главную страницу со списком контактов.
+            ClearGroupFilter();
+            SelectContact(contact.Id);
+            SelectGroupToAdd(group.GroupName);
+            CommitAddingContactToGroup();
+            //new WebDriverWait(webDriver, TimeSpan.FromSeconds(10))
+            //    .Until(d => d.FindElement(By.CssSelector("div.msgbox")));
+            webDriver.FindElement(By.CssSelector("div.msgbox")).Click();
+        }
+
+        public void RemoveContactFromGroupDB(ContactData contact, GroupData group)
+        {
+            webDriver.FindElement(By.LinkText("home")).Click();
+            // Переходим на главную страницу со списком контактов.
+            FindGroupFilter(group.GroupName);
+            SelectContact(contact.Id);
+            RemoveContactToGroup();
+            webDriver.FindElement(By.CssSelector("div.msgbox")).Click();
+        }
+
+        public void ClearGroupFilter()
+        {
+            new SelectElement(webDriver.FindElement(By.Name("group"))).SelectByText("[all]");
+            // В селекторе групп выбираем [all].
+        }
+
+        public void FindGroupFilter(string groupName)
+        {
+            new SelectElement(webDriver.FindElement(By.Name("group"))).SelectByText(groupName);
+        }
+
+        public void SelectContact(string contactId)
+        {
+            webDriver.FindElement(By.Id(contactId)).Click();
+        }
+
+        public void SelectGroupToAdd(string groupName)
+        {
+            new SelectElement(webDriver.FindElement(By.Name("to_group"))).SelectByText(groupName);
+        }
+
+        public void CommitAddingContactToGroup()
+        {
+            webDriver.FindElement(By.Name("add")).Click();
+        }
+
+        public void RemoveContactToGroup()
+        {
+            webDriver.FindElement(By.Name("remove")).Click();
         }
 
         public int GetNumberOfSearchResults()

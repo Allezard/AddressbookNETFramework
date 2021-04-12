@@ -48,7 +48,8 @@ namespace AddressbookNETFramework.Helpers
 
         public string GetLoggedUserName()
         {
-            string text = webDriver.FindElement(By.Name("Logout")).FindElement(By.TagName("b")).Text;
+            //string text = webDriver.FindElement(By.Name("Logout")).FindElement(By.TagName("b")).Text;
+            string text = webDriver.FindElement(By.TagName("b")).Text;
             return text.Substring(1, text.Length - 2);
         }
 

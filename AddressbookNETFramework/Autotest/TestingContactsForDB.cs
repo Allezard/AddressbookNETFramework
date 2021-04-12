@@ -1,22 +1,25 @@
 ﻿using System;
+using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Text;
 using System.Linq;
 using System.Threading;
+using System.Collections.Generic;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using AddressbookNETFramework.Helpers;
 using AddressbookNETFramework.Model;
-using System.Collections.Generic;
 
 namespace AddressbookNETFramework
 {
-    public class TestingPackageForContacts : BaseClass
+    public class TestingContactsForDB : BaseClass
     {
         [Test]
-        public void AddNewContactTest()
+        public void DBAddNewContactTest()
         {
             //app.Navigation.GoToBaseUrl();
             //app.Auth.Login(new AccountData("admin", "secret"));
@@ -24,6 +27,7 @@ namespace AddressbookNETFramework
             List<ContactData> oldContacts = app.Contacts.GetContactList();
             Console.Out.WriteLine("Кол-во контактов:  " + app.Contacts.GetContactCount() + "\n");
             // Записываем старые знаечения контактов.
+            Console.Out.WriteLine(oldContacts);
 
             ContactData generateContacnt = new ContactData
             {
@@ -47,25 +51,23 @@ namespace AddressbookNETFramework
                 Notes = GenerateRandomString(10)
             };
             app.Contacts.AddNewContact(generateContacnt);
-            // Создаем новый контакт.
             Console.Out.WriteLine(generateContacnt);
+            // Создаем новый контакт.
 
             Assert.AreEqual(oldContacts.Count + 1, app.Contacts.GetContactCount());
-            // Сравниваем кол-во контактов перед созданием(без учета созданного) и после создания.
 
             List<ContactData> newContacts = app.Contacts.GetContactList();
-            // Записываем новые знаечения контактов.
             Console.Out.WriteLine("Конечное кол-во контактов:  " + app.Contacts.GetContactCount() + "\n");
+            // Записываем новые знаечения контактов.
 
             oldContacts.Add(generateContacnt);
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
-            // Добавляем новый контакт в список, сортируем списки и сравниваем их.
         }
 
         [Test]
-        public void EditFirstContactTest()
+        public void DBEditFirstContactTest()
         {
             //app.Navigation.GoToBaseUrl();
             //app.Auth.Login(new AccountData("admin", "secret"));
@@ -94,7 +96,7 @@ namespace AddressbookNETFramework
             app.Contacts.PreAddContact(generateContacnt, 0);
             //Создаем новый контакт, если его нет.
 
-            List<ContactData> oldContacts = app.Contacts.GetContactList();
+            List<ContactData> oldContacts = ContactData.GetAll();
             // Записываем текущие знаечения контакта/контактов.
             ContactData oldContData = oldContacts[0];
             // Сохраняем первый контакт в отдельную переменную для его проверки.
@@ -107,7 +109,7 @@ namespace AddressbookNETFramework
             // Сравниваем кол-во контактов перед редактированием и после редактирования.
             Console.Out.WriteLine("Стало: " + generateContacnt + "\n");
 
-            List<ContactData> newContacts = app.Contacts.GetContactList();
+            List<ContactData> newContacts = ContactData.GetAll();
             // Записываем новое знаечения контакта/контактов.
 
             oldContData.FirstName = generateContacnt.FirstName;
@@ -129,7 +131,7 @@ namespace AddressbookNETFramework
         }
 
         [Test]
-        public void DeleteFirstContactTest()
+        public void DBDeleteFirstContactTest()
         {
             //app.Navigation.GoToBaseUrl();
             //app.Auth.Login(new AccountData("admin", "secret"));
@@ -158,7 +160,7 @@ namespace AddressbookNETFramework
             app.Contacts.PreAddContact(generateContacnt, 0);
             //Создаем новый контакт, если его нет.
 
-            List<ContactData> oldContacts = app.Contacts.GetContactList();
+            List<ContactData> oldContacts = ContactData.GetAll();
             // Записываем текущие знаечения контакта/контактов.
             ContactData oldContData = oldContacts[0];
             // Сохраняем первый контакт в отдельную переменную для его проверки.
@@ -169,10 +171,12 @@ namespace AddressbookNETFramework
             Assert.AreEqual(oldContacts.Count - 1, app.Contacts.GetContactCount());
             // Сравниваем кол-во контактов перед удалением(без учета уданенного) и после удаления.
 
-            List<ContactData> newContacts = app.Contacts.GetContactList();
+            List<ContactData> newContacts = ContactData.GetAll();
             // Записываем новое знаечения контакта/контактов.
 
             oldContacts.RemoveAt(0);
+            oldContacts.Sort();
+            newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
             // Удаляем первый контакт из списка и проверяем списки на равенство содержимого.
 
@@ -185,7 +189,7 @@ namespace AddressbookNETFramework
         }
 
         [Test]
-        public void CheckContactInfoTest()
+        public void DBCheckContactInfoTest()
         {
             //app.Navigation.GoToBaseUrl();
             //app.Auth.Login(new AccountData("admin", "secret"));
@@ -233,7 +237,7 @@ namespace AddressbookNETFramework
         }
 
         [Test]
-        public void CheckDetailsInfoTest()
+        public void DBCheckDetailsInfoTest()
         {
             //app.Navigation.GoToBaseUrl();
             //app.Auth.Login(new AccountData("admin", "secret"));
@@ -266,49 +270,6 @@ namespace AddressbookNETFramework
 
             Console.Out.WriteLine("\n" + "Table: \n" + fromTabble.AllDetails + "\n\n" + "Form: \n" + fromForm.AllDetails);
             Assert.AreEqual(fromTabble.AllDetails, fromForm.AllDetails);
-        }
-
-        [Test]
-        public void AddContactInGroupTest()
-        {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-
-            ContactData generateContacnt = new ContactData
-            {
-                FirstName = GenerateRandomString(10),
-                MiddleName = GenerateRandomString(10),
-                LastName = GenerateRandomString(10),
-                NickName = GenerateRandomString(10),
-                Company = GenerateRandomString(10),
-                Title = GenerateRandomString(10),
-                Address = GenerateRandomString(10),
-                HomePhone = GenerateRandomString(10),
-                MobilePhone = GenerateRandomString(10),
-                WorkPhone = GenerateRandomString(10),
-                Fax = GenerateRandomString(10),
-                Email = GenerateRandomString(10),
-                Email2 = GenerateRandomString(10),
-                Email3 = GenerateRandomString(10),
-                Homepage = GenerateRandomString(10),
-                SecondaryAddress = GenerateRandomString(10),
-                HomeAddress = GenerateRandomString(10),
-                Notes = GenerateRandomString(10)
-            };
-            app.Contacts.PreAddContact(generateContacnt, 0);
-
-            app.Contacts.AddContactInGroup(0);
-        }
-
-        [Test]
-        public void ContactSearchTest()
-        {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-
-            app.Contacts.GetNumberOfSearchResults();
-            Console.Out.WriteLine("Number of results: " + app.Contacts.GetNumberOfSearchResults());
-
         }
     }
 }

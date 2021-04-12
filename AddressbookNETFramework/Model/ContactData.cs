@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Linq;
+using LinqToDB.Mapping;
 
 namespace AddressbookNETFramework.Model
 {
+    [Table(Name = "addressbook")]
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
+        private string fullName;
         private string allPhones;
         private string allEmails;
         private string allDetails;
@@ -28,8 +32,7 @@ namespace AddressbookNETFramework.Model
             {
                 return true;
             }
-            return FirstName == other.FirstName
-                && LastName == other.LastName;
+            return FirstName == other.FirstName;
         }
 
         public int CompareTo(ContactData other)
@@ -43,51 +46,93 @@ namespace AddressbookNETFramework.Model
 
         public override int GetHashCode()
         {
-            return (FirstName, LastName).GetHashCode();
+            return (FirstName).GetHashCode();
         }
 
         public override string ToString()
         {
             return
-                "\nFirst name:  " + FirstName +
-                "\nMiddle name:  " + MiddleName +
-                "\nLast name:  " + LastName +
-                "\nNickName:  " + NickName +
-                "\nCompany:  " + Company +
-                "\nTitle:  " + Title +
-                "\nAddress:  " + Address +
-                "\nHomePhone:  " + HomePhone +
-                "\nMobilePhone:  " + MobilePhone +
-                "\nWorkPhone:  " + WorkPhone +
-                "\nFax:  " + Fax +
-                "\nEmail:  " + Email +
-                "\nEmail2:  " + Email2 +
-                "\nEmail3:  " + Email3 +
-                "\nHomepage:  " + Homepage +
-                "\nSecondaryAddress:  " + SecondaryAddress +
-                "\nHomeAddress:  " + HomeAddress +
-                "\nNotes:  " + Notes + "\n\n";
+                "\n" + "First name:  " + FirstName + ", \n" +
+                "Middle name:  " + MiddleName + ", \n" +
+                "Last name:  " + LastName + ", \n" +
+                "NickName:  " + NickName + ", \n" +
+                "Company:  " + Company + ", \n" +
+                "Title:  " + Title + ", \n" +
+                "Address:  " + Address + ", \n" +
+                "HomePhone:  " + HomePhone + ", \n" +
+                "MobilePhone:  " + MobilePhone + ", \n" +
+                "WorkPhone:  " + WorkPhone + ", \n" +
+                "Fax:  " + Fax + ", \n" +
+                "Email:  " + Email + ", \n" +
+                "Email2:  " + Email2 + ", \n" +
+                "Email3:  " + Email3 + ", \n" +
+                "Homepage:  " + Homepage + ", \n" +
+                "SecondaryAddress:  " + SecondaryAddress + ", \n" +
+                "HomeAddress:  " + HomeAddress + ", \n" +
+                "Notes:  " + Notes + ", \n\n";
         }
 
+        [Column(Name = "firstname")]
         public string FirstName { get; set; }
+        [Column(Name = "middlename")]
         public string MiddleName { get; set; }
+        [Column(Name = "lastname")]
         public string LastName { get; set; }
+        [Column(Name = "nickname")]
         public string NickName { get; set; }
+        [Column(Name = "company")]
         public string Company { get; set; }
+        [Column(Name = "title")]
         public string Title { get; set; }
+        [Column(Name = "address")]
         public string Address { get; set; }
+        [Column(Name = "home")]
         public string HomePhone { get; set; }
+        [Column(Name = "mobile")]
         public string MobilePhone { get; set; }
+        [Column(Name = "work")]
         public string WorkPhone { get; set; }
+        [Column(Name = "fax")]
         public string Fax { get; set; }
+        [Column(Name = "email")]
         public string Email { get; set; }
+        [Column(Name = "email2")]
         public string Email2 { get; set; }
+        [Column(Name = "email3")]
         public string Email3 { get; set; }
+        [Column(Name = "homepage")]
         public string Homepage { get; set; }
+        [Column(Name = "address2")]
         public string SecondaryAddress { get; set; }
+        [Column(Name = "phone2")]
         public string HomeAddress { get; set; }
+        [Column(Name = "notes")]
         public string Notes { get; set; }
+        [Column(Name = "id"), PrimaryKey, Identity]
         public string Id { get; set; }
+        [Column(Name = "deprecated")]
+        public string Deprecated { get; set; }
+
+        public string FullName
+        {
+            get
+            {
+                if (fullName != null)
+                {
+                    return fullName;
+                }
+                else
+                {
+                    
+                    return CleanUp(LastName) + ", " + CleanUp(FirstName).Trim();
+                }
+            }
+            set
+            {
+                fullName = value;
+            }
+        }
+
         public string AllPhones
         {
             get
@@ -156,7 +201,7 @@ namespace AddressbookNETFramework.Model
                         "\r\n" +
                         "Birthday 16. April 1994 (26)" +
                         "\r\n" +
-                        "Anniversary 20. March 2020 (0)" + "\r\n" +
+                        "Anniversary 20. March 2020 (1)" + "\r\n" +
                         "\r\n" +
                         SecondaryAddress + "\r\n" +
                         "\r\n" +
@@ -178,6 +223,14 @@ namespace AddressbookNETFramework.Model
                 return "";
             }
             return Regex.Replace(symbol, "[ -()]", "") + "\r\n";
+        }
+
+        public static List<ContactData> GetAll()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                return (from c in db.Contacts.Where(x => x.Deprecated == "0000-00-00 00:00:00") select c).ToList();
+            }
         }
     }
 }

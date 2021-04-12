@@ -118,14 +118,14 @@ namespace AddressbookNETFramework
             Console.Out.WriteLine("ID Группы: " + oldData.Id + "\n" + "Стало:\n" + generateData + "\n");
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
-            oldGroups[0].GroupName = generateData.GroupName;
+            oldData.GroupName = generateData.GroupName;
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
 
             foreach (GroupData group in newGroups)
             {
-                if (group.Id == oldData.Id)
+                if (group.GroupName == oldData.GroupName)
                 {
                     Assert.AreEqual(generateData.GroupName, group.GroupName);
                 }
@@ -137,6 +137,7 @@ namespace AddressbookNETFramework
         {
             //app.Navigation.GoToBaseUrl();
             //app.Auth.Login(new AccountData("admin", "secret"));
+
             app.Groups.EditParentSecondGroup(1);
         }
 
@@ -145,6 +146,7 @@ namespace AddressbookNETFramework
         {
             //app.Navigation.GoToBaseUrl();
             //app.Auth.Login(new AccountData("admin", "secret"));
+
             GroupData generateData = new GroupData
             {
                 GroupName = GenerateRandomString(10),

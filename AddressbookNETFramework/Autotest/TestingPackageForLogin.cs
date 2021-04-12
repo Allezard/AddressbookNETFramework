@@ -17,9 +17,7 @@ namespace AddressbookNETFramework
         [Test]
         public void LoginWithValidCredentialsTest()
         {
-            //app.Navigation.GoToBaseUrl();
             app.Auth.Logout();
-
             AccountData account = new AccountData("admin", "secret");
             app.Auth.Login(account);
 
@@ -29,9 +27,7 @@ namespace AddressbookNETFramework
         [Test]
         public void LoginWithInvalidCredentialsTest()
         {
-            //app.Navigation.GoToBaseUrl();
             app.Auth.Logout();
-
             AccountData account = new AccountData("admin", "test");
             app.Auth.Login(account);
 
