@@ -18,9 +18,6 @@ namespace AddressbookNETFramework
         [Test]
         public void AddNewContactTest()
         {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-
             List<ContactData> oldContacts = app.Contacts.GetContactList();
             Console.Out.WriteLine("Кол-во контактов:  " + app.Contacts.GetContactCount() + "\n");
             // Записываем старые знаечения контактов.
@@ -67,9 +64,6 @@ namespace AddressbookNETFramework
         [Test]
         public void EditFirstContactTest()
         {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-
             ContactData generateContacnt = new ContactData
             {
                 FirstName = GenerateRandomString(10),
@@ -131,9 +125,6 @@ namespace AddressbookNETFramework
         [Test]
         public void DeleteFirstContactTest()
         {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-
             ContactData generateContacnt = new ContactData
             {
                 FirstName = GenerateRandomString(10),
@@ -187,9 +178,6 @@ namespace AddressbookNETFramework
         [Test]
         public void CheckContactInfoTest()
         {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-
             ContactData generateContacnt = new ContactData
             {
                 FirstName = GenerateRandomString(10),
@@ -235,9 +223,6 @@ namespace AddressbookNETFramework
         [Test]
         public void CheckDetailsInfoTest()
         {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-
             ContactData generateContacnt = new ContactData
             {
                 FirstName = GenerateRandomString(10),
@@ -271,9 +256,6 @@ namespace AddressbookNETFramework
         [Test]
         public void AddContactInGroupTest()
         {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-
             ContactData generateContacnt = new ContactData
             {
                 FirstName = GenerateRandomString(10),
@@ -303,12 +285,8 @@ namespace AddressbookNETFramework
         [Test]
         public void ContactSearchTest()
         {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-
             app.Contacts.GetNumberOfSearchResults();
             Console.Out.WriteLine("Number of results: " + app.Contacts.GetNumberOfSearchResults());
-
         }
     }
 }

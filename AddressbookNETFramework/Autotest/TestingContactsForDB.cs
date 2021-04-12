@@ -21,9 +21,6 @@ namespace AddressbookNETFramework
         [Test]
         public void DBAddNewContactTest()
         {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-
             List<ContactData> oldContacts = app.Contacts.GetContactList();
             Console.Out.WriteLine("Кол-во контактов:  " + app.Contacts.GetContactCount() + "\n");
             // Записываем старые знаечения контактов.
@@ -69,9 +66,6 @@ namespace AddressbookNETFramework
         [Test]
         public void DBEditFirstContactTest()
         {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-
             ContactData generateContacnt = new ContactData
             {
                 FirstName = GenerateRandomString(10),
@@ -133,9 +127,6 @@ namespace AddressbookNETFramework
         [Test]
         public void DBDeleteFirstContactTest()
         {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-
             ContactData generateContacnt = new ContactData
             {
                 FirstName = GenerateRandomString(10),
@@ -191,9 +182,6 @@ namespace AddressbookNETFramework
         [Test]
         public void DBCheckContactInfoTest()
         {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-
             ContactData generateContacnt = new ContactData
             {
                 FirstName = GenerateRandomString(10),
@@ -239,9 +227,6 @@ namespace AddressbookNETFramework
         [Test]
         public void DBCheckDetailsInfoTest()
         {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-
             ContactData generateContacnt = new ContactData
             {
                 FirstName = GenerateRandomString(10),

@@ -21,9 +21,6 @@ namespace AddressbookNETFramework
         [Test]
         public void DBCreateNewGroupTest()
         {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-
             List<GroupData> oldGroups = GroupData.GetAll();
             Console.Out.WriteLine("Начальное кол-во групп:  " + oldGroups.Count + "\n");
             // Записываем старые знаечения групп.
@@ -53,9 +50,6 @@ namespace AddressbookNETFramework
         [Test]
         public void DBEditFirstGroupTest()
         {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-
             GroupData generateData = new GroupData
             {
                 GroupName = GenerateRandomString(10),
@@ -92,8 +86,6 @@ namespace AddressbookNETFramework
         [Test]
         public void DBRemoveFirstGroupTest()
         {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
             GroupData generateData = new GroupData
             {
                 GroupName = GenerateRandomString(10),

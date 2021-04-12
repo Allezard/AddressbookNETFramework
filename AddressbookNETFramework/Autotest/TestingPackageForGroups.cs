@@ -31,9 +31,6 @@ namespace AddressbookNETFramework
         [Test, TestCaseSource("GroupDataFromJsonFile")]
         public void CreateNewGroupJsonTest()
         {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-
             List<GroupData> oldGroups = app.Groups.GetGroupList();
             Console.Out.WriteLine("Начальное кол-во групп:  " + app.Groups.GetGroupCount() + "\n");
             // Записываем старые знаечения групп.
@@ -64,9 +61,6 @@ namespace AddressbookNETFramework
         [Test]
         public void CreateNewGroupTest()
         {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-
             List<GroupData> oldGroups = app.Groups.GetGroupList();
             Console.Out.WriteLine("Начальное кол-во групп:  " + app.Groups.GetGroupCount() + "\n");
             // Записываем старые знаечения групп.
@@ -96,9 +90,6 @@ namespace AddressbookNETFramework
         [Test]
         public void EditFirstGroupTest()
         {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-
             GroupData generateData = new GroupData
             {
                 GroupName = GenerateRandomString(10),
@@ -135,18 +126,12 @@ namespace AddressbookNETFramework
         [Test]
         public void EditParentSecondGroupTest()
         {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-
             app.Groups.EditParentSecondGroup(1);
         }
 
         [Test]
         public void RemoveFirstGroupTest()
         {
-            //app.Navigation.GoToBaseUrl();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-
             GroupData generateData = new GroupData
             {
                 GroupName = GenerateRandomString(10),
