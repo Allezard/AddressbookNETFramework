@@ -52,6 +52,7 @@ namespace AddressbookNETFramework
             // Создаем новый контакт.
 
             Assert.AreEqual(oldContacts.Count + 1, app.Contacts.GetContactCount());
+            // Сравниваем кол-во контактов перед созданием(без учета созданного) и после создания.
 
             List<ContactData> newContacts = app.Contacts.GetContactList();
             Console.Out.WriteLine("Конечное кол-во контактов:  " + app.Contacts.GetContactCount() + "\n");
@@ -61,6 +62,7 @@ namespace AddressbookNETFramework
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
+            // Добавляем новый контакт в список, сортируем списки и сравниваем их.
         }
 
         [Test]
@@ -177,84 +179,6 @@ namespace AddressbookNETFramework
                 Console.Out.WriteLine("ID контакта: " + contact.Id);
             }
             // Проверяем, что имена контактов из списка не равны имени удаленного контакта.
-        }
-
-        [Test]
-        public void DBCheckContactInfoTest()
-        {
-            ContactData generateContacnt = new ContactData
-            {
-                FirstName = GenerateRandomString(10),
-                MiddleName = GenerateRandomString(10),
-                LastName = GenerateRandomString(10),
-                NickName = GenerateRandomString(10),
-                Company = GenerateRandomString(10),
-                Title = GenerateRandomString(10),
-                Address = GenerateRandomString(10),
-                HomePhone = GenerateRandomString(10),
-                MobilePhone = GenerateRandomString(10),
-                WorkPhone = GenerateRandomString(10),
-                Fax = GenerateRandomString(10),
-                Email = GenerateRandomString(10),
-                Email2 = GenerateRandomString(10),
-                Email3 = GenerateRandomString(10),
-                Homepage = GenerateRandomString(10),
-                SecondaryAddress = GenerateRandomString(10),
-                HomeAddress = GenerateRandomString(10),
-                Notes = GenerateRandomString(10)
-            };
-            app.Contacts.PreAddContact(generateContacnt, 0);
-            //Создаем новый контакт, если его нет.
-
-            ContactData fromForm = app.Contacts.GetContactInfoFromEditForm(0);
-            ContactData fromTabble = app.Contacts.GetContactInfoFromTable(0);
-            // Записываем данные первого контакта из формы редактирования и с добамшей страницы.
-            Console.Out.WriteLine("Table: " + fromTabble + "\n" + "Form: " + fromForm);
-
-            Assert.AreEqual(fromTabble.FirstName, fromForm.FirstName);
-            Console.Out.WriteLine("\n" + "Table: \n" + fromTabble.FirstName + "\n\n" + "Form: \n" + fromForm.FirstName);
-            Assert.AreEqual(fromTabble.LastName, fromForm.LastName);
-            Console.Out.WriteLine("\n" + "Table: \n" + fromTabble.LastName + "\n\n" + "Form: \n" + fromForm.LastName);
-            Assert.AreEqual(fromTabble.Address, fromForm.Address);
-            Console.Out.WriteLine("\n" + "Table: \n" + fromTabble.Address + "\n\n" + "Form: \n" + fromForm.Address);
-            Assert.AreEqual(fromTabble.AllEmails, fromForm.AllEmails);
-            Console.Out.WriteLine("\n" + "Table: \n" + fromTabble.AllEmails + "\n\n" + "Form: \n" + fromForm.AllEmails);
-            Assert.AreEqual(fromTabble.AllPhones, fromForm.AllPhones);
-            Console.Out.WriteLine("\n" + "Table: \n" + fromTabble.AllPhones + "\n\n" + "Form: \n" + fromForm.AllPhones);
-            // Сравниваем данные из формы редактирования и с главной страницы.
-        }
-
-        [Test]
-        public void DBCheckDetailsInfoTest()
-        {
-            ContactData generateContacnt = new ContactData
-            {
-                FirstName = GenerateRandomString(10),
-                MiddleName = GenerateRandomString(10),
-                LastName = GenerateRandomString(10),
-                NickName = GenerateRandomString(10),
-                Company = GenerateRandomString(10),
-                Title = GenerateRandomString(10),
-                Address = GenerateRandomString(10),
-                HomePhone = GenerateRandomString(10),
-                MobilePhone = GenerateRandomString(10),
-                WorkPhone = GenerateRandomString(10),
-                Fax = GenerateRandomString(10),
-                Email = GenerateRandomString(10),
-                Email2 = GenerateRandomString(10),
-                Email3 = GenerateRandomString(10),
-                Homepage = GenerateRandomString(10),
-                SecondaryAddress = GenerateRandomString(10),
-                HomeAddress = GenerateRandomString(10),
-                Notes = GenerateRandomString(10)
-            };
-            app.Contacts.PreAddContact(generateContacnt, 0);
-
-            ContactData fromForm = app.Contacts.GetContactDetailsFromEditForm(0);
-            ContactData fromTabble = app.Contacts.GetContactDetailsFormTable(0);
-
-            Console.Out.WriteLine("\n" + "Table: \n" + fromTabble.AllDetails + "\n\n" + "Form: \n" + fromForm.AllDetails);
-            Assert.AreEqual(fromTabble.AllDetails, fromForm.AllDetails);
         }
     }
 }

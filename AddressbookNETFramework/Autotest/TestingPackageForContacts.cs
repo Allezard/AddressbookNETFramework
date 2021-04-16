@@ -245,12 +245,16 @@ namespace AddressbookNETFramework
                 Notes = GenerateRandomString(10)
             };
             app.Contacts.PreAddContact(generateContacnt, 0);
+            //Создаем новый контакт, если его нет.
 
             ContactData fromForm = app.Contacts.GetContactDetailsFromEditForm(0);
+            // Считываем информацию из формы с деталями первого контакта и записываем их в переменную.
             ContactData fromTabble = app.Contacts.GetContactDetailsFormTable(0);
+            // Считываем информацию из полей на главной странице первого контакта и записываем их в переменную.
 
             Console.Out.WriteLine("\n" + "Table: \n" + fromTabble.AllDetails + "\n\n" + "Form: \n" + fromForm.AllDetails);
             Assert.AreEqual(fromTabble.AllDetails, fromForm.AllDetails);
+            // Сравниваем информацию из полей первого контакта и формы детализации.
         }
 
         [Test]
@@ -278,8 +282,10 @@ namespace AddressbookNETFramework
                 Notes = GenerateRandomString(10)
             };
             app.Contacts.PreAddContact(generateContacnt, 0);
+            //Создаем новый контакт, если его нет.
 
             app.Contacts.AddContactInGroup(0);
+            // Добавляем первый контакт в первую группу и затем удаляем его.
         }
 
         [Test]
@@ -287,6 +293,7 @@ namespace AddressbookNETFramework
         {
             app.Contacts.GetNumberOfSearchResults();
             Console.Out.WriteLine("Number of results: " + app.Contacts.GetNumberOfSearchResults());
+            // Получаем кол-во контактов на текущей странице и выводим их в консоль.
         }
     }
 }

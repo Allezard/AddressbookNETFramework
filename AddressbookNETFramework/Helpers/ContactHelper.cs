@@ -397,19 +397,21 @@ namespace AddressbookNETFramework.Helpers
             webDriver.FindElement(By.LinkText("home")).Click();
             // Переходим на главную страницу со списком контактов.
             string numberOfResult = webDriver.FindElement(By.TagName("label")).Text;
+            // Записываем в переменную значения из поля Number of results: 6(число контактов).
             Match number = new Regex(@"\d+").Match(numberOfResult);
             return Int32.Parse(number.Value);
+            // С помощью регулярного выражения получаем число без текста.
         }
 
         public void PreAddContact(ContactData contact, int index)
         {
             webDriver.FindElement(By.LinkText("home")).Click();
             // Переходим на главную страницу со списком контактов.
-            if (IsElementFound(index))
+            if (IsElementFound(index)) // Ищем первый контакт по индексу.
             {
-                return;
+                return; // Если контакт найден, то завершаем проверку.
             }
-            AddNewContact(contact);
+            AddNewContact(contact); // Создаем новый контакт, если элемент в условии "if" не найден.
         }
     }
 }

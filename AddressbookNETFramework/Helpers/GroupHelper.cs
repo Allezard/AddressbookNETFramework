@@ -181,11 +181,11 @@ namespace AddressbookNETFramework.Helpers
         {
             webDriver.FindElement(By.ClassName("admin")).Click();
             // Переходим во вкладку "groups".
-            if (IsElementFound(index))
+            if (IsElementFound(index)) // Ищем первыую группу по индексу.
             {
-                return;
+                return; // Если группа найдена, то завершаем проверку.
             }
-            CreateNewGroup(groups);
+            CreateNewGroup(groups); // Создаем новую группу, если элемент в условии "if" не найден.
         }
     }
 }
