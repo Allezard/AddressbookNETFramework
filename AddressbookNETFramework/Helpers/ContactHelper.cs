@@ -17,9 +17,7 @@ namespace AddressbookNETFramework.Helpers
         public ContactHelper(IWebDriver webDriver)
             : base(webDriver)
         {
-            //*[@id="maintable"]/tbody/tr[2]
-            //*[@id="maintable"]/tbody/tr[3]
-            //div#content table tbody tr
+
         }
 
         public List<ContactData> GetContactList()

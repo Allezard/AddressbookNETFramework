@@ -17,12 +17,22 @@ namespace AddressbookNETFramework.Model
         public static Random rnd = new Random();
         public static bool PERFORM_LONG_UI_CHECKS = true;
 
+        /// <summary>
+        /// Метод выполняющий инициализацию браузер и логина в систему при каждом обращении к классу.
+        /// </summary>
         [SetUp]
         public void SetupApp()
         {
             app = ApplicationManager.GetInstance();
+            app.Auth.Login(new AccountData("admin", "secret"));
         }
 
+        /// <summary>
+        /// Метод генерирующий случайные символы в диапазоне латинского алфавита.
+        /// </summary>
+        /// <param name="size">Кол-во сгенерированных символов.</param>
+        /// <param name="lowerCase">Если true, то маленькие буквы, если false - большие.</param>
+        /// <returns>Возвращает преобразованное значение данного экземпляра в текст.</returns>
         public static string GenerateRandomString(int size, bool lowerCase = true)
         {
             StringBuilder builder = new StringBuilder();

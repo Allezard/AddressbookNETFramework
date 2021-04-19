@@ -14,17 +14,18 @@ namespace AddressbookNETFramework
     [SetUpFixture]
     public class SuiteFixture
     {
-        [OneTimeSetUp]
-        public void InitApplicationManager()
-        {
-            //ApplicationManager app = ApplicationManager.GetInstance();
-            ApplicationManager.GetInstance().Auth.Login(new AccountData("admin", "secret"));
-        }
+        //[OneTimeSetUp]
+        //public void InitApplicationManager()
+        //{
+        //    //ApplicationManager.GetInstance().Auth.Login(new AccountData("admin", "secret"));
+        //}
 
         //[OneTimeTearDown]
         //public void StopApplicationManager()
         //{
         //    ApplicationManager.GetInstance().Stop();
         //}
+
+        // Оставил методы для тестов параллельного запуска.
     }
 }

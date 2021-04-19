@@ -32,6 +32,10 @@ namespace AddressbookNETFramework.Helpers
             ContactHelper = new ContactHelper(webDriver);
         }
 
+        /// <summary>
+        /// Инициализатор браузера.
+        /// </summary>
+        /// <returns>Возвращает или задает значение для данного потока.</returns>
         public static ApplicationManager GetInstance()
         {
             if (!app.IsValueCreated)
@@ -43,17 +47,17 @@ namespace AddressbookNETFramework.Helpers
             return app.Value;
         }
 
-        public void Stop()
-        {
-            try
-            {
-                webDriver.Quit();
-            }
-            catch (Exception)
-            {
-                // Ignore errors if unable to close the browser
-            }
-        }
+        //public void Stop()
+        //{
+        //    try
+        //    {
+        //        webDriver.Quit();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        // Ignore errors if unable to close the browser
+        //    }
+        //}
 
         ~ApplicationManager()
         {
