@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using AddressbookNETFramework.Model;
 
-namespace DataGeneration
+namespace GroupDataGeneration
 {
-    class Program
+    class GroupProgram
     {
         static void Main(string[] args)
         {
@@ -32,11 +32,11 @@ namespace DataGeneration
             if (format == "json")
             {
                 WriteGroupsToJsonFile(groups, writer);
-            } 
+            }
             else if (format == "xml")
             {
                 WriteGroupsToXMLFile(groups, writer);
-            } 
+            }
             else
             {
                 Console.Out.WriteLine("Unrecognized format" + format);
@@ -53,14 +53,5 @@ namespace DataGeneration
         {
             writer.Write(JsonConvert.SerializeObject(groups, Newtonsoft.Json.Formatting.Indented));
         }
-
-        //static void writeGroupsToCSVFile(List<GroupData> groups, StreamWriter writer)
-        //{
-        //    foreach (GroupData group in groups)
-        //    {
-        //        writer.Write(String.Format("${0},${1},${2}",
-        //            group.GroupName, group.GroupHeader, group.GroupFooter));
-        //    }
-        //}
     }
 }

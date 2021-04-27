@@ -269,12 +269,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Autotest\SuiteFixture.cs" />
-    <Compile Include="Autotest\TestingAddingContactToGroup.cs" />
-    <Compile Include="Autotest\TestingContactsForDB.cs" />
-    <Compile Include="Autotest\TestingGroupsForDB.cs" />
-    <Compile Include="Autotest\TestingPackageForContacts.cs" />
-    <Compile Include="Autotest\TestingPackageForGroups.cs" />
-    <Compile Include="Autotest\TestingPackageForLogin.cs" />
+    <Compile Include="Autotest\CheckDataUIBD\TestingAddingContactToGroup.cs" />
+    <Compile Include="Autotest\CheckDataUIBD\TestingContactsForDB.cs" />
+    <Compile Include="Autotest\CheckDataUIBD\TestingGroupsForDB.cs" />
+    <Compile Include="Autotest\CheckDataUI\TestingPackageForContacts.cs" />
+    <Compile Include="Autotest\CheckDataUI\TestingPackageForGroups.cs" />
+    <Compile Include="Autotest\CheckDataUI\TestingPackageForLogin.cs" />
+    <Compile Include="Autotest\WriteFromJson\TestingPackageForContactsJson.cs" />
+    <Compile Include="Autotest\WriteFromJson\TestingPackageForGroupsJson.cs" />
+    <Compile Include="Autotest\WriteFromXml\TestingPackageForContactsXml.cs" />
+    <Compile Include="Autotest\WriteFromXml\TestingPackageForGroupsXml.cs" />
     <Compile Include="Helpers\ApplicationManager.cs" />
     <Compile Include="Helpers\BaseHelper.cs" />
     <Compile Include="Helpers\ContactHelper.cs" />
@@ -294,9 +298,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="ClassDiagram.cd" />
-    <None Include="groups.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="TestDataFolder\contacts.json" />
     <None Include="LinqToDB.Templates\DataAnnotations.ttinclude" />
     <None Include="LinqToDB.Templates\DataModel.ttinclude" />
     <None Include="LinqToDB.Templates\EditableObject.ttinclude" />
@@ -316,7 +318,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="groups.xml">
+    <Content Include="TestDataFolder\contacts.xml" />
+    <None Include="TestDataFolder\groups.json" />
+    <None Include="TestDataFolder\groups.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="LinqToDB.Templates\CopyMe.MySql.tt.txt" />

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
 using Newtonsoft.Json;
 using System.Text;
 using System.Linq;
@@ -13,55 +11,21 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using AddressbookNETFramework.Helpers;
 using AddressbookNETFramework.Model;
+using System.Reflection;
 
 namespace AddressbookNETFramework
 {
-    public class TestingPackageForGroups : BaseClass
+    public class TestingPackageForGroupsJson : BaseClass
     {
-        public static IEnumerable<GroupData> GroupDataFromXmlFile()
-        {
-            return (List<GroupData>) new XmlSerializer(typeof(List<GroupData>)).Deserialize(new StreamReader(@"groups.xml"));
-        }
-
         public static IEnumerable<GroupData> GroupDataFromJsonFile()
         {
-            return JsonConvert.DeserializeObject<List<GroupData>>(File.ReadAllText(@"groups.json"));
-        }
-
-        [Test, TestCaseSource("GroupDataFromJsonFile")]
-        public void CreateNewGroupJsonTest()
-        {
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
-            Console.Out.WriteLine("Начальное кол-во групп:  " + app.Groups.GetGroupCount() + "\n");
-            // Записываем в переменную "oldGroups" список существующих групп.
-
-            GroupData generateData = new GroupData
-            {
-                GroupName = GenerateRandomString(10),
-                GroupHeader = GenerateRandomString(30),
-                GroupFooter = GenerateRandomString(30)
-            };
-
-            app.Groups.CreateNewGroup(generateData);
-            Console.Out.WriteLine(generateData);
-            // Создаем новую группу и заполняем ее рандомными данными.
-
-            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
-            // Сравниваем кол-во групп с помощью метода, который получает кол-во групп.
-
-            List<GroupData> newGroups = app.Groups.GetGroupList();
-            Console.Out.WriteLine("Конечное кол-во групп:  " + app.Groups.GetGroupCount() + "\n");
-            // Записываем новые знаечения групп.
-
-            oldGroups.Add(generateData);
-            oldGroups.Sort();
-            newGroups.Sort();
-            Assert.AreEqual(oldGroups, newGroups);
-            // Добавляем в список "oldGroups" новую руппу, сортируем списки и сравниваем.
+            var path = File.ReadAllText(@"C:\Users\Professional\source\repos\AddressbookNETFramework\AddressbookNETFramework\TestDataFolder\groups.json");
+            var fileJson = JsonConvert.DeserializeObject<List<GroupData>>(path);
+            return fileJson;
         }
 
         [Test]
-        public void CreateNewGroupTest()
+        public void JsonCreateNewGroupTest()
         {
             List<GroupData> oldGroups = app.Groups.GetGroupList();
             Console.Out.WriteLine("Начальное кол-во групп:  " + app.Groups.GetGroupCount() + "\n");
@@ -69,9 +33,9 @@ namespace AddressbookNETFramework
 
             GroupData generateData = new GroupData
             {
-                GroupName = GenerateRandomString(10),
-                GroupHeader = GenerateRandomString(30),
-                GroupFooter = GenerateRandomString(30)
+                GroupName = GroupDataFromJsonFile().First().GroupName,
+                GroupHeader = GroupDataFromJsonFile().First().GroupHeader,
+                GroupFooter = GroupDataFromJsonFile().First().GroupFooter
             };
             app.Groups.CreateNewGroup(generateData);
             Console.Out.WriteLine(generateData);
@@ -92,13 +56,13 @@ namespace AddressbookNETFramework
         }
 
         [Test]
-        public void EditFirstGroupTest()
+        public void JsonEditFirstGroupTest()
         {
             GroupData generateData = new GroupData
             {
-                GroupName = GenerateRandomString(10),
-                GroupHeader = GenerateRandomString(30),
-                GroupFooter = GenerateRandomString(30)
+                GroupName = GroupDataFromJsonFile().First().GroupName,
+                GroupHeader = GroupDataFromJsonFile().First().GroupHeader,
+                GroupFooter = GroupDataFromJsonFile().First().GroupFooter
             };
             app.Groups.PreAddGroup(generateData, 0);
             // Создаем новую группу, если по нулевому индексу она отсутствует.
@@ -135,20 +99,13 @@ namespace AddressbookNETFramework
         }
 
         [Test]
-        public void EditParentSecondGroupTest()
-        {
-            app.Groups.EditParentSecondGroup(1);
-            // Редактируем вторую по счету в списке группу.
-        }
-
-        [Test]
-        public void RemoveFirstGroupTest()
+        public void JsonRemoveFirstGroupTest()
         {
             GroupData generateData = new GroupData
             {
-                GroupName = GenerateRandomString(10),
-                GroupHeader = GenerateRandomString(30),
-                GroupFooter = GenerateRandomString(30)
+                GroupName = GroupDataFromJsonFile().First().GroupName,
+                GroupHeader = GroupDataFromJsonFile().First().GroupHeader,
+                GroupFooter = GroupDataFromJsonFile().First().GroupFooter
             };
             app.Groups.PreAddGroup(generateData, 0);
             // Создаем новую группу, если по нулевому индексу она отсутствует.
