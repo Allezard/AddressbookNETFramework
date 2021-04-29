@@ -14,9 +14,13 @@ namespace AddressbookNETFramework.Helpers
         {
         }
 
+        /// <summary>
+        /// Проверяем, что мы залогинены под нужной ролью, если да, то выходим и цикла, если нет, то логинимся в систему.
+        /// </summary>
+        /// <param name="data">Заглушка</param>
         public void Login(AccountData data)
         {
-            if (IsloggedIn())
+            if (CheckLoginPresent())
             {
                 if (IsLoggedInUser(data))
                 {
@@ -35,9 +39,12 @@ namespace AddressbookNETFramework.Helpers
             // Нажимаем на кнопку "Login".
         }
 
+        /// <summary>
+        /// Выполняем "Logout" если мы залогинены.
+        /// </summary>
         public void Logout()
         {
-            if (IsloggedIn())
+            if (CheckLoginPresent())
             {
                 webDriver.FindElement(By.LinkText("Logout")).Click();
             }

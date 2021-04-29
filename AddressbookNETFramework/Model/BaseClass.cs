@@ -11,6 +11,9 @@ using System.Collections.Generic;
 
 namespace AddressbookNETFramework.Model
 {
+    /// <summary>
+    /// Содержит в себе рандомайзер для тестов, отвечает за открытие, закрытие браузер, вход. Инициализирует "ApplicationManager", который является ключевым звеном всех тестов.
+    /// </summary>
     public class BaseClass
     {
         protected ApplicationManager app;

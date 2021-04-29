@@ -7,10 +7,15 @@ using LinqToDB.Mapping;
 
 namespace AddressbookNETFramework.Model
 {
+    /// <summary>
+    /// Содержит в себе параметры группы которые можно заполничть/получить и доп. методы.
+    /// </summary>
     [Table(Name = "group_list")]
     public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
     {
-
+        /// <summary>
+        /// Пустой метод для реализации полей в группах.
+        /// </summary>
         public GroupData()
         {
 

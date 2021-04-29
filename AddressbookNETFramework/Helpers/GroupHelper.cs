@@ -181,7 +181,7 @@ namespace AddressbookNETFramework.Helpers
         {
             webDriver.FindElement(By.ClassName("admin")).Click();
             // Переходим во вкладку "groups".
-            if (IsElementFound(index)) // Ищем первыую группу по индексу.
+            if (CheckElementPresent(index)) // Ищем первыую группу по индексу.
             {
                 return; // Если группа найдена, то завершаем проверку.
             }

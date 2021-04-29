@@ -23,7 +23,7 @@ namespace AddressbookNETFramework
             app.Auth.Login(account);
             // Для переменной "account" передаем два параметра: "username" и "userpassword". Далее используем их в качестве данных для входа.
 
-            Assert.IsTrue(app.Auth.IsloggedIn());
+            Assert.IsTrue(app.Auth.CheckLoginPresent());
             // Если мы успешно залогинены, то тест пройден успешно.
         }
 
@@ -36,7 +36,7 @@ namespace AddressbookNETFramework
             app.Auth.Login(account);
             // Для переменной "account" передаем два параметра: "username" и "userpassword". Далее используем их в качестве данных для входа.
 
-            Assert.IsFalse(app.Auth.IsloggedIn());
+            Assert.IsFalse(app.Auth.CheckLoginPresent());
             // Если мы не залогинены, то тест пройден успешно.
         }
     }

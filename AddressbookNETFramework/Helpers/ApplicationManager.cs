@@ -20,10 +20,14 @@ namespace AddressbookNETFramework.Helpers
         protected ContactHelper ContactHelper;
         private static readonly ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
+        /// <summary>
+        /// Инициализирует помощников(групп, контактов, навигаци, логин, вебдрайвер) для всех тестов.
+        /// </summary>
         private ApplicationManager()
         {
             ChromeOptions chromeIncognito = new ChromeOptions();
             chromeIncognito.AddArgument("--incognito");
+            // Запускаем браузер в режиме incognito.
 
             webDriver = new ChromeDriver(chromeIncognito);
             LoginHelper = new LoginHelper(webDriver);
@@ -59,6 +63,9 @@ namespace AddressbookNETFramework.Helpers
         //    }
         //}
 
+        /// <summary>
+        /// После выполнения заданного кода завершаем работу "ApplicationManager" с помошью методай "Quit" для вебдрайвера.
+        /// </summary>
         ~ApplicationManager()
         {
             try

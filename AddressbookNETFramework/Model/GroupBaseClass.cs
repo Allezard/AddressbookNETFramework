@@ -7,6 +7,9 @@ using NUnit.Framework;
 
 namespace AddressbookNETFramework.Model
 {
+    /// <summary>
+    /// Данный метод реализован для наследования тестами проверяющими группы.
+    /// </summary>
     public class GroupBaseClass : BaseClass
     {
         [TearDown]

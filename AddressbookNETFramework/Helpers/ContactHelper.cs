@@ -405,7 +405,7 @@ namespace AddressbookNETFramework.Helpers
         {
             webDriver.FindElement(By.LinkText("home")).Click();
             // Переходим на главную страницу со списком контактов.
-            if (IsElementFound(index)) // Ищем первый контакт по индексу.
+            if (CheckElementPresent(index)) // Ищем первый контакт по индексу.
             {
                 return; // Если контакт найден, то завершаем проверку.
             }

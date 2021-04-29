@@ -13,6 +13,10 @@ namespace ContactDataGeneration
 {
     class ContactProgram
     {
+        /// <summary>
+        /// Генерирует файл в зависимости от выбора формата(json или xml) и записывает в него значения на основе выбранных полей из "ContactData".
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             int count = Convert.ToInt32(args[0]);

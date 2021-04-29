@@ -8,6 +8,9 @@ using LinqToDB.Mapping;
 
 namespace AddressbookNETFramework.Model
 {
+    /// <summary>
+    /// Содержит в себе параметры контакта которые можно заполничть/получить и доп. методы.
+    /// </summary>
     [Table(Name = "addressbook")]
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
@@ -16,6 +19,9 @@ namespace AddressbookNETFramework.Model
         private string allEmails;
         private string allDetails;
 
+        /// <summary>
+        /// Пустой метод для реализации полей в контактах.
+        /// </summary>
         public ContactData()
         {
             //FirstName = firstName;
