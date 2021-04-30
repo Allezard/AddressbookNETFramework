@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FB620274-75FB-40BC-8E23-1D4DC50D72A3}</ProjectGuid>
+    <ProjectGuid>{5AD1CE86-EFCA-45CA-B869-95BDBB25B62A}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ContactDataGeneration</RootNamespace>
-    <AssemblyName>ContactDataGeneration</AssemblyName>
+    <RootNamespace>DataGeneration</RootNamespace>
+    <AssemblyName>DataGeneration</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContactProgram.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

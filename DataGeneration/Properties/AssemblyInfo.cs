@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанные с этой сборкой.
-[assembly: AssemblyTitle("GroupDataGeneration")]
+[assembly: AssemblyTitle("DataGeneration")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("GroupDataGeneration")]
+[assembly: AssemblyProduct("DataGeneration")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID представляет идентификатор typelib, если этот проект доступен из модели COM
-[assembly: Guid("42fa2959-0a26-471e-bf02-9adba1cfcc74")]
+[assembly: Guid("5ad1ce86-efca-45ca-b869-95bdbb25b62a")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //
