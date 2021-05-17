@@ -289,6 +289,7 @@
     <Compile Include="Model\AddressBookDB.cs" />
     <Compile Include="Model\BaseClass.cs" />
     <Compile Include="Model\ContactData.cs" />
+    <Compile Include="Model\EnumClass.cs" />
     <Compile Include="Model\GroupBaseClass.cs" />
     <Compile Include="Model\GroupContactRelation.cs" />
     <Compile Include="Model\GroupData.cs" />

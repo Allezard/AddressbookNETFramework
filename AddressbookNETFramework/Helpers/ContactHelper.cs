@@ -138,6 +138,12 @@ namespace AddressbookNETFramework.Helpers
             string email = webDriver.FindElement(By.Name("email")).GetAttribute("value");
             string email2 = webDriver.FindElement(By.Name("email2")).GetAttribute("value");
             string email3 = webDriver.FindElement(By.Name("email3")).GetAttribute("value");
+            string birthDay = webDriver.FindElement(By.Name("bday")).GetAttribute("value");
+            string birthMonth = webDriver.FindElement(By.Name("bmonth")).GetAttribute("value");
+            string yearOfBirth = webDriver.FindElement(By.Name("byear")).GetAttribute("value");
+            string anniversaryDay = webDriver.FindElement(By.Name("aday")).GetAttribute("value");
+            string anniversaryMonth = webDriver.FindElement(By.Name("amonth")).GetAttribute("value");
+            string yearOfAnnivers = webDriver.FindElement(By.Name("ayear")).GetAttribute("value");
             string homepage = webDriver.FindElement(By.Name("homepage")).GetAttribute("value");
             string secondaryAddress = webDriver.FindElement(By.Name("address2")).GetAttribute("value");
             string homeAddress = webDriver.FindElement(By.Name("phone2")).GetAttribute("value");
@@ -159,6 +165,12 @@ namespace AddressbookNETFramework.Helpers
                 Email = email,
                 Email2 = email2,
                 Email3 = email3,
+                BirthDay = birthDay,
+                BirthMonth = birthMonth,
+                YearOfBirth = yearOfBirth,
+                AnniversDay = anniversaryDay,
+                AnniversMonth = anniversaryMonth,
+                YearOfAnnivers = yearOfAnnivers,
                 Homepage = homepage,
                 SecondaryAddress = secondaryAddress,
                 HomeAddress = homeAddress,
@@ -187,6 +199,29 @@ namespace AddressbookNETFramework.Helpers
 
         public void AddNewContact(ContactData contact)
         {
+            ContactData randomYear = new ContactData();
+            var dayBirth = randomYear.RandomBirthYear().Day;
+            Thread.Sleep(10);
+            var monthBirthr = (EnumClass.EnumMonths)randomYear.RandomBirthYear().Month;
+            Thread.Sleep(10);
+            var yearBirth = randomYear.RandomBirthYear().Year;
+            Thread.Sleep(10);
+            var dayAnnivers = randomYear.RandomAnniversYear().Day;
+            Thread.Sleep(10);
+            var monthAnnivers = (EnumClass.EnumMonths)randomYear.RandomAnniversYear().Month;
+            Thread.Sleep(10);
+            var yearAnnivers = randomYear.RandomAnniversYear().Year;
+
+            ContactData generateContacntYear = new ContactData
+            {
+                BirthDay = dayBirth.ToString(),
+                BirthMonth = monthBirthr.ToString(),
+                YearOfBirth = yearBirth.ToString(),
+                AnniversDay = dayAnnivers.ToString(),
+                AnniversMonth = monthAnnivers.ToString(),
+                YearOfAnnivers = yearAnnivers.ToString(),
+            };
+
             webDriver.FindElement(By.LinkText("add new")).Click();
             // Переходим на страницу для создания контакта.
             webDriver.FindElement(By.Name("email")).SendKeys(contact.Email);
@@ -206,16 +241,16 @@ namespace AddressbookNETFramework.Helpers
             webDriver.FindElement(By.Name("homepage")).SendKeys(contact.Homepage);
             // Заполняем личные данные.
             webDriver.FindElement(By.Name("bday")).Click();
-            new SelectElement(webDriver.FindElement(By.Name("bday"))).SelectByText("16");
+            new SelectElement(webDriver.FindElement(By.Name("bday"))).SelectByText(generateContacntYear.BirthDay);
             webDriver.FindElement(By.Name("bmonth")).Click();
-            new SelectElement(webDriver.FindElement(By.Name("bmonth"))).SelectByText("April");
-            webDriver.FindElement(By.Name("byear")).SendKeys("1994");
+            new SelectElement(webDriver.FindElement(By.Name("bmonth"))).SelectByText(generateContacntYear.BirthMonth);
+            webDriver.FindElement(By.Name("byear")).SendKeys(generateContacntYear.YearOfBirth);
             // Указываем день, месяц, год рождения.
             webDriver.FindElement(By.Name("aday")).Click();
-            new SelectElement(webDriver.FindElement(By.Name("aday"))).SelectByText("20");
+            new SelectElement(webDriver.FindElement(By.Name("aday"))).SelectByText(generateContacntYear.AnniversDay);
             webDriver.FindElement(By.Name("amonth")).Click();
-            new SelectElement(webDriver.FindElement(By.Name("amonth"))).SelectByText("March");
-            webDriver.FindElement(By.Name("ayear")).SendKeys("2020");
+            new SelectElement(webDriver.FindElement(By.Name("amonth"))).SelectByText(generateContacntYear.AnniversMonth);
+            webDriver.FindElement(By.Name("ayear")).SendKeys(generateContacntYear.YearOfAnnivers);
             // Указываем день, месяц, год годовщины.
             webDriver.FindElement(By.Name("new_group")).Click();
             new SelectElement(webDriver.FindElement(By.Name("new_group"))).SelectByText("[none]");
@@ -233,6 +268,29 @@ namespace AddressbookNETFramework.Helpers
 
         public void EditFirstContact(ContactData contact, int index)
         {
+            ContactData randomYear = new ContactData();
+            var dayBirth = randomYear.RandomBirthYear().Day;
+            Thread.Sleep(10);
+            var monthBirthr = (EnumClass.EnumMonths)randomYear.RandomBirthYear().Month;
+            Thread.Sleep(10);
+            var yearBirth = randomYear.RandomBirthYear().Year;
+            Thread.Sleep(10);
+            var dayAnnivers = randomYear.RandomAnniversYear().Day;
+            Thread.Sleep(10);
+            var monthAnnivers = (EnumClass.EnumMonths)randomYear.RandomAnniversYear().Month;
+            Thread.Sleep(10);
+            var yearAnnivers = randomYear.RandomAnniversYear().Year;
+
+            ContactData generateContacntYear = new ContactData
+            {
+                BirthDay = dayBirth.ToString(),
+                BirthMonth = monthBirthr.ToString(),
+                YearOfBirth = yearBirth.ToString(),
+                AnniversDay = dayAnnivers.ToString(),
+                AnniversMonth = monthAnnivers.ToString(),
+                YearOfAnnivers = yearAnnivers.ToString(),
+            };
+
             webDriver.FindElement(By.LinkText("home")).Click();
             // Переходим на главную страницу со списком контактов.
             // Делаем проверку на наличии контакта, если его нет, то создаем и повторяем тест.
@@ -272,16 +330,18 @@ namespace AddressbookNETFramework.Helpers
             webDriver.FindElement(By.Name("homepage")).SendKeys(contact.Homepage);
             // Редактируем данные.
             webDriver.FindElement(By.Name("bday")).Click();
-            new SelectElement(webDriver.FindElement(By.Name("bday"))).SelectByText("16");
+            new SelectElement(webDriver.FindElement(By.Name("bday"))).SelectByText(generateContacntYear.BirthDay);
             webDriver.FindElement(By.Name("bmonth")).Click();
-            new SelectElement(webDriver.FindElement(By.Name("bmonth"))).SelectByText("April");
-            webDriver.FindElement(By.Name("byear")).SendKeys("2000");
+            new SelectElement(webDriver.FindElement(By.Name("bmonth"))).SelectByText(generateContacntYear.BirthMonth);
+            webDriver.FindElement(By.Name("byear")).Clear();
+            webDriver.FindElement(By.Name("byear")).SendKeys(generateContacntYear.YearOfBirth);
             // Указываем день, месяц, год рождения.
             webDriver.FindElement(By.Name("aday")).Click();
-            new SelectElement(webDriver.FindElement(By.Name("aday"))).SelectByText("20");
+            new SelectElement(webDriver.FindElement(By.Name("aday"))).SelectByText(generateContacntYear.AnniversDay);
             webDriver.FindElement(By.Name("amonth")).Click();
-            new SelectElement(webDriver.FindElement(By.Name("amonth"))).SelectByText("March");
-            webDriver.FindElement(By.Name("ayear")).SendKeys("1000");
+            new SelectElement(webDriver.FindElement(By.Name("amonth"))).SelectByText(generateContacntYear.AnniversMonth);
+            webDriver.FindElement(By.Name("ayear")).Clear();
+            webDriver.FindElement(By.Name("ayear")).SendKeys(generateContacntYear.YearOfAnnivers);
             // Указываем день, месяц, год годовщины.
             webDriver.FindElement(By.Name("address2")).Clear();
             webDriver.FindElement(By.Name("address2")).SendKeys(contact.SecondaryAddress);
