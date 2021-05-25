@@ -26,28 +26,7 @@ namespace AddressbookNETFramework
             // Записываем старые знаечения контактов.
             Console.Out.WriteLine(oldContacts);
 
-            ContactData generateContacnt = new ContactData
-            {
-                FirstName = GenerateRandomString(10),
-                MiddleName = GenerateRandomString(10),
-                LastName = GenerateRandomString(10),
-                NickName = GenerateRandomString(10),
-                Company = GenerateRandomString(10),
-                Title = GenerateRandomString(10),
-                Address = GenerateRandomString(10),
-                HomePhone = GenerateRandomString(10),
-                MobilePhone = GenerateRandomString(10),
-                WorkPhone = GenerateRandomString(10),
-                Fax = GenerateRandomString(10),
-                Email = GenerateRandomString(10),
-                Email2 = GenerateRandomString(10),
-                Email3 = GenerateRandomString(10),
-                Homepage = GenerateRandomString(10),
-                SecondaryAddress = GenerateRandomString(10),
-                HomeAddress = GenerateRandomString(10),
-                Notes = GenerateRandomString(10)
-            };
-            app.Contacts.AddNewContact(generateContacnt);
+            ContactData generateContacnt = app.Contacts.AddNewContact();
             Console.Out.WriteLine(generateContacnt);
             // Создаем новый контакт.
 
@@ -68,28 +47,7 @@ namespace AddressbookNETFramework
         [Test]
         public void DBEditFirstContactTest()
         {
-            ContactData generateContacnt = new ContactData
-            {
-                FirstName = GenerateRandomString(10),
-                MiddleName = GenerateRandomString(10),
-                LastName = GenerateRandomString(10),
-                NickName = GenerateRandomString(10),
-                Company = GenerateRandomString(10),
-                Title = GenerateRandomString(10),
-                Address = GenerateRandomString(10),
-                HomePhone = GenerateRandomString(10),
-                MobilePhone = GenerateRandomString(10),
-                WorkPhone = GenerateRandomString(10),
-                Fax = GenerateRandomString(10),
-                Email = GenerateRandomString(10),
-                Email2 = GenerateRandomString(10),
-                Email3 = GenerateRandomString(10),
-                Homepage = GenerateRandomString(10),
-                SecondaryAddress = GenerateRandomString(10),
-                HomeAddress = GenerateRandomString(10),
-                Notes = GenerateRandomString(10)
-            };
-            app.Contacts.PreAddContact(generateContacnt, 0);
+            app.Contacts.PreAddContact(0);
             //Создаем новый контакт, если его нет.
 
             List<ContactData> oldContacts = ContactData.GetAll();
@@ -98,7 +56,7 @@ namespace AddressbookNETFramework
             // Сохраняем первый контакт в отдельную переменную для его проверки.
             Console.Out.WriteLine("Было: " + oldContData + "\n");
 
-            app.Contacts.EditFirstContact(generateContacnt, 0);
+            ContactData generateContacnt = app.Contacts.EditFirstContact(0);
             // Редактируем первый контакт.
 
             Assert.AreEqual(oldContacts.Count, app.Contacts.GetContactCount());
@@ -129,28 +87,7 @@ namespace AddressbookNETFramework
         [Test]
         public void DBDeleteFirstContactTest()
         {
-            ContactData generateContacnt = new ContactData
-            {
-                FirstName = GenerateRandomString(10),
-                MiddleName = GenerateRandomString(10),
-                LastName = GenerateRandomString(10),
-                NickName = GenerateRandomString(10),
-                Company = GenerateRandomString(10),
-                Title = GenerateRandomString(10),
-                Address = GenerateRandomString(10),
-                HomePhone = GenerateRandomString(10),
-                MobilePhone = GenerateRandomString(10),
-                WorkPhone = GenerateRandomString(10),
-                Fax = GenerateRandomString(10),
-                Email = GenerateRandomString(10),
-                Email2 = GenerateRandomString(10),
-                Email3 = GenerateRandomString(10),
-                Homepage = GenerateRandomString(10),
-                SecondaryAddress = GenerateRandomString(10),
-                HomeAddress = GenerateRandomString(10),
-                Notes = GenerateRandomString(10)
-            };
-            app.Contacts.PreAddContact(generateContacnt, 0);
+            app.Contacts.PreAddContact(0);
             //Создаем новый контакт, если его нет.
 
             List<ContactData> oldContacts = ContactData.GetAll();

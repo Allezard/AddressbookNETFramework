@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using AddressbookNETFramework.Model;
+using AddressbookNETFramework.Helpers;
+using System.Threading;
 
 namespace DataGeneration
 {
@@ -31,9 +33,9 @@ namespace DataGeneration
                 {
                     groups.Add(new GroupData()
                     {
-                        GroupName = BaseClass.GenerateRandomString(10),
-                        GroupHeader = BaseClass.GenerateRandomString(10),
-                        GroupFooter = BaseClass.GenerateRandomString(10)
+                        GroupName = BaseHelper.GenerateRandomString(10),
+                        GroupHeader = BaseHelper.GenerateRandomString(10),
+                        GroupFooter = BaseHelper.GenerateRandomString(10)
                     });
                 }
                 if (format == "json")
@@ -52,29 +54,36 @@ namespace DataGeneration
             }
             else if (type == "typeContact")
             {
+                ContactData rndDate = new ContactData();
                 List<ContactData> contacts = new List<ContactData>();
                 for (int i = 0; i < count; i++)
                 {
                     contacts.Add(new ContactData()
                     {
-                        FirstName = BaseClass.GenerateRandomString(10),
-                        MiddleName = BaseClass.GenerateRandomString(10),
-                        LastName = BaseClass.GenerateRandomString(10),
-                        NickName = BaseClass.GenerateRandomString(10),
-                        Company = BaseClass.GenerateRandomString(10),
-                        Title = BaseClass.GenerateRandomString(10),
-                        Address = BaseClass.GenerateRandomString(10),
-                        HomePhone = BaseClass.GenerateRandomString(10),
-                        MobilePhone = BaseClass.GenerateRandomString(10),
-                        WorkPhone = BaseClass.GenerateRandomString(10),
-                        Fax = BaseClass.GenerateRandomString(10),
-                        Email = BaseClass.GenerateRandomString(10),
-                        Email2 = BaseClass.GenerateRandomString(10),
-                        Email3 = BaseClass.GenerateRandomString(10),
-                        Homepage = BaseClass.GenerateRandomString(10),
-                        SecondaryAddress = BaseClass.GenerateRandomString(10),
-                        HomeAddress = BaseClass.GenerateRandomString(10),
-                        Notes = BaseClass.GenerateRandomString(10)
+                        BirthDay = rndDate.RandomBirthYear().Day.ToString(),
+                        BirthMonth = ((EnumClass.EnumMonths)rndDate.RandomBirthYear().Month).ToString(),
+                        YearOfBirth = rndDate.RandomBirthYear().Year.ToString(),
+                        AnniversDay = rndDate.RandomAnniversYear().Day.ToString(),
+                        AnniversMonth = ((EnumClass.EnumMonths)rndDate.RandomAnniversYear().Month).ToString(),
+                        YearOfAnnivers = rndDate.RandomAnniversYear().Year.ToString(),
+                        FirstName = BaseHelper.GenerateRandomString(10),
+                        MiddleName = BaseHelper.GenerateRandomString(10),
+                        LastName = BaseHelper.GenerateRandomString(10),
+                        NickName = BaseHelper.GenerateRandomString(10),
+                        Company = BaseHelper.GenerateRandomString(10),
+                        Title = BaseHelper.GenerateRandomString(10),
+                        Address = BaseHelper.GenerateRandomString(10),
+                        HomePhone = BaseHelper.GenerateRandomString(10),
+                        MobilePhone = BaseHelper.GenerateRandomString(10),
+                        WorkPhone = BaseHelper.GenerateRandomString(10),
+                        Fax = BaseHelper.GenerateRandomString(10),
+                        Email = BaseHelper.GenerateRandomString(10),
+                        Email2 = BaseHelper.GenerateRandomString(10),
+                        Email3 = BaseHelper.GenerateRandomString(10),
+                        Homepage = BaseHelper.GenerateRandomString(10),
+                        SecondaryAddress = BaseHelper.GenerateRandomString(10),
+                        HomeAddress = BaseHelper.GenerateRandomString(10),
+                        Notes = BaseHelper.GenerateRandomString(10)
                     });
                 }
                 if (format == "json")

@@ -287,7 +287,7 @@
     <Compile Include="Helpers\NavigationHelper.cs" />
     <Compile Include="Model\AccountData.cs" />
     <Compile Include="Model\AddressBookDB.cs" />
-    <Compile Include="Model\BaseClass.cs" />
+    <Compile Include="Autotest\BaseClass.cs" />
     <Compile Include="Model\ContactData.cs" />
     <Compile Include="Model\EnumClass.cs" />
     <Compile Include="Model\GroupBaseClass.cs" />

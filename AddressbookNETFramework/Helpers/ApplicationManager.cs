@@ -51,18 +51,6 @@ namespace AddressbookNETFramework.Helpers
             return app.Value;
         }
 
-        //public void Stop()
-        //{
-        //    try
-        //    {
-        //        webDriver.Quit();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        // Ignore errors if unable to close the browser
-        //    }
-        //}
-
         /// <summary>
         /// После выполнения заданного кода завершаем работу "ApplicationManager" с помошью методай "Quit" для вебдрайвера.
         /// </summary>

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
-using Newtonsoft.Json;
 using System.Text;
 using System.Linq;
 using System.Threading;
@@ -19,17 +16,6 @@ namespace AddressbookNETFramework
 {
     public class TestingPackageForGroupsXml : BaseClass
     {
-        public static IEnumerable<GroupData> GroupDataFromXmlFile()
-        {
-            IEnumerable<GroupData> xmlData;
-            var a = new XmlSerializer(typeof(List<GroupData>));
-            using (StreamReader reader = new StreamReader(@"C:\Users\Professional\source\repos\AddressbookNETFramework\AddressbookNETFramework\TestDataFolder\groups.xml"))
-            {
-                xmlData = (List<GroupData>)a.Deserialize(reader);
-            }
-            return xmlData;
-        }
-
         [Test]
         public void XmlCreateNewGroupTest()
         {
@@ -37,13 +23,7 @@ namespace AddressbookNETFramework
             Console.Out.WriteLine("Начальное кол-во групп:  " + app.Groups.GetGroupCount() + "\n");
             // Записываем в переменную "oldGroups" список существующих групп.
 
-            GroupData generateData = new GroupData
-            {
-                GroupName = GroupDataFromXmlFile().First().GroupName,
-                GroupHeader = GroupDataFromXmlFile().First().GroupHeader,
-                GroupFooter = GroupDataFromXmlFile().First().GroupFooter
-            };
-            app.Groups.CreateNewGroup(generateData);
+            GroupData generateData = app.Groups.CreateNewGroupXML();
             Console.Out.WriteLine(generateData);
             // Создаем новую группу и заполняем ее рандомными данными.
 
@@ -64,13 +44,7 @@ namespace AddressbookNETFramework
         [Test]
         public void XmlEditFirstGroupTest()
         {
-            GroupData generateData = new GroupData
-            {
-                GroupName = GroupDataFromXmlFile().First().GroupName,
-                GroupHeader = GroupDataFromXmlFile().First().GroupHeader,
-                GroupFooter = GroupDataFromXmlFile().First().GroupFooter
-            };
-            app.Groups.PreAddGroup(generateData, 0);
+            app.Groups.PreAddGroupXML(0);
             // Создаем новую группу, если по нулевому индексу она отсутствует.
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
@@ -80,7 +54,7 @@ namespace AddressbookNETFramework
             Console.Out.WriteLine("ID Группы: " + oldData.Id + "\n" + "Было:\n" + oldData + "\n");
             // Записываем данные группы по нулевому индексу в отдельную переменную для проверки.
 
-            app.Groups.EditFirstGroup(generateData, 0);
+            GroupData generateData = app.Groups.EditFirstGroupXML(0);
             // Редактируем группу по нулевому индексу (очищаем все поля и заполняем их рандомными данными).
 
             Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupCount());
@@ -107,13 +81,7 @@ namespace AddressbookNETFramework
         [Test]
         public void XmlRemoveFirstGroupTest()
         {
-            GroupData generateData = new GroupData
-            {
-                GroupName = GroupDataFromXmlFile().First().GroupName,
-                GroupHeader = GroupDataFromXmlFile().First().GroupHeader,
-                GroupFooter = GroupDataFromXmlFile().First().GroupFooter
-            };
-            app.Groups.PreAddGroup(generateData, 0);
+            app.Groups.PreAddGroupXML(0);
             // Создаем новую группу, если по нулевому индексу она отсутствует.
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();

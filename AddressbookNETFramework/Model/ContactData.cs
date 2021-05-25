@@ -6,6 +6,10 @@ using System.Text.RegularExpressions;
 using System.Linq;
 using LinqToDB.Mapping;
 using AddressbookNETFramework.Helpers;
+using System.Threading;
+using Newtonsoft.Json;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace AddressbookNETFramework.Model
 {
@@ -20,12 +24,130 @@ namespace AddressbookNETFramework.Model
         private string allEmails;
         private string allDetails;
 
+        public static IEnumerable<ContactData> ContactDataFromJsonFile()
+        {
+            var path = File.ReadAllText(@"C:\Users\Professional\source\repos\AddressbookNETFramework\AddressbookNETFramework\TestDataFolder\contacts.json");
+            var fileJson = JsonConvert.DeserializeObject<List<ContactData>>(path);
+            return fileJson;
+        }
+
+        public static IEnumerable<ContactData> ContactDataFromXmlFile()
+        {
+            IEnumerable<ContactData> xmlData;
+            var a = new XmlSerializer(typeof(List<ContactData>));
+            using (StreamReader reader = new StreamReader(@"C:\Users\Professional\source\repos\AddressbookNETFramework\AddressbookNETFramework\TestDataFolder\contacts.xml"))
+            {
+                xmlData = (List<ContactData>)a.Deserialize(reader);
+            }
+            return xmlData;
+        }
+
         /// <summary>
         /// Пустой метод для реализации полей в контактах.
         /// </summary>
         public ContactData()
         {
 
+        }
+
+        public ContactData ContactDataRandom()
+        {
+            ContactData generateContacntData = new ContactData();
+            generateContacntData.BirthDay = generateContacntData.RandomBirthYear().Day.ToString();
+            Thread.Sleep(10);
+            generateContacntData.BirthMonth = ((EnumClass.EnumMonths)generateContacntData.RandomBirthYear().Month).ToString();
+            Thread.Sleep(10);
+            generateContacntData.YearOfBirth = generateContacntData.RandomBirthYear().Year.ToString();
+            Thread.Sleep(10);
+            generateContacntData.AnniversDay = generateContacntData.RandomAnniversYear().Day.ToString();
+            Thread.Sleep(10);
+            generateContacntData.AnniversMonth = ((EnumClass.EnumMonths)generateContacntData.RandomAnniversYear().Month).ToString();
+            Thread.Sleep(10);
+            generateContacntData.YearOfAnnivers = generateContacntData.RandomAnniversYear().Year.ToString();
+            generateContacntData.FirstName = BaseHelper.GenerateRandomString(10);
+            generateContacntData.MiddleName = BaseHelper.GenerateRandomString(10);
+            generateContacntData.LastName = BaseHelper.GenerateRandomString(10);
+            generateContacntData.NickName = BaseHelper.GenerateRandomString(10);
+            generateContacntData.Company = BaseHelper.GenerateRandomString(10);
+            generateContacntData.Title = BaseHelper.GenerateRandomString(10);
+            generateContacntData.Address = BaseHelper.GenerateRandomString(10);
+            generateContacntData.HomePhone = BaseHelper.GenerateRandomString(10);
+            generateContacntData.MobilePhone = BaseHelper.GenerateRandomString(10);
+            generateContacntData.WorkPhone = BaseHelper.GenerateRandomString(10);
+            generateContacntData.Fax = BaseHelper.GenerateRandomString(10);
+            generateContacntData.Email = BaseHelper.GenerateRandomString(10);
+            generateContacntData.Email2 = BaseHelper.GenerateRandomString(10);
+            generateContacntData.Email3 = BaseHelper.GenerateRandomString(10);
+            generateContacntData.Homepage = BaseHelper.GenerateRandomString(10);
+            generateContacntData.SecondaryAddress = BaseHelper.GenerateRandomString(10);
+            generateContacntData.HomeAddress = BaseHelper.GenerateRandomString(10);
+            generateContacntData.Notes = BaseHelper.GenerateRandomString(10);
+
+            return generateContacntData;
+        }
+
+        public ContactData ContactDataRandomJson()
+        {
+            ContactData generateContacntData = new ContactData
+            {
+                BirthDay = ContactDataFromJsonFile().First().BirthDay,
+                BirthMonth = ContactDataFromJsonFile().First().BirthMonth,
+                YearOfBirth = ContactDataFromJsonFile().First().YearOfBirth,
+                AnniversDay = ContactDataFromJsonFile().First().AnniversDay,
+                AnniversMonth = ContactDataFromJsonFile().First().AnniversMonth,
+                YearOfAnnivers = ContactDataFromJsonFile().First().YearOfAnnivers,
+                FirstName = ContactDataFromJsonFile().First().FirstName,
+                MiddleName = ContactDataFromJsonFile().First().MiddleName,
+                LastName = ContactDataFromJsonFile().First().LastName,
+                NickName = ContactDataFromJsonFile().First().NickName,
+                Company = ContactDataFromJsonFile().First().Company,
+                Title = ContactDataFromJsonFile().First().Title,
+                Address = ContactDataFromJsonFile().First().Address,
+                HomePhone = ContactDataFromJsonFile().First().HomePhone,
+                MobilePhone = ContactDataFromJsonFile().First().MobilePhone,
+                WorkPhone = ContactDataFromJsonFile().First().WorkPhone,
+                Fax = ContactDataFromJsonFile().First().Fax,
+                Email = ContactDataFromJsonFile().First().Email,
+                Email2 = ContactDataFromJsonFile().First().Email2,
+                Email3 = ContactDataFromJsonFile().First().Email3,
+                Homepage = ContactDataFromJsonFile().First().Homepage,
+                SecondaryAddress = ContactDataFromJsonFile().First().SecondaryAddress,
+                HomeAddress = ContactDataFromJsonFile().First().HomeAddress,
+                Notes = ContactDataFromJsonFile().First().Notes
+            };
+            return generateContacntData;
+        }
+
+        public ContactData ContactDataRandomXML()
+        {
+            ContactData generateContacntData = new ContactData
+            {
+                BirthDay = ContactDataFromXmlFile().First().BirthDay,
+                BirthMonth = ContactDataFromXmlFile().First().BirthMonth,
+                YearOfBirth = ContactDataFromXmlFile().First().YearOfBirth,
+                AnniversDay = ContactDataFromXmlFile().First().AnniversDay,
+                AnniversMonth = ContactDataFromXmlFile().First().AnniversMonth,
+                YearOfAnnivers = ContactDataFromXmlFile().First().YearOfAnnivers,
+                FirstName = ContactDataFromXmlFile().First().FirstName,
+                MiddleName = ContactDataFromXmlFile().First().MiddleName,
+                LastName = ContactDataFromXmlFile().First().LastName,
+                NickName = ContactDataFromXmlFile().First().NickName,
+                Company = ContactDataFromXmlFile().First().Company,
+                Title = ContactDataFromXmlFile().First().Title,
+                Address = ContactDataFromXmlFile().First().Address,
+                HomePhone = ContactDataFromXmlFile().First().HomePhone,
+                MobilePhone = ContactDataFromXmlFile().First().MobilePhone,
+                WorkPhone = ContactDataFromXmlFile().First().WorkPhone,
+                Fax = ContactDataFromXmlFile().First().Fax,
+                Email = ContactDataFromXmlFile().First().Email,
+                Email2 = ContactDataFromXmlFile().First().Email2,
+                Email3 = ContactDataFromXmlFile().First().Email3,
+                Homepage = ContactDataFromXmlFile().First().Homepage,
+                SecondaryAddress = ContactDataFromXmlFile().First().SecondaryAddress,
+                HomeAddress = ContactDataFromXmlFile().First().HomeAddress,
+                Notes = ContactDataFromXmlFile().First().Notes
+            };
+            return generateContacntData;
         }
 
         public bool Equals(ContactData other)
@@ -230,10 +352,10 @@ namespace AddressbookNETFramework.Model
 
         private string CleanUp(string symbol)
         {
-            if (symbol == null || symbol == "")
+            if (String.IsNullOrEmpty(symbol))
             {
                 return "";
-            }
+            }            
             return Regex.Replace(symbol, "[ -()]", "") + "\r\n";
         }
 
@@ -260,11 +382,6 @@ namespace AddressbookNETFramework.Model
 
         public string CalculateYearOfBirth()
         {
-            //DateTime nowYear = DateTime.Today;
-            //TimeSpan totalDays = nowYear.Subtract(Convert.ToDateTime(YearOfBirth));
-            //int differenceYear = (int)totalDays.TotalDays / 365;
-            //return differenceYear.ToString();
-
             DateTime nowYear = DateTime.Today; // Передаем в переменную типа "DateTime" текущее значение dd, MM, yyyy.
             int differenceYear = nowYear.Year; // Вытаскиваем год из текущего значения.
             int data = differenceYear - Convert.ToInt32(YearOfBirth); // Получаем возраст путем вычитания года(в детализации) из текущего года.
@@ -304,11 +421,6 @@ namespace AddressbookNETFramework.Model
 
         public string CalculateYearOfAnnivers()
         {
-            //DateTime nowYear = DateTime.Today;
-            //TimeSpan totalDays = nowYear.Subtract(Convert.ToDateTime(YearOfAnnivers));
-            //int differenceYear = (int)totalDays.TotalDays / 365;
-            //return differenceYear.ToString();
-
             DateTime nowYear = DateTime.Today;
             int differenceYear = nowYear.Year;
             int data = differenceYear - Convert.ToInt32(YearOfAnnivers);

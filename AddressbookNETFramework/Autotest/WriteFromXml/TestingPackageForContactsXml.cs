@@ -18,17 +18,6 @@ namespace AddressbookNETFramework
 {
     public class TestingPackageForContactsXml : BaseClass
     {
-        public static IEnumerable<ContactData> ContactDataFromXmlFile()
-        {
-            IEnumerable<ContactData> xmlData;
-            var a = new XmlSerializer(typeof(List<ContactData>));
-            using (StreamReader reader = new StreamReader(@"C:\Users\Professional\source\repos\AddressbookNETFramework\AddressbookNETFramework\TestDataFolder\contacts.xml"))
-            {
-                xmlData = (List<ContactData>)a.Deserialize(reader);
-            }
-            return xmlData;
-        }
-
         [Test]
         public void XmlAddNewContactTest()
         {
@@ -36,28 +25,7 @@ namespace AddressbookNETFramework
             Console.Out.WriteLine("Кол-во контактов:  " + app.Contacts.GetContactCount() + "\n");
             // Записываем старые знаечения контактов.
 
-            ContactData generateContacnt = new ContactData
-            {
-                FirstName = ContactDataFromXmlFile().First().FirstName,
-                MiddleName = ContactDataFromXmlFile().First().MiddleName,
-                LastName = ContactDataFromXmlFile().First().LastName,
-                NickName = ContactDataFromXmlFile().First().NickName,
-                Company = ContactDataFromXmlFile().First().Company,
-                Title = ContactDataFromXmlFile().First().Title,
-                Address = ContactDataFromXmlFile().First().Address,
-                HomePhone = ContactDataFromXmlFile().First().HomePhone,
-                MobilePhone = ContactDataFromXmlFile().First().MobilePhone,
-                WorkPhone = ContactDataFromXmlFile().First().WorkPhone,
-                Fax = ContactDataFromXmlFile().First().Fax,
-                Email = ContactDataFromXmlFile().First().Email,
-                Email2 = ContactDataFromXmlFile().First().Email2,
-                Email3 = ContactDataFromXmlFile().First().Email3,
-                Homepage = ContactDataFromXmlFile().First().Homepage,
-                SecondaryAddress = ContactDataFromXmlFile().First().SecondaryAddress,
-                HomeAddress = ContactDataFromXmlFile().First().HomeAddress,
-                Notes = ContactDataFromXmlFile().First().Notes
-            };
-            app.Contacts.AddNewContact(generateContacnt);
+            ContactData generateContacnt = app.Contacts.AddNewContactXML();
             // Создаем новый контакт.
             Console.Out.WriteLine(generateContacnt);
 
@@ -78,28 +46,7 @@ namespace AddressbookNETFramework
         [Test]
         public void XmlEditFirstContactTest()
         {
-            ContactData generateContacnt = new ContactData
-            {
-                FirstName = ContactDataFromXmlFile().First().FirstName,
-                MiddleName = ContactDataFromXmlFile().First().MiddleName,
-                LastName = ContactDataFromXmlFile().First().LastName,
-                NickName = ContactDataFromXmlFile().First().NickName,
-                Company = ContactDataFromXmlFile().First().Company,
-                Title = ContactDataFromXmlFile().First().Title,
-                Address = ContactDataFromXmlFile().First().Address,
-                HomePhone = ContactDataFromXmlFile().First().HomePhone,
-                MobilePhone = ContactDataFromXmlFile().First().MobilePhone,
-                WorkPhone = ContactDataFromXmlFile().First().WorkPhone,
-                Fax = ContactDataFromXmlFile().First().Fax,
-                Email = ContactDataFromXmlFile().First().Email,
-                Email2 = ContactDataFromXmlFile().First().Email2,
-                Email3 = ContactDataFromXmlFile().First().Email3,
-                Homepage = ContactDataFromXmlFile().First().Homepage,
-                SecondaryAddress = ContactDataFromXmlFile().First().SecondaryAddress,
-                HomeAddress = ContactDataFromXmlFile().First().HomeAddress,
-                Notes = ContactDataFromXmlFile().First().Notes
-            };
-            app.Contacts.PreAddContact(generateContacnt, 0);
+            app.Contacts.PreAddContactXML(0);
             //Создаем новый контакт, если его нет.
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();
@@ -108,7 +55,7 @@ namespace AddressbookNETFramework
             // Сохраняем первый контакт в отдельную переменную для его проверки.
             Console.Out.WriteLine("Было: " + oldContData + "\n");
 
-            app.Contacts.EditFirstContact(generateContacnt, 0);
+            ContactData generateContacnt = app.Contacts.EditFirstContactXML(0);
             // Редактируем первый контакт.
 
             Assert.AreEqual(oldContacts.Count, app.Contacts.GetContactCount());
@@ -139,28 +86,7 @@ namespace AddressbookNETFramework
         [Test]
         public void XmlDeleteFirstContactTest()
         {
-            ContactData generateContacnt = new ContactData
-            {
-                FirstName = ContactDataFromXmlFile().First().FirstName,
-                MiddleName = ContactDataFromXmlFile().First().MiddleName,
-                LastName = ContactDataFromXmlFile().First().LastName,
-                NickName = ContactDataFromXmlFile().First().NickName,
-                Company = ContactDataFromXmlFile().First().Company,
-                Title = ContactDataFromXmlFile().First().Title,
-                Address = ContactDataFromXmlFile().First().Address,
-                HomePhone = ContactDataFromXmlFile().First().HomePhone,
-                MobilePhone = ContactDataFromXmlFile().First().MobilePhone,
-                WorkPhone = ContactDataFromXmlFile().First().WorkPhone,
-                Fax = ContactDataFromXmlFile().First().Fax,
-                Email = ContactDataFromXmlFile().First().Email,
-                Email2 = ContactDataFromXmlFile().First().Email2,
-                Email3 = ContactDataFromXmlFile().First().Email3,
-                Homepage = ContactDataFromXmlFile().First().Homepage,
-                SecondaryAddress = ContactDataFromXmlFile().First().SecondaryAddress,
-                HomeAddress = ContactDataFromXmlFile().First().HomeAddress,
-                Notes = ContactDataFromXmlFile().First().Notes
-            };
-            app.Contacts.PreAddContact(generateContacnt, 0);
+            app.Contacts.PreAddContactXML(0);
             //Создаем новый контакт, если его нет.
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();
@@ -192,28 +118,7 @@ namespace AddressbookNETFramework
         [Test]
         public void XmlAddContactInGroupTest()
         {
-            ContactData generateContacnt = new ContactData
-            {
-                FirstName = ContactDataFromXmlFile().First().FirstName,
-                MiddleName = ContactDataFromXmlFile().First().MiddleName,
-                LastName = ContactDataFromXmlFile().First().LastName,
-                NickName = ContactDataFromXmlFile().First().NickName,
-                Company = ContactDataFromXmlFile().First().Company,
-                Title = ContactDataFromXmlFile().First().Title,
-                Address = ContactDataFromXmlFile().First().Address,
-                HomePhone = ContactDataFromXmlFile().First().HomePhone,
-                MobilePhone = ContactDataFromXmlFile().First().MobilePhone,
-                WorkPhone = ContactDataFromXmlFile().First().WorkPhone,
-                Fax = ContactDataFromXmlFile().First().Fax,
-                Email = ContactDataFromXmlFile().First().Email,
-                Email2 = ContactDataFromXmlFile().First().Email2,
-                Email3 = ContactDataFromXmlFile().First().Email3,
-                Homepage = ContactDataFromXmlFile().First().Homepage,
-                SecondaryAddress = ContactDataFromXmlFile().First().SecondaryAddress,
-                HomeAddress = ContactDataFromXmlFile().First().HomeAddress,
-                Notes = ContactDataFromXmlFile().First().Notes
-            };
-            app.Contacts.PreAddContact(generateContacnt, 0);
+            app.Contacts.PreAddContactXML(0);
             //Создаем новый контакт, если его нет.
 
             app.Contacts.AddContactInGroup(0);

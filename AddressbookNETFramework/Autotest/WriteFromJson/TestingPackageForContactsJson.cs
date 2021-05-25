@@ -17,13 +17,6 @@ namespace AddressbookNETFramework
 {
     public class TestingPackageForContactsJson : BaseClass
     {
-        public static IEnumerable<ContactData> ContactDataFromJsonFile()
-        {
-            var path = File.ReadAllText(@"C:\Users\Professional\source\repos\AddressbookNETFramework\AddressbookNETFramework\TestDataFolder\contacts.json");
-            var fileJson = JsonConvert.DeserializeObject<List<ContactData>>(path);
-            return fileJson;
-        }
-
         [Test]
         public void JsonAddNewContactTest()
         {
@@ -31,28 +24,7 @@ namespace AddressbookNETFramework
             Console.Out.WriteLine("Кол-во контактов:  " + app.Contacts.GetContactCount() + "\n");
             // Записываем старые знаечения контактов.
 
-            ContactData generateContacnt = new ContactData
-            {
-                FirstName = ContactDataFromJsonFile().First().FirstName,
-                MiddleName = ContactDataFromJsonFile().First().MiddleName,
-                LastName = ContactDataFromJsonFile().First().LastName,
-                NickName = ContactDataFromJsonFile().First().NickName,
-                Company = ContactDataFromJsonFile().First().Company,
-                Title = ContactDataFromJsonFile().First().Title,
-                Address = ContactDataFromJsonFile().First().Address,
-                HomePhone = ContactDataFromJsonFile().First().HomePhone,
-                MobilePhone = ContactDataFromJsonFile().First().MobilePhone,
-                WorkPhone = ContactDataFromJsonFile().First().WorkPhone,
-                Fax = ContactDataFromJsonFile().First().Fax,
-                Email = ContactDataFromJsonFile().First().Email,
-                Email2 = ContactDataFromJsonFile().First().Email2,
-                Email3 = ContactDataFromJsonFile().First().Email3,
-                Homepage = ContactDataFromJsonFile().First().Homepage,
-                SecondaryAddress = ContactDataFromJsonFile().First().SecondaryAddress,
-                HomeAddress = ContactDataFromJsonFile().First().HomeAddress,
-                Notes = ContactDataFromJsonFile().First().Notes
-            };
-            app.Contacts.AddNewContact(generateContacnt);
+            ContactData generateContacnt = app.Contacts.AddNewContact();
             // Создаем новый контакт.
             Console.Out.WriteLine(generateContacnt);
 
@@ -73,28 +45,7 @@ namespace AddressbookNETFramework
         [Test]
         public void JsonEditFirstContactTest()
         {
-            ContactData generateContacnt = new ContactData
-            {
-                FirstName = ContactDataFromJsonFile().First().FirstName,
-                MiddleName = ContactDataFromJsonFile().First().MiddleName,
-                LastName = ContactDataFromJsonFile().First().LastName,
-                NickName = ContactDataFromJsonFile().First().NickName,
-                Company = ContactDataFromJsonFile().First().Company,
-                Title = ContactDataFromJsonFile().First().Title,
-                Address = ContactDataFromJsonFile().First().Address,
-                HomePhone = ContactDataFromJsonFile().First().HomePhone,
-                MobilePhone = ContactDataFromJsonFile().First().MobilePhone,
-                WorkPhone = ContactDataFromJsonFile().First().WorkPhone,
-                Fax = ContactDataFromJsonFile().First().Fax,
-                Email = ContactDataFromJsonFile().First().Email,
-                Email2 = ContactDataFromJsonFile().First().Email2,
-                Email3 = ContactDataFromJsonFile().First().Email3,
-                Homepage = ContactDataFromJsonFile().First().Homepage,
-                SecondaryAddress = ContactDataFromJsonFile().First().SecondaryAddress,
-                HomeAddress = ContactDataFromJsonFile().First().HomeAddress,
-                Notes = ContactDataFromJsonFile().First().Notes
-            };
-            app.Contacts.PreAddContact(generateContacnt, 0);
+            app.Contacts.PreAddContactJson(0);
             //Создаем новый контакт, если его нет.
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();
@@ -103,7 +54,7 @@ namespace AddressbookNETFramework
             // Сохраняем первый контакт в отдельную переменную для его проверки.
             Console.Out.WriteLine("Было: " + oldContData + "\n");
 
-            app.Contacts.EditFirstContact(generateContacnt, 0);
+            ContactData generateContacnt = app.Contacts.EditFirstContact(0);
             // Редактируем первый контакт.
 
             Assert.AreEqual(oldContacts.Count, app.Contacts.GetContactCount());
@@ -134,28 +85,8 @@ namespace AddressbookNETFramework
         [Test]
         public void JsonDeleteFirstContactTest()
         {
-            ContactData generateContacnt = new ContactData
-            {
-                FirstName = ContactDataFromJsonFile().First().FirstName,
-                MiddleName = ContactDataFromJsonFile().First().MiddleName,
-                LastName = ContactDataFromJsonFile().First().LastName,
-                NickName = ContactDataFromJsonFile().First().NickName,
-                Company = ContactDataFromJsonFile().First().Company,
-                Title = ContactDataFromJsonFile().First().Title,
-                Address = ContactDataFromJsonFile().First().Address,
-                HomePhone = ContactDataFromJsonFile().First().HomePhone,
-                MobilePhone = ContactDataFromJsonFile().First().MobilePhone,
-                WorkPhone = ContactDataFromJsonFile().First().WorkPhone,
-                Fax = ContactDataFromJsonFile().First().Fax,
-                Email = ContactDataFromJsonFile().First().Email,
-                Email2 = ContactDataFromJsonFile().First().Email2,
-                Email3 = ContactDataFromJsonFile().First().Email3,
-                Homepage = ContactDataFromJsonFile().First().Homepage,
-                SecondaryAddress = ContactDataFromJsonFile().First().SecondaryAddress,
-                HomeAddress = ContactDataFromJsonFile().First().HomeAddress,
-                Notes = ContactDataFromJsonFile().First().Notes
-            };
-            app.Contacts.PreAddContact(generateContacnt, 0);
+
+            app.Contacts.PreAddContactJson(0);
             //Создаем новый контакт, если его нет.
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();
@@ -187,28 +118,7 @@ namespace AddressbookNETFramework
         [Test]
         public void AddContactInGroupTest()
         {
-            ContactData generateContacnt = new ContactData
-            {
-                FirstName = ContactDataFromJsonFile().First().FirstName,
-                MiddleName = ContactDataFromJsonFile().First().MiddleName,
-                LastName = ContactDataFromJsonFile().First().LastName,
-                NickName = ContactDataFromJsonFile().First().NickName,
-                Company = ContactDataFromJsonFile().First().Company,
-                Title = ContactDataFromJsonFile().First().Title,
-                Address = ContactDataFromJsonFile().First().Address,
-                HomePhone = ContactDataFromJsonFile().First().HomePhone,
-                MobilePhone = ContactDataFromJsonFile().First().MobilePhone,
-                WorkPhone = ContactDataFromJsonFile().First().WorkPhone,
-                Fax = ContactDataFromJsonFile().First().Fax,
-                Email = ContactDataFromJsonFile().First().Email,
-                Email2 = ContactDataFromJsonFile().First().Email2,
-                Email3 = ContactDataFromJsonFile().First().Email3,
-                Homepage = ContactDataFromJsonFile().First().Homepage,
-                SecondaryAddress = ContactDataFromJsonFile().First().SecondaryAddress,
-                HomeAddress = ContactDataFromJsonFile().First().HomeAddress,
-                Notes = ContactDataFromJsonFile().First().Notes
-            };
-            app.Contacts.PreAddContact(generateContacnt, 0);
+            app.Contacts.PreAddContactJson(0);
             //Создаем новый контакт, если его нет.
 
             app.Contacts.AddContactInGroup(0);

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using Newtonsoft.Json;
 using System.Text;
 using System.Linq;
 using System.Threading;
@@ -17,13 +15,6 @@ namespace AddressbookNETFramework
 {
     public class TestingPackageForGroupsJson : BaseClass
     {
-        public static IEnumerable<GroupData> GroupDataFromJsonFile()
-        {
-            var path = File.ReadAllText(@"C:\Users\Professional\source\repos\AddressbookNETFramework\AddressbookNETFramework\TestDataFolder\groups.json");
-            var fileJson = JsonConvert.DeserializeObject<List<GroupData>>(path);
-            return fileJson;
-        }
-
         [Test]
         public void JsonCreateNewGroupTest()
         {
@@ -31,13 +22,7 @@ namespace AddressbookNETFramework
             Console.Out.WriteLine("Начальное кол-во групп:  " + app.Groups.GetGroupCount() + "\n");
             // Записываем в переменную "oldGroups" список существующих групп.
 
-            GroupData generateData = new GroupData
-            {
-                GroupName = GroupDataFromJsonFile().First().GroupName,
-                GroupHeader = GroupDataFromJsonFile().First().GroupHeader,
-                GroupFooter = GroupDataFromJsonFile().First().GroupFooter
-            };
-            app.Groups.CreateNewGroup(generateData);
+            GroupData generateData = app.Groups.CreateNewGroupJson();
             Console.Out.WriteLine(generateData);
             // Создаем новую группу и заполняем ее рандомными данными.
 
@@ -58,13 +43,7 @@ namespace AddressbookNETFramework
         [Test]
         public void JsonEditFirstGroupTest()
         {
-            GroupData generateData = new GroupData
-            {
-                GroupName = GroupDataFromJsonFile().First().GroupName,
-                GroupHeader = GroupDataFromJsonFile().First().GroupHeader,
-                GroupFooter = GroupDataFromJsonFile().First().GroupFooter
-            };
-            app.Groups.PreAddGroup(generateData, 0);
+            app.Groups.PreAddGroupJson(0);
             // Создаем новую группу, если по нулевому индексу она отсутствует.
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
@@ -74,7 +53,7 @@ namespace AddressbookNETFramework
             Console.Out.WriteLine("ID Группы: " + oldData.Id + "\n" + "Было:\n" + oldData + "\n");
             // Записываем данные группы по нулевому индексу в отдельную переменную для проверки.
 
-            app.Groups.EditFirstGroup(generateData, 0);
+            GroupData generateData = app.Groups.EditFirstGroupJson(0);
             // Редактируем группу по нулевому индексу (очищаем все поля и заполняем их рандомными данными).
 
             Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupCount());
@@ -101,13 +80,7 @@ namespace AddressbookNETFramework
         [Test]
         public void JsonRemoveFirstGroupTest()
         {
-            GroupData generateData = new GroupData
-            {
-                GroupName = GroupDataFromJsonFile().First().GroupName,
-                GroupHeader = GroupDataFromJsonFile().First().GroupHeader,
-                GroupFooter = GroupDataFromJsonFile().First().GroupFooter
-            };
-            app.Groups.PreAddGroup(generateData, 0);
+            app.Groups.PreAddGroupJson(0);
             // Создаем новую группу, если по нулевому индексу она отсутствует.
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();

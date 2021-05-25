@@ -25,13 +25,7 @@ namespace AddressbookNETFramework
             Console.Out.WriteLine("Начальное кол-во групп:  " + oldGroups.Count + "\n");
             // Записываем в переменную "oldGroups" список существующих групп из БД.
 
-            GroupData generateData = new GroupData
-            {
-                GroupName = GenerateRandomString(10),
-                GroupHeader = GenerateRandomString(30),
-                GroupFooter = GenerateRandomString(30)
-            };
-            app.Groups.CreateNewGroup(generateData);
+            GroupData generateData = app.Groups.CreateNewGroup();
             Console.Out.WriteLine(generateData);
             // Создаем новую группу и заполняем ее рандомными данными.
 
@@ -52,13 +46,7 @@ namespace AddressbookNETFramework
         [Test]
         public void DBEditFirstGroupTest()
         {
-            GroupData generateData = new GroupData
-            {
-                GroupName = GenerateRandomString(10),
-                GroupHeader = GenerateRandomString(30),
-                GroupFooter = GenerateRandomString(30)
-            };
-            app.Groups.PreAddGroup(generateData, 0);
+            app.Groups.PreAddGroup(0);
             // Создаем новую группу, если по нулевому индексу она отсутствует.
 
             List<GroupData> oldGroups = GroupData.GetAll();
@@ -68,7 +56,7 @@ namespace AddressbookNETFramework
             Console.Out.WriteLine("ID Группы: " + oldData.Id + "\n" + "Было:\n" + oldData + "\n");
             // Записываем данные группы по нулевому индексу в отдельную переменную для проверки.
 
-            app.Groups.EditFirstGroupBD(generateData, oldData);
+            GroupData generateData = app.Groups.EditFirstGroupBD(oldData);
             // Редактируем группу которая была получена в "oldData" из "oldGroups" по нулевому индексу. После очистки полей заполняем рандомными данными.
 
             Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupCount());
@@ -96,13 +84,7 @@ namespace AddressbookNETFramework
         [Test]
         public void DBRemoveFirstGroupTest()
         {
-            GroupData generateData = new GroupData
-            {
-                GroupName = GenerateRandomString(10),
-                GroupHeader = GenerateRandomString(30),
-                GroupFooter = GenerateRandomString(30)
-            };
-            app.Groups.PreAddGroup(generateData, 0);
+            app.Groups.PreAddGroup(0);
             // Создаем новую группу, если по нулевому индексу она отсутствует.
 
             List<GroupData> oldGroups = GroupData.GetAll();
@@ -137,26 +119,10 @@ namespace AddressbookNETFramework
         [Test]
         public void DBConnectivityTest()
         {
-            //DateTime start = DateTime.Now;
-            //_ = app.Groups.GetGroupList();
-            //DateTime end = DateTime.Now;
-            //Console.Out.WriteLine("Время считывания данных UI: " + end.Subtract(start));
-
-            //DateTime startDb = DateTime.Now;
-            //_ = GroupData.GetAll();
-            //DateTime endDb = DateTime.Now;
-            //Console.Out.WriteLine("Время считывания данных BD: " + endDb.Subtract(startDb));
-
-            //foreach (ContactData contact in GroupData.GetAll()[0].GetContacts())
-            //{
-            //    Console.Out.WriteLine("Контакт который входит в группу с нулевым индексом \n" + contact);
-            //}
-
             foreach (ContactData contact in ContactData.GetAll())
             {
                 Console.Out.WriteLine(contact.Deprecated);
             }
-
         }
     }
 }

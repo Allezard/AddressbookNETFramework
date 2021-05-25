@@ -24,25 +24,18 @@ namespace AddressbookNETFramework.Helpers
                 return;
             }
 
-            webDriver.Navigate().GoToUrl(BaseHelper.urlLogin);
+            GoToPage("http://localhost/addressbook/");
             webDriver.Manage().Cookies.DeleteAllCookies();
             webDriver.Manage().Window.Maximize();
         }
 
         /// <summary>
-        /// Переходим во вкладку с группами.
+        /// Метод для перехода на выбранную страницу.
         /// </summary>
-        public void GoToUrlGroups()
+        /// <param name="path">Принимает ссылку</param>
+        public void GoToPage(string path)
         {
-            webDriver.Navigate().GoToUrl(BaseHelper.urlGruopList);
-        }
-
-        /// <summary>
-        /// Переходим во вкладку с контактами(главная страница).
-        /// </summary>
-        public void GoToUrContacts()
-        {
-            webDriver.Navigate().GoToUrl(BaseHelper.urlHomePage);
+            webDriver.Navigate().GoToUrl(path);
         }
     }
 }

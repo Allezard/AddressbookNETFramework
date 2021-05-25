@@ -26,13 +26,7 @@ namespace AddressbookNETFramework
             Console.Out.WriteLine("Начальное кол-во групп:  " + app.Groups.GetGroupCount() + "\n");
             // Записываем в переменную "oldGroups" список существующих групп.
 
-            GroupData generateData = new GroupData
-            {
-                GroupName = GenerateRandomString(10),
-                GroupHeader = GenerateRandomString(30),
-                GroupFooter = GenerateRandomString(30)
-            };
-            app.Groups.CreateNewGroup(generateData);
+            GroupData generateData = app.Groups.CreateNewGroup();
             Console.Out.WriteLine(generateData);
             // Создаем новую группу и заполняем ее рандомными данными.
 
@@ -53,13 +47,7 @@ namespace AddressbookNETFramework
         [Test]
         public void EditFirstGroupTest()
         {
-            GroupData generateData = new GroupData
-            {
-                GroupName = GenerateRandomString(10),
-                GroupHeader = GenerateRandomString(30),
-                GroupFooter = GenerateRandomString(30)
-            };
-            app.Groups.PreAddGroup(generateData, 0);
+            app.Groups.PreAddGroup(0);
             // Создаем новую группу, если по нулевому индексу она отсутствует.
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
@@ -69,7 +57,7 @@ namespace AddressbookNETFramework
             Console.Out.WriteLine("ID Группы: " + oldData.Id + "\n" + "Было:\n" + oldData + "\n");
             // Записываем данные группы по нулевому индексу в отдельную переменную для проверки.
 
-            app.Groups.EditFirstGroup(generateData, 0);
+            GroupData generateData = app.Groups.EditFirstGroup(0);
             // Редактируем группу по нулевому индексу (очищаем все поля и заполняем их рандомными данными).
 
             Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupCount());
@@ -103,13 +91,7 @@ namespace AddressbookNETFramework
         [Test]
         public void RemoveFirstGroupTest()
         {
-            GroupData generateData = new GroupData
-            {
-                GroupName = GenerateRandomString(10),
-                GroupHeader = GenerateRandomString(30),
-                GroupFooter = GenerateRandomString(30)
-            };
-            app.Groups.PreAddGroup(generateData, 0);
+            app.Groups.PreAddGroup(0);
             // Создаем новую группу, если по нулевому индексу она отсутствует.
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
