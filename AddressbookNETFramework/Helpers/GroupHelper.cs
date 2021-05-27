@@ -24,24 +24,6 @@ namespace AddressbookNETFramework.Helpers
         {
         }
 
-        public static IEnumerable<GroupData> GroupDataFromJsonFile()
-        {
-            var path = File.ReadAllText(@"C:\Users\Professional\source\repos\AddressbookNETFramework\AddressbookNETFramework\TestDataFolder\groups.json");
-            var fileJson = JsonConvert.DeserializeObject<List<GroupData>>(path);
-            return fileJson;
-        }
-
-        public static IEnumerable<GroupData> GroupDataFromXmlFile()
-        {
-            IEnumerable<GroupData> xmlData;
-            var a = new XmlSerializer(typeof(List<GroupData>));
-            using (StreamReader reader = new StreamReader(@"C:\Users\Professional\source\repos\AddressbookNETFramework\AddressbookNETFramework\TestDataFolder\groups.xml"))
-            {
-                xmlData = (List<GroupData>)a.Deserialize(reader);
-            }
-            return xmlData;
-        }
-
         public List<GroupData> GetGroupList()
         {
             if (groupCache == null)
@@ -82,37 +64,15 @@ namespace AddressbookNETFramework.Helpers
             return webDriver.FindElements(By.CssSelector("span.group")).Count;
         }
 
-        public void CreateNewGroup(GroupData groups)
-        {
-            webDriver.FindElement(By.ClassName("admin")).Click();
-            // Переходим во вкладку "groups".
-            webDriver.FindElement(By.Name("new")).Click();
-            // Кликаем на кнопку "New group".
-            webDriver.FindElement(By.Name("group_name")).SendKeys(groups.GroupName);
-            webDriver.FindElement(By.Name("group_header")).SendKeys(groups.GroupHeader);
-            webDriver.FindElement(By.Name("group_footer")).SendKeys(groups.GroupFooter);
-            // Заполняем поля: "Group name", (Logo), (Comment). 
-            webDriver.FindElement(By.Name("submit")).Click();
-            // Нажимаем на кнопку "Enter information".
-            webDriver.FindElement(By.LinkText("group page")).Click();
-            // Возвращаемся на вкладку /addressbook/group по текстовой ссылке "group page".
-            groupCache = null;
-            // Очищаем кэш.
-        }
-
         public GroupData CreateNewGroup()
         {
-            GroupData generateGroup = new GroupData
-            {
-                GroupName = GenerateRandomString(10),
-                GroupHeader = GenerateRandomString(10),
-                GroupFooter = GenerateRandomString(10)
-            };
+            GroupData generateGroup = new GroupData().GroupDataRandom();
 
             webDriver.FindElement(By.ClassName("admin")).Click();
-            // Переходим во вкладку "groups".
+            // Переходим во вкладку "groups".да
             webDriver.FindElement(By.Name("new")).Click();
             // Кликаем на кнопку "New group".
+
             webDriver.FindElement(By.Name("group_name")).SendKeys(generateGroup.GroupName);
             webDriver.FindElement(By.Name("group_header")).SendKeys(generateGroup.GroupHeader);
             webDriver.FindElement(By.Name("group_footer")).SendKeys(generateGroup.GroupFooter);
@@ -128,12 +88,7 @@ namespace AddressbookNETFramework.Helpers
 
         public GroupData CreateNewGroupJson()
         {
-            GroupData generateGroup = new GroupData
-            {
-                GroupName = GroupDataFromJsonFile().First().GroupName,
-                GroupHeader = GroupDataFromJsonFile().First().GroupHeader,
-                GroupFooter = GroupDataFromJsonFile().First().GroupFooter
-            };
+            GroupData generateGroup = new GroupData().GroupDataRandomJson();
 
             webDriver.FindElement(By.ClassName("admin")).Click();
             // Переходим во вкладку "groups".
@@ -154,12 +109,7 @@ namespace AddressbookNETFramework.Helpers
 
         public GroupData CreateNewGroupXML()
         {
-            GroupData generateGroup = new GroupData
-            {
-                GroupName = GroupDataFromXmlFile().First().GroupName,
-                GroupHeader = GroupDataFromXmlFile().First().GroupHeader,
-                GroupFooter = GroupDataFromXmlFile().First().GroupFooter
-            };
+            GroupData generateGroup = new GroupData().GroupDataRandomXML();
 
             webDriver.FindElement(By.ClassName("admin")).Click();
             // Переходим во вкладку "groups".
@@ -194,12 +144,7 @@ namespace AddressbookNETFramework.Helpers
 
         public GroupData EditFirstGroup(int index)
         {
-            GroupData generateGroup = new GroupData
-            {
-                GroupName = GenerateRandomString(10),
-                GroupHeader = GenerateRandomString(10),
-                GroupFooter = GenerateRandomString(10)
-            };
+            GroupData generateGroup = new GroupData().GroupDataRandom();
 
             By locatorFooter = By.Name("group_footer");
             string textFooter = generateGroup.GroupFooter;
@@ -225,12 +170,7 @@ namespace AddressbookNETFramework.Helpers
 
         public GroupData EditFirstGroupJson(int index)
         {
-            GroupData generateGroup = new GroupData
-            {
-                GroupName = GroupDataFromJsonFile().First().GroupName,
-                GroupHeader = GroupDataFromJsonFile().First().GroupHeader,
-                GroupFooter = GroupDataFromJsonFile().First().GroupFooter
-            };
+            GroupData generateGroup = new GroupData().GroupDataRandomJson();
 
             By locatorFooter = By.Name("group_footer");
             string textFooter = generateGroup.GroupFooter;
@@ -256,12 +196,7 @@ namespace AddressbookNETFramework.Helpers
 
         public GroupData EditFirstGroupXML(int index)
         {
-            GroupData generateGroup = new GroupData
-            {
-                GroupName = GroupDataFromXmlFile().First().GroupName,
-                GroupHeader = GroupDataFromXmlFile().First().GroupHeader,
-                GroupFooter = GroupDataFromXmlFile().First().GroupFooter
-            };
+            GroupData generateGroup = new GroupData().GroupDataRandomXML();
 
             By locatorFooter = By.Name("group_footer");
             string textFooter = generateGroup.GroupFooter;
@@ -301,12 +236,7 @@ namespace AddressbookNETFramework.Helpers
 
         public GroupData EditFirstGroupBD(GroupData group)
         {
-            GroupData generateGroup = new GroupData
-            {
-                GroupName = GenerateRandomString(10),
-                GroupHeader = GenerateRandomString(10),
-                GroupFooter = GenerateRandomString(10)
-            };
+            GroupData generateGroup = new GroupData().GroupDataRandom();
 
             By locatorFooter = By.Name("group_footer");
             string textFooter = generateGroup.GroupFooter;
