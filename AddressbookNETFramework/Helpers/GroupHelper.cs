@@ -66,7 +66,7 @@ namespace AddressbookNETFramework.Helpers
 
         public GroupData CreateNewGroup()
         {
-            GroupData generateGroup = new GroupData().GroupDataRandom();
+            GroupData generateGroup = GroupDataRandom();
 
             webDriver.FindElement(By.ClassName("admin")).Click();
             // Переходим во вкладку "groups".да
@@ -88,7 +88,7 @@ namespace AddressbookNETFramework.Helpers
 
         public GroupData CreateNewGroupJson()
         {
-            GroupData generateGroup = new GroupData().GroupDataRandomJson();
+            GroupData generateGroup = GroupDataRandomJson();
 
             webDriver.FindElement(By.ClassName("admin")).Click();
             // Переходим во вкладку "groups".
@@ -109,7 +109,7 @@ namespace AddressbookNETFramework.Helpers
 
         public GroupData CreateNewGroupXML()
         {
-            GroupData generateGroup = new GroupData().GroupDataRandomXML();
+            GroupData generateGroup = GroupDataRandomXML();
 
             webDriver.FindElement(By.ClassName("admin")).Click();
             // Переходим во вкладку "groups".
@@ -144,7 +144,7 @@ namespace AddressbookNETFramework.Helpers
 
         public GroupData EditFirstGroup(int index)
         {
-            GroupData generateGroup = new GroupData().GroupDataRandom();
+            GroupData generateGroup = GroupDataRandom();
 
             By locatorFooter = By.Name("group_footer");
             string textFooter = generateGroup.GroupFooter;
@@ -170,7 +170,7 @@ namespace AddressbookNETFramework.Helpers
 
         public GroupData EditFirstGroupJson(int index)
         {
-            GroupData generateGroup = new GroupData().GroupDataRandomJson();
+            GroupData generateGroup = GroupDataRandomJson();
 
             By locatorFooter = By.Name("group_footer");
             string textFooter = generateGroup.GroupFooter;
@@ -196,7 +196,7 @@ namespace AddressbookNETFramework.Helpers
 
         public GroupData EditFirstGroupXML(int index)
         {
-            GroupData generateGroup = new GroupData().GroupDataRandomXML();
+            GroupData generateGroup = GroupDataRandomXML();
 
             By locatorFooter = By.Name("group_footer");
             string textFooter = generateGroup.GroupFooter;
@@ -236,7 +236,7 @@ namespace AddressbookNETFramework.Helpers
 
         public GroupData EditFirstGroupBD(GroupData group)
         {
-            GroupData generateGroup = new GroupData().GroupDataRandom();
+            GroupData generateGroup = GroupDataRandom();
 
             By locatorFooter = By.Name("group_footer");
             string textFooter = generateGroup.GroupFooter;

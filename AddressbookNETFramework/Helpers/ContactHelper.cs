@@ -150,7 +150,7 @@ namespace AddressbookNETFramework.Helpers
 
         public ContactData AddNewContact()
         {
-            ContactData generateContacntData = new ContactData().ContactDataRandom();
+            ContactData generateContacntData = ContactDataRandom();
 
             webDriver.FindElement(By.LinkText("add new")).Click();
             // Переходим на страницу для создания контакта.
@@ -199,7 +199,7 @@ namespace AddressbookNETFramework.Helpers
 
         public ContactData AddNewContactJson()
         {
-            ContactData generateContacntData = new ContactData().ContactDataRandomJson();
+            ContactData generateContacntData = ContactDataRandomJson();
 
             webDriver.FindElement(By.LinkText("add new")).Click();
             // Переходим на страницу для создания контакта.
@@ -248,7 +248,7 @@ namespace AddressbookNETFramework.Helpers
 
         public ContactData AddNewContactXML()
         {
-            ContactData generateContacntData = new ContactData().ContactDataRandomXML();
+            ContactData generateContacntData = ContactDataRandomXML();
 
             webDriver.FindElement(By.LinkText("add new")).Click();
             // Переходим на страницу для создания контакта.
@@ -297,7 +297,7 @@ namespace AddressbookNETFramework.Helpers
 
         public ContactData EditFirstContact(int index)
         {
-            ContactData generateContacntData = new ContactData().ContactDataRandom();
+            ContactData generateContacntData = ContactDataRandom();
 
             webDriver.FindElement(By.LinkText("home")).Click();
             // Переходим на главную страницу со списком контактов.
@@ -368,7 +368,7 @@ namespace AddressbookNETFramework.Helpers
 
         public ContactData EditFirstContactJson(int index)
         {
-            ContactData generateContacntData = new ContactData().ContactDataRandomJson();
+            ContactData generateContacntData = ContactDataRandomJson();
 
             webDriver.FindElement(By.LinkText("home")).Click();
             // Переходим на главную страницу со списком контактов.
@@ -439,7 +439,7 @@ namespace AddressbookNETFramework.Helpers
 
         public ContactData EditFirstContactXML(int index)
         {
-            ContactData generateContacntData = new ContactData().ContactDataRandomXML();
+            ContactData generateContacntData = ContactDataRandomXML();
 
             webDriver.FindElement(By.LinkText("home")).Click();
             // Переходим на главную страницу со списком контактов.
