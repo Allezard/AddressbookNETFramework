@@ -246,9 +246,8 @@ namespace AddressbookNETFramework.Model
             }
         }
 
-        public DateTime RandomBirthYear()
+        public DateTime RandomBirthYear(Random rnd)
         {
-            Random rnd = new Random();
             var rangeDay = rnd.Next(1, 31);
             var rangeMonth = rnd.Next(0, 12);
             var rangeYear = rnd.Next(0, 102);
@@ -285,9 +284,8 @@ namespace AddressbookNETFramework.Model
             return data.ToString();
         }
 
-        public DateTime RandomAnniversYear()
+        public DateTime RandomAnniversYear(Random rnd)
         {
-            Random rnd = new Random();
             var rangeDay = rnd.Next(1, 31);
             var rangeMonth = rnd.Next(0, 12);
             var rangeYear = rnd.Next(0, 102);

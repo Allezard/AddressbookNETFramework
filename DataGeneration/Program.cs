@@ -55,17 +55,18 @@ namespace DataGeneration
             else if (type == "typeContact")
             {
                 ContactData rndDate = new ContactData();
+                Random rnd = new Random();
                 List<ContactData> contacts = new List<ContactData>();
                 for (int i = 0; i < count; i++)
                 {
                     contacts.Add(new ContactData()
                     {
-                        BirthDay = rndDate.RandomBirthYear().Day.ToString(),
-                        BirthMonth = ((EnumClass.EnumMonths)rndDate.RandomBirthYear().Month).ToString(),
-                        YearOfBirth = rndDate.RandomBirthYear().Year.ToString(),
-                        AnniversDay = rndDate.RandomAnniversYear().Day.ToString(),
-                        AnniversMonth = ((EnumClass.EnumMonths)rndDate.RandomAnniversYear().Month).ToString(),
-                        YearOfAnnivers = rndDate.RandomAnniversYear().Year.ToString(),
+                        BirthDay = rndDate.RandomBirthYear(rnd).Day.ToString(),
+                        BirthMonth = ((EnumClass.EnumMonths)rndDate.RandomBirthYear(rnd).Month).ToString(),
+                        YearOfBirth = rndDate.RandomBirthYear(rnd).Year.ToString(),
+                        AnniversDay = rndDate.RandomAnniversYear(rnd).Day.ToString(),
+                        AnniversMonth = ((EnumClass.EnumMonths)rndDate.RandomAnniversYear(rnd).Month).ToString(),
+                        YearOfAnnivers = rndDate.RandomAnniversYear(rnd).Year.ToString(),
                         FirstName = BaseHelper.GenerateRandomString(10),
                         MiddleName = BaseHelper.GenerateRandomString(10),
                         LastName = BaseHelper.GenerateRandomString(10),

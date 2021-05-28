@@ -156,17 +156,12 @@ namespace AddressbookNETFramework.Helpers
         public ContactData ContactDataRandom()
         {
             ContactData generateContacntData = new ContactData();
-            generateContacntData.BirthDay = generateContacntData.RandomBirthYear().Day.ToString();
-            Thread.Sleep(10);
-            generateContacntData.BirthMonth = ((EnumClass.EnumMonths)generateContacntData.RandomBirthYear().Month).ToString();
-            Thread.Sleep(10);
-            generateContacntData.YearOfBirth = generateContacntData.RandomBirthYear().Year.ToString();
-            Thread.Sleep(10);
-            generateContacntData.AnniversDay = generateContacntData.RandomAnniversYear().Day.ToString();
-            Thread.Sleep(10);
-            generateContacntData.AnniversMonth = ((EnumClass.EnumMonths)generateContacntData.RandomAnniversYear().Month).ToString();
-            Thread.Sleep(10);
-            generateContacntData.YearOfAnnivers = generateContacntData.RandomAnniversYear().Year.ToString();
+            generateContacntData.BirthDay = generateContacntData.RandomBirthYear(rnd).Day.ToString();
+            generateContacntData.BirthMonth = ((EnumClass.EnumMonths)generateContacntData.RandomBirthYear(rnd).Month).ToString();
+            generateContacntData.YearOfBirth = generateContacntData.RandomBirthYear(rnd).Year.ToString();
+            generateContacntData.AnniversDay = generateContacntData.RandomAnniversYear(rnd).Day.ToString();
+            generateContacntData.AnniversMonth = ((EnumClass.EnumMonths)generateContacntData.RandomAnniversYear(rnd).Month).ToString();
+            generateContacntData.YearOfAnnivers = generateContacntData.RandomAnniversYear(rnd).Year.ToString();
             generateContacntData.FirstName = GenerateRandomString(10);
             generateContacntData.MiddleName = GenerateRandomString(10);
             generateContacntData.LastName = GenerateRandomString(10);
