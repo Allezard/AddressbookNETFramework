@@ -109,11 +109,17 @@ namespace AddressbookNETFramework.Model
         public string Email3 { get; set; }
         [Column(Name = "homepage")]
         public string Homepage { get; set; }
+        [Column(Name = "bday")]
         public string BirthDay { get; set; }
+        [Column(Name = "bmonth")]
         public string BirthMonth { get; set; }
+        [Column(Name = "byear")]
         public string YearOfBirth { get; set; }
+        [Column(Name = "aday")]
         public string AnniversDay { get; set; }
+        [Column(Name = "amonth")]
         public string AnniversMonth { get; set; }
+        [Column(Name = "ayear")]
         public string YearOfAnnivers { get; set; }
         [Column(Name = "address2")]
         public string SecondaryAddress { get; set; }
