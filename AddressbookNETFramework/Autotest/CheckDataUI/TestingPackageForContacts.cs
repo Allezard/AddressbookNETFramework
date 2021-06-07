@@ -169,5 +169,11 @@ namespace AddressbookNETFramework
             Console.Out.WriteLine("Number of results: " + app.Contacts.GetNumberOfSearchResults());
             // Получаем кол-во контактов на текущей странице и выводим их в консоль.
         }
+
+        [Test]
+        public void DictionaryTEST1()
+        {
+            app.Contacts.DictionaryTest();
+        }
     }
 }

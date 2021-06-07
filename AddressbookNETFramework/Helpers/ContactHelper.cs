@@ -644,5 +644,31 @@ namespace AddressbookNETFramework.Helpers
             }
             return AddNewContactXML(); // Создаем новый контакт, если элемент в условии "if" не найден.
         }
+
+        public Dictionary<string, string> DictionaryTest()
+        {
+            Dictionary<string, string> generateContacntDataDict = ContactDataList();
+            //ContactData generateContacntData = new ContactData();
+
+            webDriver.FindElement(By.LinkText("add new")).Click();
+            // Переходим на страницу для создания контакта.
+            foreach (var item in generateContacntDataDict)
+            {
+                if (item.Key == "bday" || item.Key == "bmonth" || 
+                    item.Key == "aday" || item.Key == "amonth")
+                {
+                    webDriver.FindElement(By.Name(item.Key)).Click();
+                    new SelectElement(webDriver.FindElement(By.Name(item.Key))).SelectByText(item.Value);
+                }
+                webDriver.FindElement(By.Name(item.Key)).SendKeys(item.Value);
+            }
+            webDriver.FindElement(By.Name("submit")).Submit();
+            // Добавляем вторичные личные данные.
+            webDriver.FindElement(By.LinkText("home")).Click();
+            // Возвращаемся на главную страницу (контакты) не дожидаясь редиректа.
+            contactCache = null;
+            // Очищаем кэш.
+            return generateContacntDataDict;
+        }
     }
 }

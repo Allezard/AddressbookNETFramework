@@ -22,9 +22,9 @@ namespace DataGeneration
         static void Main(string[] args)
         {
             string type = args[0]; // Принимает 1-ый аргумент в виде названия типа ("typeGroup" или "typeContact")
-            int count = Convert.ToInt32(args[1]); // Принимает 2-ой аргумент, создает нужное кол-во файлов
-            StreamWriter writer = new StreamWriter(args[2]); // Принимает 3-ий аргумент в виде названия файла
-            string format = args[3]; // Принимает 4-ый аргумент в виде типа файла
+            int count = Convert.ToInt32(args[1]); // Принимает 2-ой аргумент, создает нужное кол-во файлов в виде int
+            StreamWriter writer = new StreamWriter(args[2]); // Принимает 3-ий аргумент в виде названия файла(name.xml/name.json)
+            string format = args[3]; // Принимает 4-ый аргумент в виде типа файла(xml/json)
 
             if (type == "typeGroup")
             {

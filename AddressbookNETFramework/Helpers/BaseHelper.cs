@@ -280,5 +280,65 @@ namespace AddressbookNETFramework.Helpers
             };
             return generateGroup;
         }
+
+        public Dictionary<string, string> ContactDataList()
+        {
+            ContactData generateContacntData = new ContactData();
+
+            generateContacntData.BirthDay = generateContacntData.RandomBirthYear(rnd).Day.ToString();
+            generateContacntData.BirthMonth = ((EnumClass.EnumMonths)generateContacntData.RandomBirthYear(rnd).Month).ToString();
+            generateContacntData.YearOfBirth = generateContacntData.RandomBirthYear(rnd).Year.ToString();
+            generateContacntData.AnniversDay = generateContacntData.RandomAnniversYear(rnd).Day.ToString();
+            generateContacntData.AnniversMonth = ((EnumClass.EnumMonths)generateContacntData.RandomAnniversYear(rnd).Month).ToString();
+            generateContacntData.YearOfAnnivers = generateContacntData.RandomAnniversYear(rnd).Year.ToString();
+            generateContacntData.FirstName = GenerateRandomString(10);
+            generateContacntData.MiddleName = GenerateRandomString(10);
+            generateContacntData.LastName = GenerateRandomString(10);
+            generateContacntData.NickName = GenerateRandomString(10);
+            generateContacntData.Company = GenerateRandomString(10);
+            generateContacntData.Title = GenerateRandomString(10);
+            generateContacntData.Address = GenerateRandomString(10);
+            generateContacntData.HomePhone = GenerateRandomString(10);
+            generateContacntData.MobilePhone = GenerateRandomString(10);
+            generateContacntData.WorkPhone = GenerateRandomString(10);
+            generateContacntData.Fax = GenerateRandomString(10);
+            generateContacntData.Email = GenerateRandomString(10);
+            generateContacntData.Email2 = GenerateRandomString(10);
+            generateContacntData.Email3 = GenerateRandomString(10);
+            generateContacntData.Homepage = GenerateRandomString(10);
+            generateContacntData.SecondaryAddress = GenerateRandomString(10);
+            generateContacntData.HomeAddress = GenerateRandomString(10);
+            generateContacntData.Notes = GenerateRandomString(10);
+
+            var elemAndProp = new Dictionary<string, string>
+            {
+                { "email",  generateContacntData.Email},
+                { "email2",  generateContacntData.Email2},
+                { "email3",  generateContacntData.Email3},
+                { "firstname",  generateContacntData.FirstName},
+                { "middlename",  generateContacntData.MiddleName},
+                { "lastname",  generateContacntData.LastName},
+                { "nickname",  generateContacntData.NickName},
+                { "company",  generateContacntData.Company},
+                { "title",  generateContacntData.Title},
+                { "address",  generateContacntData.Address},
+                { "home",  generateContacntData.HomePhone},
+                { "mobile",  generateContacntData.MobilePhone},
+                { "work",  generateContacntData.WorkPhone},
+                { "fax",  generateContacntData.Fax},
+                { "homepage",  generateContacntData.Homepage},
+                { "bday",  generateContacntData.BirthDay},
+                { "bmonth",  generateContacntData.BirthMonth},
+                { "byear",  generateContacntData.YearOfBirth},
+                { "aday",  generateContacntData.AnniversDay},
+                { "amonth",  generateContacntData.AnniversMonth},
+                { "ayear",  generateContacntData.YearOfAnnivers},
+                { "address2",  generateContacntData.SecondaryAddress},
+                { "phone2",  generateContacntData.HomeAddress},
+                { "notes",  generateContacntData.Notes},
+            };
+
+            return elemAndProp;
+        }
     }
 }

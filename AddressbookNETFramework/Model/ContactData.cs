@@ -27,7 +27,7 @@ namespace AddressbookNETFramework.Model
         public ContactData()
         {
 
-        }
+        }            
 
         public bool Equals(ContactData other)
         {
