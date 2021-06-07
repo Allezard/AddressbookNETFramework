@@ -669,6 +669,7 @@ namespace AddressbookNETFramework.Helpers
             contactCache = null;
             // Очищаем кэш.
             return generateContacntDataDict;
+            //Тест чекаут.
         }
     }
 }
