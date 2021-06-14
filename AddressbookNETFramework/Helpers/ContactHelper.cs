@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
@@ -648,7 +649,7 @@ namespace AddressbookNETFramework.Helpers
         public Dictionary<string, string> DictionaryTest()
         {
             Dictionary<string, string> generateContacntDataDict = ContactDataList();
-            //ContactData generateContacntData = new ContactData();
+            ContactData generateContacntData = new ContactData(true);
 
             webDriver.FindElement(By.LinkText("add new")).Click();
             // Переходим на страницу для создания контакта.

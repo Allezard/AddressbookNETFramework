@@ -173,7 +173,7 @@ namespace AddressbookNETFramework
         [Test]
         public void DictionaryTEST1()
         {
-            app.Contacts.DictionaryTest();
+            Dictionary<string, string> list = app.Contacts.DictionaryTest();
         }
     }
 }

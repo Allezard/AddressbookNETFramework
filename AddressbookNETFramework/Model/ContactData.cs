@@ -7,6 +7,7 @@ using System.Linq;
 using LinqToDB.Mapping;
 using AddressbookNETFramework.Helpers;
 using System.Threading;
+using System.Collections;
 
 namespace AddressbookNETFramework.Model
 {
@@ -20,6 +21,7 @@ namespace AddressbookNETFramework.Model
         private string allPhones;
         private string allEmails;
         private string allDetails;
+        public static Random rnd = new Random();
 
         /// <summary>
         /// Пустой метод для реализации полей в контактах.
@@ -27,15 +29,73 @@ namespace AddressbookNETFramework.Model
         public ContactData()
         {
 
-        }            
+        }
+
+        public ContactData (bool List = true)
+        {
+            ContactData generateContacntData = new ContactData(List);
+
+            generateContacntData.BirthDay = generateContacntData.RandomBirthYear(rnd).Day.ToString();
+            generateContacntData.BirthMonth = ((EnumClass.EnumMonths)generateContacntData.RandomBirthYear(rnd).Month).ToString();
+            generateContacntData.YearOfBirth = generateContacntData.RandomBirthYear(rnd).Year.ToString();
+            generateContacntData.AnniversDay = generateContacntData.RandomAnniversYear(rnd).Day.ToString();
+            generateContacntData.AnniversMonth = ((EnumClass.EnumMonths)generateContacntData.RandomAnniversYear(rnd).Month).ToString();
+            generateContacntData.YearOfAnnivers = generateContacntData.RandomAnniversYear(rnd).Year.ToString();
+            generateContacntData.FirstName = BaseHelper.GenerateRandomString(10);
+            generateContacntData.MiddleName = BaseHelper.GenerateRandomString(10);
+            generateContacntData.LastName = BaseHelper.GenerateRandomString(10);
+            generateContacntData.NickName = BaseHelper.GenerateRandomString(10);
+            generateContacntData.Company = BaseHelper.GenerateRandomString(10);
+            generateContacntData.Title = BaseHelper.GenerateRandomString(10);
+            generateContacntData.Address = BaseHelper.GenerateRandomString(10);
+            generateContacntData.HomePhone = BaseHelper.GenerateRandomString(10);
+            generateContacntData.MobilePhone = BaseHelper.GenerateRandomString(10);
+            generateContacntData.WorkPhone = BaseHelper.GenerateRandomString(10);
+            generateContacntData.Fax = BaseHelper.GenerateRandomString(10);
+            generateContacntData.Email = BaseHelper.GenerateRandomString(10);
+            generateContacntData.Email2 = BaseHelper.GenerateRandomString(10);
+            generateContacntData.Email3 = BaseHelper.GenerateRandomString(10);
+            generateContacntData.Homepage = BaseHelper.GenerateRandomString(10);
+            generateContacntData.SecondaryAddress = BaseHelper.GenerateRandomString(10);
+            generateContacntData.HomeAddress = BaseHelper.GenerateRandomString(10);
+            generateContacntData.Notes = BaseHelper.GenerateRandomString(10);
+
+            var elemAndProp = new Dictionary<string, string>
+            {
+                { "email",  generateContacntData.Email },
+                { "email2",  generateContacntData.Email2 },
+                { "email3",  generateContacntData.Email3 },
+                { "firstname",  generateContacntData.FirstName },
+                { "middlename",  generateContacntData.MiddleName },
+                { "lastname",  generateContacntData.LastName },
+                { "nickname",  generateContacntData.NickName },
+                { "company",  generateContacntData.Company },
+                { "title",  generateContacntData.Title },
+                { "address",  generateContacntData.Address },
+                { "home",  generateContacntData.HomePhone },
+                { "mobile",  generateContacntData.MobilePhone },
+                { "work",  generateContacntData.WorkPhone },
+                { "fax",  generateContacntData.Fax },
+                { "homepage",  generateContacntData.Homepage },
+                { "bday",  generateContacntData.BirthDay },
+                { "bmonth",  generateContacntData.BirthMonth },
+                { "byear",  generateContacntData.YearOfBirth },
+                { "aday",  generateContacntData.AnniversDay },
+                { "amonth",  generateContacntData.AnniversMonth },
+                { "ayear",  generateContacntData.YearOfAnnivers },
+                { "address2",  generateContacntData.SecondaryAddress },
+                { "phone2",  generateContacntData.HomeAddress },
+                { "notes",  generateContacntData.Notes },
+            };
+        }
 
         public bool Equals(ContactData other)
         {
-            if (Object.ReferenceEquals(other, null))
+            if (ReferenceEquals(other, null))
             {
                 return false;
             }
-            if (Object.ReferenceEquals(this, other))
+            if (ReferenceEquals(this, other))
             {
                 return true;
             }
@@ -44,7 +104,7 @@ namespace AddressbookNETFramework.Model
 
         public int CompareTo(ContactData other)
         {
-            if (Object.ReferenceEquals(other, null))
+            if (ReferenceEquals(other, null))
             {
                 return 1;
             }
@@ -109,11 +169,17 @@ namespace AddressbookNETFramework.Model
         public string Email3 { get; set; }
         [Column(Name = "homepage")]
         public string Homepage { get; set; }
+        [Column(Name = "bday")]
         public string BirthDay { get; set; }
+        [Column(Name = "bmonth")]
         public string BirthMonth { get; set; }
+        [Column(Name = "byear")]
         public string YearOfBirth { get; set; }
+        [Column(Name = "aday")]
         public string AnniversDay { get; set; }
+        [Column(Name = "amonth")]
         public string AnniversMonth { get; set; }
+        [Column(Name = "ayear")]
         public string YearOfAnnivers { get; set; }
         [Column(Name = "address2")]
         public string SecondaryAddress { get; set; }
