@@ -5,8 +5,8 @@ namespace AddressbookNETFramework.Model
 {
     public class AccountData
     {
-        public string username;
-        public string userpassword;
+        private string username;
+        private string userpassword;
 
         public AccountData(string username, string userpassword)
         {

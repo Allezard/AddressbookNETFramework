@@ -649,7 +649,6 @@ namespace AddressbookNETFramework.Helpers
         public Dictionary<string, string> DictionaryTest()
         {
             Dictionary<string, string> generateContacntDataDict = ContactDataList();
-            ContactData generateContacntData = new ContactData(true);
 
             webDriver.FindElement(By.LinkText("add new")).Click();
             // Переходим на страницу для создания контакта.

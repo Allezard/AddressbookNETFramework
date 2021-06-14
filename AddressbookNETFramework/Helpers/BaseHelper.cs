@@ -156,12 +156,12 @@ namespace AddressbookNETFramework.Helpers
         public ContactData ContactDataRandom()
         {
             ContactData generateContacntData = new ContactData();
-            generateContacntData.BirthDay = generateContacntData.RandomBirthYear(rnd).Day.ToString();
-            generateContacntData.BirthMonth = ((EnumClass.EnumMonths)generateContacntData.RandomBirthYear(rnd).Month).ToString();
-            generateContacntData.YearOfBirth = generateContacntData.RandomBirthYear(rnd).Year.ToString();
-            generateContacntData.AnniversDay = generateContacntData.RandomAnniversYear(rnd).Day.ToString();
-            generateContacntData.AnniversMonth = ((EnumClass.EnumMonths)generateContacntData.RandomAnniversYear(rnd).Month).ToString();
-            generateContacntData.YearOfAnnivers = generateContacntData.RandomAnniversYear(rnd).Year.ToString();
+            generateContacntData.BirthDay = generateContacntData.RandomAllYear(rnd).Day.ToString();
+            generateContacntData.BirthMonth = ((EnumClass.EnumMonths)generateContacntData.RandomAllYear(rnd).Month).ToString();
+            generateContacntData.YearOfBirth = generateContacntData.RandomAllYear(rnd).Year.ToString();
+            generateContacntData.AnniversDay = generateContacntData.RandomAllYear(rnd).Day.ToString();
+            generateContacntData.AnniversMonth = ((EnumClass.EnumMonths)generateContacntData.RandomAllYear(rnd).Month).ToString();
+            generateContacntData.YearOfAnnivers = generateContacntData.RandomAllYear(rnd).Year.ToString();
             generateContacntData.FirstName = GenerateRandomString(10);
             generateContacntData.MiddleName = GenerateRandomString(10);
             generateContacntData.LastName = GenerateRandomString(10);
@@ -285,12 +285,12 @@ namespace AddressbookNETFramework.Helpers
         {
             ContactData generateContacntData = new ContactData();
 
-            generateContacntData.BirthDay = generateContacntData.RandomBirthYear(rnd).Day.ToString();
-            generateContacntData.BirthMonth = ((EnumClass.EnumMonths)generateContacntData.RandomBirthYear(rnd).Month).ToString();
-            generateContacntData.YearOfBirth = generateContacntData.RandomBirthYear(rnd).Year.ToString();
-            generateContacntData.AnniversDay = generateContacntData.RandomAnniversYear(rnd).Day.ToString();
-            generateContacntData.AnniversMonth = ((EnumClass.EnumMonths)generateContacntData.RandomAnniversYear(rnd).Month).ToString();
-            generateContacntData.YearOfAnnivers = generateContacntData.RandomAnniversYear(rnd).Year.ToString();
+            generateContacntData.BirthDay = generateContacntData.RandomAllYear(rnd).Day.ToString();
+            generateContacntData.BirthMonth = ((EnumClass.EnumMonths)generateContacntData.RandomAllYear(rnd).Month).ToString();
+            generateContacntData.YearOfBirth = generateContacntData.RandomAllYear(rnd).Year.ToString();
+            generateContacntData.AnniversDay = generateContacntData.RandomAllYear(rnd).Day.ToString();
+            generateContacntData.AnniversMonth = ((EnumClass.EnumMonths)generateContacntData.RandomAllYear(rnd).Month).ToString();
+            generateContacntData.YearOfAnnivers = generateContacntData.RandomAllYear(rnd).Year.ToString();
             generateContacntData.FirstName = GenerateRandomString(10);
             generateContacntData.MiddleName = GenerateRandomString(10);
             generateContacntData.LastName = GenerateRandomString(10);

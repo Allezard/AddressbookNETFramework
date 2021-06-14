@@ -31,64 +31,6 @@ namespace AddressbookNETFramework.Model
 
         }
 
-        public ContactData (bool List = true)
-        {
-            ContactData generateContacntData = new ContactData(List);
-
-            generateContacntData.BirthDay = generateContacntData.RandomBirthYear(rnd).Day.ToString();
-            generateContacntData.BirthMonth = ((EnumClass.EnumMonths)generateContacntData.RandomBirthYear(rnd).Month).ToString();
-            generateContacntData.YearOfBirth = generateContacntData.RandomBirthYear(rnd).Year.ToString();
-            generateContacntData.AnniversDay = generateContacntData.RandomAnniversYear(rnd).Day.ToString();
-            generateContacntData.AnniversMonth = ((EnumClass.EnumMonths)generateContacntData.RandomAnniversYear(rnd).Month).ToString();
-            generateContacntData.YearOfAnnivers = generateContacntData.RandomAnniversYear(rnd).Year.ToString();
-            generateContacntData.FirstName = BaseHelper.GenerateRandomString(10);
-            generateContacntData.MiddleName = BaseHelper.GenerateRandomString(10);
-            generateContacntData.LastName = BaseHelper.GenerateRandomString(10);
-            generateContacntData.NickName = BaseHelper.GenerateRandomString(10);
-            generateContacntData.Company = BaseHelper.GenerateRandomString(10);
-            generateContacntData.Title = BaseHelper.GenerateRandomString(10);
-            generateContacntData.Address = BaseHelper.GenerateRandomString(10);
-            generateContacntData.HomePhone = BaseHelper.GenerateRandomString(10);
-            generateContacntData.MobilePhone = BaseHelper.GenerateRandomString(10);
-            generateContacntData.WorkPhone = BaseHelper.GenerateRandomString(10);
-            generateContacntData.Fax = BaseHelper.GenerateRandomString(10);
-            generateContacntData.Email = BaseHelper.GenerateRandomString(10);
-            generateContacntData.Email2 = BaseHelper.GenerateRandomString(10);
-            generateContacntData.Email3 = BaseHelper.GenerateRandomString(10);
-            generateContacntData.Homepage = BaseHelper.GenerateRandomString(10);
-            generateContacntData.SecondaryAddress = BaseHelper.GenerateRandomString(10);
-            generateContacntData.HomeAddress = BaseHelper.GenerateRandomString(10);
-            generateContacntData.Notes = BaseHelper.GenerateRandomString(10);
-
-            var elemAndProp = new Dictionary<string, string>
-            {
-                { "email",  generateContacntData.Email },
-                { "email2",  generateContacntData.Email2 },
-                { "email3",  generateContacntData.Email3 },
-                { "firstname",  generateContacntData.FirstName },
-                { "middlename",  generateContacntData.MiddleName },
-                { "lastname",  generateContacntData.LastName },
-                { "nickname",  generateContacntData.NickName },
-                { "company",  generateContacntData.Company },
-                { "title",  generateContacntData.Title },
-                { "address",  generateContacntData.Address },
-                { "home",  generateContacntData.HomePhone },
-                { "mobile",  generateContacntData.MobilePhone },
-                { "work",  generateContacntData.WorkPhone },
-                { "fax",  generateContacntData.Fax },
-                { "homepage",  generateContacntData.Homepage },
-                { "bday",  generateContacntData.BirthDay },
-                { "bmonth",  generateContacntData.BirthMonth },
-                { "byear",  generateContacntData.YearOfBirth },
-                { "aday",  generateContacntData.AnniversDay },
-                { "amonth",  generateContacntData.AnniversMonth },
-                { "ayear",  generateContacntData.YearOfAnnivers },
-                { "address2",  generateContacntData.SecondaryAddress },
-                { "phone2",  generateContacntData.HomeAddress },
-                { "notes",  generateContacntData.Notes },
-            };
-        }
-
         public bool Equals(ContactData other)
         {
             if (ReferenceEquals(other, null))
@@ -312,16 +254,16 @@ namespace AddressbookNETFramework.Model
             }
         }
 
-        public DateTime RandomBirthYear(Random rnd)
+        public DateTime RandomAllYear(Random rnd)
         {
             var rangeDay = rnd.Next(1, 31);
             var rangeMonth = rnd.Next(0, 12);
             var rangeYear = rnd.Next(0, 102);
 
             DateTime dateTime = new DateTime(1920, 1, 1);
-            DateTime randomBirthDMY = dateTime.AddDays(rangeDay).AddMonths(rangeMonth).AddYears(rangeYear);
+            DateTime randomAllDMY = dateTime.AddDays(rangeDay).AddMonths(rangeMonth).AddYears(rangeYear);
 
-            return randomBirthDMY;
+            return randomAllDMY;
         }
 
         public string CalculateYearOfBirth()
@@ -348,18 +290,6 @@ namespace AddressbookNETFramework.Model
                 data--;
             }
             return data.ToString();
-        }
-
-        public DateTime RandomAnniversYear(Random rnd)
-        {
-            var rangeDay = rnd.Next(1, 31);
-            var rangeMonth = rnd.Next(0, 12);
-            var rangeYear = rnd.Next(0, 102);
-
-            DateTime dateTime = new DateTime(1920, 1, 1);
-            DateTime randomAnniversDMY = dateTime.AddDays(rangeDay).AddMonths(rangeMonth).AddYears(rangeYear);
-
-            return randomAnniversDMY;
         }
 
         public string CalculateYearOfAnnivers()

@@ -61,12 +61,12 @@ namespace DataGeneration
                 {
                     contacts.Add(new ContactData()
                     {
-                        BirthDay = rndDate.RandomBirthYear(rnd).Day.ToString(),
-                        BirthMonth = ((EnumClass.EnumMonths)rndDate.RandomBirthYear(rnd).Month).ToString(),
-                        YearOfBirth = rndDate.RandomBirthYear(rnd).Year.ToString(),
-                        AnniversDay = rndDate.RandomAnniversYear(rnd).Day.ToString(),
-                        AnniversMonth = ((EnumClass.EnumMonths)rndDate.RandomAnniversYear(rnd).Month).ToString(),
-                        YearOfAnnivers = rndDate.RandomAnniversYear(rnd).Year.ToString(),
+                        BirthDay = rndDate.RandomAllYear(rnd).Day.ToString(),
+                        BirthMonth = ((EnumClass.EnumMonths)rndDate.RandomAllYear(rnd).Month).ToString(),
+                        YearOfBirth = rndDate.RandomAllYear(rnd).Year.ToString(),
+                        AnniversDay = rndDate.RandomAllYear(rnd).Day.ToString(),
+                        AnniversMonth = ((EnumClass.EnumMonths)rndDate.RandomAllYear(rnd).Month).ToString(),
+                        YearOfAnnivers = rndDate.RandomAllYear(rnd).Year.ToString(),
                         FirstName = BaseHelper.GenerateRandomString(10),
                         MiddleName = BaseHelper.GenerateRandomString(10),
                         LastName = BaseHelper.GenerateRandomString(10),
