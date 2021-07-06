@@ -16,42 +16,43 @@ namespace AddressbookNETFramework.Helpers
     {
         protected IWebDriver webDriver;
         public static Random rnd = new Random();
+        public static string derictoryPath = @"C:\Users\User\Source\Repos\AddressbookNETFramework\AddressbookNETFramework\TestDataFolder\";
 
         public BaseHelper(IWebDriver webDriver)
         {
             this.webDriver = webDriver;
         }
 
-        public static IEnumerable<ContactData> ContactDataFromJsonFile()
+        public static IEnumerable<ContactData> ContactDataFromJsonFile(string fileName)
         {
-            var path = File.ReadAllText(@"C:\Users\Professional\source\repos\AddressbookNETFramework\AddressbookNETFramework\TestDataFolder\contacts.json");
+            var path = File.ReadAllText(derictoryPath + fileName);
             var fileJson = JsonConvert.DeserializeObject<List<ContactData>>(path);
             return fileJson;
         }
 
-        public static IEnumerable<ContactData> ContactDataFromXmlFile()
+        public static IEnumerable<ContactData> ContactDataFromXmlFile(string fileName)
         {
             IEnumerable<ContactData> xmlData;
             var a = new XmlSerializer(typeof(List<ContactData>));
-            using (StreamReader reader = new StreamReader(@"C:\Users\Professional\source\repos\AddressbookNETFramework\AddressbookNETFramework\TestDataFolder\contacts.xml"))
+            using (StreamReader reader = new StreamReader(derictoryPath + fileName))
             {
                 xmlData = (List<ContactData>)a.Deserialize(reader);
             }
             return xmlData;
         }
 
-        public static IEnumerable<GroupData> GroupDataFromJsonFile()
+        public static IEnumerable<GroupData> GroupDataFromJsonFile(string fileName)
         {
-            var path = File.ReadAllText(@"C:\Users\Professional\source\repos\AddressbookNETFramework\AddressbookNETFramework\TestDataFolder\groups.json");
+            var path = File.ReadAllText(derictoryPath + fileName);
             var fileJson = JsonConvert.DeserializeObject<List<GroupData>>(path);
             return fileJson;
         }
 
-        public static IEnumerable<GroupData> GroupDataFromXmlFile()
+        public static IEnumerable<GroupData> GroupDataFromXmlFile(string fileName)
         {
             IEnumerable<GroupData> xmlData;
             var a = new XmlSerializer(typeof(List<GroupData>));
-            using (StreamReader reader = new StreamReader(@"C:\Users\Professional\source\repos\AddressbookNETFramework\AddressbookNETFramework\TestDataFolder\groups.xml"))
+            using (StreamReader reader = new StreamReader(derictoryPath + fileName))
             {
                 xmlData = (List<GroupData>)a.Deserialize(reader);
             }
@@ -184,66 +185,66 @@ namespace AddressbookNETFramework.Helpers
             return generateContacntData;
         }
 
-        public ContactData ContactDataRandomJson()
+        public ContactData ContactDataRandomJson(string fileName)
         {
             ContactData generateContacntData = new ContactData
             {
-                BirthDay = ContactDataFromJsonFile().First().BirthDay,
-                BirthMonth = ContactDataFromJsonFile().First().BirthMonth,
-                YearOfBirth = ContactDataFromJsonFile().First().YearOfBirth,
-                AnniversDay = ContactDataFromJsonFile().First().AnniversDay,
-                AnniversMonth = ContactDataFromJsonFile().First().AnniversMonth,
-                YearOfAnnivers = ContactDataFromJsonFile().First().YearOfAnnivers,
-                FirstName = ContactDataFromJsonFile().First().FirstName,
-                MiddleName = ContactDataFromJsonFile().First().MiddleName,
-                LastName = ContactDataFromJsonFile().First().LastName,
-                NickName = ContactDataFromJsonFile().First().NickName,
-                Company = ContactDataFromJsonFile().First().Company,
-                Title = ContactDataFromJsonFile().First().Title,
-                Address = ContactDataFromJsonFile().First().Address,
-                HomePhone = ContactDataFromJsonFile().First().HomePhone,
-                MobilePhone = ContactDataFromJsonFile().First().MobilePhone,
-                WorkPhone = ContactDataFromJsonFile().First().WorkPhone,
-                Fax = ContactDataFromJsonFile().First().Fax,
-                Email = ContactDataFromJsonFile().First().Email,
-                Email2 = ContactDataFromJsonFile().First().Email2,
-                Email3 = ContactDataFromJsonFile().First().Email3,
-                Homepage = ContactDataFromJsonFile().First().Homepage,
-                SecondaryAddress = ContactDataFromJsonFile().First().SecondaryAddress,
-                HomeAddress = ContactDataFromJsonFile().First().HomeAddress,
-                Notes = ContactDataFromJsonFile().First().Notes
+                BirthDay = ContactDataFromJsonFile(fileName).First().BirthDay,
+                BirthMonth = ContactDataFromJsonFile(fileName).First().BirthMonth,
+                YearOfBirth = ContactDataFromJsonFile(fileName).First().YearOfBirth,
+                AnniversDay = ContactDataFromJsonFile(fileName).First().AnniversDay,
+                AnniversMonth = ContactDataFromJsonFile(fileName).First().AnniversMonth,
+                YearOfAnnivers = ContactDataFromJsonFile(fileName).First().YearOfAnnivers,
+                FirstName = ContactDataFromJsonFile(fileName).First().FirstName,
+                MiddleName = ContactDataFromJsonFile(fileName).First().MiddleName,
+                LastName = ContactDataFromJsonFile(fileName).First().LastName,
+                NickName = ContactDataFromJsonFile(fileName).First().NickName,
+                Company = ContactDataFromJsonFile(fileName).First().Company,
+                Title = ContactDataFromJsonFile(fileName).First().Title,
+                Address = ContactDataFromJsonFile(fileName).First().Address,
+                HomePhone = ContactDataFromJsonFile(fileName).First().HomePhone,
+                MobilePhone = ContactDataFromJsonFile(fileName).First().MobilePhone,
+                WorkPhone = ContactDataFromJsonFile(fileName).First().WorkPhone,
+                Fax = ContactDataFromJsonFile(fileName).First().Fax,
+                Email = ContactDataFromJsonFile(fileName).First().Email,
+                Email2 = ContactDataFromJsonFile(fileName).First().Email2,
+                Email3 = ContactDataFromJsonFile(fileName).First().Email3,
+                Homepage = ContactDataFromJsonFile(fileName).First().Homepage,
+                SecondaryAddress = ContactDataFromJsonFile(fileName).First().SecondaryAddress,
+                HomeAddress = ContactDataFromJsonFile(fileName).First().HomeAddress,
+                Notes = ContactDataFromJsonFile(fileName).First().Notes
             };
             return generateContacntData;
         }
 
-        public ContactData ContactDataRandomXML()
+        public ContactData ContactDataRandomXML(string fileName)
         {
             ContactData generateContacntData = new ContactData
             {
-                BirthDay = ContactDataFromXmlFile().First().BirthDay,
-                BirthMonth = ContactDataFromXmlFile().First().BirthMonth,
-                YearOfBirth = ContactDataFromXmlFile().First().YearOfBirth,
-                AnniversDay = ContactDataFromXmlFile().First().AnniversDay,
-                AnniversMonth = ContactDataFromXmlFile().First().AnniversMonth,
-                YearOfAnnivers = ContactDataFromXmlFile().First().YearOfAnnivers,
-                FirstName = ContactDataFromXmlFile().First().FirstName,
-                MiddleName = ContactDataFromXmlFile().First().MiddleName,
-                LastName = ContactDataFromXmlFile().First().LastName,
-                NickName = ContactDataFromXmlFile().First().NickName,
-                Company = ContactDataFromXmlFile().First().Company,
-                Title = ContactDataFromXmlFile().First().Title,
-                Address = ContactDataFromXmlFile().First().Address,
-                HomePhone = ContactDataFromXmlFile().First().HomePhone,
-                MobilePhone = ContactDataFromXmlFile().First().MobilePhone,
-                WorkPhone = ContactDataFromXmlFile().First().WorkPhone,
-                Fax = ContactDataFromXmlFile().First().Fax,
-                Email = ContactDataFromXmlFile().First().Email,
-                Email2 = ContactDataFromXmlFile().First().Email2,
-                Email3 = ContactDataFromXmlFile().First().Email3,
-                Homepage = ContactDataFromXmlFile().First().Homepage,
-                SecondaryAddress = ContactDataFromXmlFile().First().SecondaryAddress,
-                HomeAddress = ContactDataFromXmlFile().First().HomeAddress,
-                Notes = ContactDataFromXmlFile().First().Notes
+                BirthDay = ContactDataFromXmlFile(fileName).First().BirthDay,
+                BirthMonth = ContactDataFromXmlFile(fileName).First().BirthMonth,
+                YearOfBirth = ContactDataFromXmlFile(fileName).First().YearOfBirth,
+                AnniversDay = ContactDataFromXmlFile(fileName).First().AnniversDay,
+                AnniversMonth = ContactDataFromXmlFile(fileName).First().AnniversMonth,
+                YearOfAnnivers = ContactDataFromXmlFile(fileName).First().YearOfAnnivers,
+                FirstName = ContactDataFromXmlFile(fileName).First().FirstName,
+                MiddleName = ContactDataFromXmlFile(fileName).First().MiddleName,
+                LastName = ContactDataFromXmlFile(fileName).First().LastName,
+                NickName = ContactDataFromXmlFile(fileName).First().NickName,
+                Company = ContactDataFromXmlFile(fileName).First().Company,
+                Title = ContactDataFromXmlFile(fileName).First().Title,
+                Address = ContactDataFromXmlFile(fileName).First().Address,
+                HomePhone = ContactDataFromXmlFile(fileName).First().HomePhone,
+                MobilePhone = ContactDataFromXmlFile(fileName).First().MobilePhone,
+                WorkPhone = ContactDataFromXmlFile(fileName).First().WorkPhone,
+                Fax = ContactDataFromXmlFile(fileName).First().Fax,
+                Email = ContactDataFromXmlFile(fileName).First().Email,
+                Email2 = ContactDataFromXmlFile(fileName).First().Email2,
+                Email3 = ContactDataFromXmlFile(fileName).First().Email3,
+                Homepage = ContactDataFromXmlFile(fileName).First().Homepage,
+                SecondaryAddress = ContactDataFromXmlFile(fileName).First().SecondaryAddress,
+                HomeAddress = ContactDataFromXmlFile(fileName).First().HomeAddress,
+                Notes = ContactDataFromXmlFile(fileName).First().Notes
             };
             return generateContacntData;
         }
@@ -259,24 +260,24 @@ namespace AddressbookNETFramework.Helpers
             return generateGroup;
         }
 
-        public GroupData GroupDataRandomJson()
+        public GroupData GroupDataRandomJson(string fileName)
         {
             GroupData generateGroup = new GroupData
             {
-                GroupName = GroupDataFromJsonFile().First().GroupName,
-                GroupHeader = GroupDataFromJsonFile().First().GroupHeader,
-                GroupFooter = GroupDataFromJsonFile().First().GroupFooter
+                GroupName = GroupDataFromJsonFile(fileName).First().GroupName,
+                GroupHeader = GroupDataFromJsonFile(fileName).First().GroupHeader,
+                GroupFooter = GroupDataFromJsonFile(fileName).First().GroupFooter
             };
             return generateGroup;
         }
 
-        public GroupData GroupDataRandomXML()
+        public GroupData GroupDataRandomXML(string fileName)
         {
             GroupData generateGroup = new GroupData
             {
-                GroupName = GroupDataFromXmlFile().First().GroupName,
-                GroupHeader = GroupDataFromXmlFile().First().GroupHeader,
-                GroupFooter = GroupDataFromXmlFile().First().GroupFooter
+                GroupName = GroupDataFromXmlFile(fileName).First().GroupName,
+                GroupHeader = GroupDataFromXmlFile(fileName).First().GroupHeader,
+                GroupFooter = GroupDataFromXmlFile(fileName).First().GroupFooter
             };
             return generateGroup;
         }

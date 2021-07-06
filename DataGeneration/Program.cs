@@ -21,15 +21,32 @@ namespace DataGeneration
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            string type = args[0]; // Принимает 1-ый аргумент в виде названия типа ("typeGroup" или "typeContact")
-            int count = Convert.ToInt32(args[1]); // Принимает 2-ой аргумент, создает нужное кол-во файлов в виде типа int (1, 2 и т.д)
-            StreamWriter writer = new StreamWriter(args[2]); // Принимает 3-ий аргумент в виде названия файла(name.xml/name.json)
-            string format = args[3]; // Принимает 4-ый аргумент в виде типа файла(xml/json)
+            //string type = args[0]; // Принимает 1-ый аргумент в виде названия типа ("typeGroup" или "typeContact")
+            //string count = args[1]; // Принимает 2-ой аргумент, создает нужное кол-во файлов в виде типа int (1, 2 и т.д)
+            //StreamWriter writer = new StreamWriter(args[2]); // Принимает 3-ий аргумент в виде названия файла(name.xml/name.json)
+            //string format = args[3]; // Принимает 4-ый аргумент в виде типа файла(xml/json)
+
+            Console.Write("Укажите тип файла (typeGroup или typeContact): ");
+            string type = Console.ReadLine();
+
+            Console.Write("Укажите нужное кол-во файлов (на данный момент можно создать только 1 файл): ");
+            string count = Console.ReadLine();
+            if (count != "1")
+            {
+                count = "1";
+            }
+
+            Console.Write("Укажите название файла.формат: ");
+            string writerText = Console.ReadLine();
+            StreamWriter writer = new StreamWriter(writerText);
+
+            Console.Write("Укажите формат файла (xml / json): ");
+            string format = Console.ReadLine();
 
             if (type == "typeGroup")
             {
                 List<GroupData> groups = new List<GroupData>();
-                for (int i = 0; i < count; i++)
+                for (int i = 0; i < Convert.ToInt32(count); i++)
                 {
                     groups.Add(new GroupData()
                     {
@@ -57,7 +74,7 @@ namespace DataGeneration
                 ContactData rndDate = new ContactData();
                 Random rnd = new Random();
                 List<ContactData> contacts = new List<ContactData>();
-                for (int i = 0; i < count; i++)
+                for (int i = 0; i < Convert.ToInt32(count); i++)
                 {
                     contacts.Add(new ContactData()
                     {
@@ -97,7 +114,7 @@ namespace DataGeneration
                 }
                 else
                 {
-                    Console.Out.WriteLine("Unrecognized format" + format);
+                    Console.Out.WriteLine("Unrecognized format: " + format);
                 }
                 writer.Close();
             }
@@ -106,6 +123,9 @@ namespace DataGeneration
                 Console.Out.WriteLine("Format not selected or specified incorrectly");
             }
             writer.Close();
+
+            Console.WriteLine("\n" + "Файл успешно создан. Нажмите любую кнопку для закрытия консоли.");
+            Console.ReadKey();
         }
 
         static void WriteGroupsToXMLFile(List<GroupData> groups, StreamWriter writer)

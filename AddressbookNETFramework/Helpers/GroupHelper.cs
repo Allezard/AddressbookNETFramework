@@ -86,9 +86,9 @@ namespace AddressbookNETFramework.Helpers
             return generateGroup;
         }
 
-        public GroupData CreateNewGroupJson()
+        public GroupData CreateNewGroupJson(string fileName)
         {
-            GroupData generateGroup = GroupDataRandomJson();
+            GroupData generateGroup = GroupDataRandomJson(fileName);
 
             webDriver.FindElement(By.ClassName("admin")).Click();
             // Переходим во вкладку "groups".
@@ -107,9 +107,9 @@ namespace AddressbookNETFramework.Helpers
             return generateGroup;
         }
 
-        public GroupData CreateNewGroupXML()
+        public GroupData CreateNewGroupXML(string fileName)
         {
-            GroupData generateGroup = GroupDataRandomXML();
+            GroupData generateGroup = GroupDataRandomXML(fileName);
 
             webDriver.FindElement(By.ClassName("admin")).Click();
             // Переходим во вкладку "groups".
@@ -168,9 +168,9 @@ namespace AddressbookNETFramework.Helpers
             return generateGroup;
         }
 
-        public GroupData EditFirstGroupJson(int index)
+        public GroupData EditFirstGroupJson(int index, string fileName)
         {
-            GroupData generateGroup = GroupDataRandomJson();
+            GroupData generateGroup = GroupDataRandomJson(fileName);
 
             By locatorFooter = By.Name("group_footer");
             string textFooter = generateGroup.GroupFooter;
@@ -194,9 +194,9 @@ namespace AddressbookNETFramework.Helpers
             return generateGroup;
         }
 
-        public GroupData EditFirstGroupXML(int index)
+        public GroupData EditFirstGroupXML(int index, string fileName)
         {
-            GroupData generateGroup = GroupDataRandomXML();
+            GroupData generateGroup = GroupDataRandomXML(fileName);
 
             By locatorFooter = By.Name("group_footer");
             string textFooter = generateGroup.GroupFooter;
@@ -295,7 +295,7 @@ namespace AddressbookNETFramework.Helpers
             return CreateNewGroup(); // Создаем новую группу, если элемент в условии "if" не найден.
         }
 
-        public GroupData PreAddGroupJson(int index)
+        public GroupData PreAddGroupJson(int index, string fileName)
         {
             webDriver.FindElement(By.ClassName("admin")).Click();
             // Переходим во вкладку "groups".
@@ -303,10 +303,10 @@ namespace AddressbookNETFramework.Helpers
             {
                 return null; // Если группа найдена, то завершаем проверку.
             }
-            return CreateNewGroupJson(); // Создаем новую группу, если элемент в условии "if" не найден.
+            return CreateNewGroupJson(fileName); // Создаем новую группу, если элемент в условии "if" не найден.
         }
 
-        public GroupData PreAddGroupXML(int index)
+        public GroupData PreAddGroupXML(int index, string fileName)
         {
             webDriver.FindElement(By.ClassName("admin")).Click();
             // Переходим во вкладку "groups".
@@ -314,7 +314,7 @@ namespace AddressbookNETFramework.Helpers
             {
                 return null; // Если группа найдена, то завершаем проверку.
             }
-            return CreateNewGroupXML(); // Создаем новую группу, если элемент в условии "if" не найден.
+            return CreateNewGroupXML(fileName); // Создаем новую группу, если элемент в условии "if" не найден.
         }
     }
 }

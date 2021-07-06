@@ -198,9 +198,9 @@ namespace AddressbookNETFramework.Helpers
             return generateContacntData;
         }
 
-        public ContactData AddNewContactJson()
+        public ContactData AddNewContactJson(string fileName)
         {
-            ContactData generateContacntData = ContactDataRandomJson();
+            ContactData generateContacntData = ContactDataRandomJson(fileName);
 
             webDriver.FindElement(By.LinkText("add new")).Click();
             // Переходим на страницу для создания контакта.
@@ -247,9 +247,9 @@ namespace AddressbookNETFramework.Helpers
             return generateContacntData;
         }
 
-        public ContactData AddNewContactXML()
+        public ContactData AddNewContactXML(string fileName)
         {
-            ContactData generateContacntData = ContactDataRandomXML();
+            ContactData generateContacntData = ContactDataRandomXML(fileName);
 
             webDriver.FindElement(By.LinkText("add new")).Click();
             // Переходим на страницу для создания контакта.
@@ -367,9 +367,9 @@ namespace AddressbookNETFramework.Helpers
             return generateContacntData;
         }
 
-        public ContactData EditFirstContactJson(int index)
+        public ContactData EditFirstContactJson(int index, string fileName)
         {
-            ContactData generateContacntData = ContactDataRandomJson();
+            ContactData generateContacntData = ContactDataRandomJson(fileName);
 
             webDriver.FindElement(By.LinkText("home")).Click();
             // Переходим на главную страницу со списком контактов.
@@ -438,9 +438,9 @@ namespace AddressbookNETFramework.Helpers
             return generateContacntData;
         }
 
-        public ContactData EditFirstContactXML(int index)
+        public ContactData EditFirstContactXML(int index, string fileName)
         {
-            ContactData generateContacntData = ContactDataRandomXML();
+            ContactData generateContacntData = ContactDataRandomXML(fileName);
 
             webDriver.FindElement(By.LinkText("home")).Click();
             // Переходим на главную страницу со списком контактов.
@@ -624,7 +624,7 @@ namespace AddressbookNETFramework.Helpers
             return AddNewContact(); // Создаем новый контакт, если элемент в условии "if" не найден.
         }
 
-        public ContactData PreAddContactJson(int index)
+        public ContactData PreAddContactJson(int index, string fileName)
         {
             webDriver.FindElement(By.LinkText("home")).Click();
             // Переходим на главную страницу со списком контактов.
@@ -632,10 +632,10 @@ namespace AddressbookNETFramework.Helpers
             {
                 return null; // Если контакт найден, то завершаем проверку.
             }
-            return AddNewContactJson(); // Создаем новый контакт, если элемент в условии "if" не найден.
+            return AddNewContactJson(fileName); // Создаем новый контакт, если элемент в условии "if" не найден.
         }
 
-        public ContactData PreAddContactXML(int index)
+        public ContactData PreAddContactXML(int index, string fileName)
         {
             webDriver.FindElement(By.LinkText("home")).Click();
             // Переходим на главную страницу со списком контактов.
@@ -643,7 +643,7 @@ namespace AddressbookNETFramework.Helpers
             {
                 return null; // Если контакт найден, то завершаем проверку.
             }
-            return AddNewContactXML(); // Создаем новый контакт, если элемент в условии "if" не найден.
+            return AddNewContactXML(fileName); // Создаем новый контакт, если элемент в условии "if" не найден.
         }
 
         public Dictionary<string, string> DictionaryTest()

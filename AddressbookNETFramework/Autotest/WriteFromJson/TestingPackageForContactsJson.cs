@@ -24,7 +24,7 @@ namespace AddressbookNETFramework
             Console.Out.WriteLine("Кол-во контактов:  " + app.Contacts.GetContactCount() + "\n");
             // Записываем старые знаечения контактов.
 
-            ContactData generateContacnt = app.Contacts.AddNewContact();
+            ContactData generateContacnt = app.Contacts.AddNewContactJson("contacts.json");
             // Создаем новый контакт.
             Console.Out.WriteLine(generateContacnt);
 
@@ -45,7 +45,7 @@ namespace AddressbookNETFramework
         [Test]
         public void JsonEditFirstContactTest()
         {
-            app.Contacts.PreAddContactJson(0);
+            app.Contacts.PreAddContactJson(0, "ContactEditJson.json");
             //Создаем новый контакт, если его нет.
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();
@@ -54,7 +54,7 @@ namespace AddressbookNETFramework
             // Сохраняем первый контакт в отдельную переменную для его проверки.
             Console.Out.WriteLine("Было: " + oldContData + "\n");
 
-            ContactData generateContacnt = app.Contacts.EditFirstContact(0);
+            ContactData generateContacnt = app.Contacts.EditFirstContactJson(0, "ContactEditJson.json");
             // Редактируем первый контакт.
 
             Assert.AreEqual(oldContacts.Count, app.Contacts.GetContactCount());
@@ -86,7 +86,7 @@ namespace AddressbookNETFramework
         public void JsonDeleteFirstContactTest()
         {
 
-            app.Contacts.PreAddContactJson(0);
+            app.Contacts.PreAddContactJson(0, "contacts.json");
             //Создаем новый контакт, если его нет.
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();
@@ -118,7 +118,7 @@ namespace AddressbookNETFramework
         [Test]
         public void AddContactInGroupTest()
         {
-            app.Contacts.PreAddContactJson(0);
+            app.Contacts.PreAddContactJson(0, "contacts.json");
             //Создаем новый контакт, если его нет.
 
             app.Contacts.AddContactInGroup(0);
