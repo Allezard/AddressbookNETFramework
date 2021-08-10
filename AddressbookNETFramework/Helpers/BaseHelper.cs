@@ -148,9 +148,9 @@ namespace AddressbookNETFramework.Helpers
             }
 
             if (lowerCase)
-                return builder.ToString().ToLower();
+                return builder.ToString();
 
-            return builder.ToString();
+            return builder.ToString().ToLower();
         }
 
         public ContactData ContactDataRandom()
