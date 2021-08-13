@@ -21,27 +21,17 @@ namespace DataGeneration
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            //string type = args[0]; // Принимает 1-ый аргумент в виде названия типа ("typeGroup" или "typeContact")
-            //string count = args[1]; // Принимает 2-ой аргумент, создает нужное кол-во файлов в виде типа int (1, 2 и т.д)
-            //StreamWriter writer = new StreamWriter(args[2]); // Принимает 3-ий аргумент в виде названия файла(name.xml/name.json)
-            //string format = args[3]; // Принимает 4-ый аргумент в виде типа файла(xml/json)
-
             Console.Write("Укажите тип файла (typeGroup или typeContact): ");
             string type = Console.ReadLine();
 
-            Console.Write("Укажите нужное кол-во файлов (на данный момент можно создать только 1 файл): ");
+            Console.Write("Укажите нужное кол-во копий объекта в файле: ");
             string count = Console.ReadLine();
-            if (count != "1")
-            {
-                count = "1";
-            }
 
-            Console.Write("Укажите название файла.формат: ");
+            Console.Write("Укажите название файла и его формат (name.json or name.xml): ");
             string writerText = Console.ReadLine();
             StreamWriter writer = new StreamWriter(writerText);
 
-            Console.Write("Укажите формат файла (xml / json): ");
-            string format = Console.ReadLine();
+            string format = writerText.Substring(writerText.IndexOf(".") + 1);
 
             if (type == "typeGroup")
             {
@@ -133,14 +123,14 @@ namespace DataGeneration
             new XmlSerializer(typeof(List<GroupData>)).Serialize(writer, groups);
         }
 
-        static void WriteGroupsToJsonFile(List<GroupData> groups, StreamWriter writer)
-        {
-            writer.Write(JsonConvert.SerializeObject(groups, Newtonsoft.Json.Formatting.Indented));
-        }
-
         static void WriteContactsToXMLFile(List<ContactData> contacts, StreamWriter writer)
         {
             new XmlSerializer(typeof(List<ContactData>)).Serialize(writer, contacts);
+        }
+
+        static void WriteGroupsToJsonFile(List<GroupData> groups, StreamWriter writer)
+        {
+            writer.Write(JsonConvert.SerializeObject(groups, Newtonsoft.Json.Formatting.Indented));
         }
 
         static void WriteContactsToJsonFile(List<ContactData> contacts, StreamWriter writer)
