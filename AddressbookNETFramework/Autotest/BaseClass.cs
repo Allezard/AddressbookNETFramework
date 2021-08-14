@@ -26,6 +26,7 @@ namespace AddressbookNETFramework.Model
         public void SetupApp()
         {
             app = ApplicationManager.GetInstance();
+            //TODO Закодировать логин с паролем.
             app.Auth.Login(new AccountData("admin", "secret"));
         }
     }
