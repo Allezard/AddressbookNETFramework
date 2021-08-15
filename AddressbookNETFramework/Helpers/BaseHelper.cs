@@ -24,7 +24,7 @@ namespace AddressbookNETFramework.Helpers
         }
 
         /// <summary>
-        /// Определяет тип файла (json/xml) и 
+        /// Определяет тип файла (json/xml) и записывает из него данные.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="fileName">Имя файла прим: contact.json</param>

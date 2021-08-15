@@ -3,8 +3,8 @@
   <Class Name="AddressbookNETFramework.Model.BaseClass" Collapsed="true">
     <Position X="2.5" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAMAAAAAAAAAAAABAAAAAAAAAAAABAAACAAAAAAAAA=</HashCode>
-      <FileName>Model\BaseClass.cs</FileName>
+      <HashCode>AAAIAAAAAAAAAAAABAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Autotest\BaseClass.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AddressbookNETFramework.Model.GroupBaseClass" Collapsed="true">
@@ -14,45 +14,38 @@
       <FileName>Model\GroupBaseClass.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AddressbookNETFramework.Autotest.TestingGroupsForDB" Collapsed="true">
-    <Position X="0.5" Y="2.25" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAggAAAAAAAIAQAAAAEgQAAAAAAAAQAAAAAAAAAAAA=</HashCode>
-      <FileName>Autotest\TestingGroupsForDB.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="AddressbookNETFramework.Helpers.GroupHelper" Collapsed="true">
     <Position X="7.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAgAEAkAAAwAAAAAACAAAAABAAAAAAAAIBAAEA=</HashCode>
+      <HashCode>AAAAAAAgAEAkAAAwAAAAAASAAAAQBACAAAAAAIBAAEA=</HashCode>
       <FileName>Helpers\GroupHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AddressbookNETFramework.Helpers.BaseHelper" Collapsed="true">
     <Position X="6.5" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAAAAAAAAAAIAAAAAAAACgCAAAAAAAAAAAACIAiACAA=</HashCode>
+      <HashCode>AAAEIAAAAAAAAAAAAAgQAgCAAAAAABAAAIAAIAiACAA=</HashCode>
       <FileName>Helpers\BaseHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AddressbookNETFramework.Helpers.ApplicationManager" Collapsed="true">
     <Position X="10" Y="0.5" Width="1.25" />
     <TypeIdentifier>
-      <HashCode>BQAAAEAAAAAAAAAABAAAAAAABAAAAAAAICAAABAQyAA=</HashCode>
+      <HashCode>BQAAAEAAAAAAAAAABAAAAAAABAAAAAAAACAAABAQyAA=</HashCode>
       <FileName>Helpers\ApplicationManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AddressbookNETFramework.Helpers.NavigationHelper" Collapsed="true">
     <Position X="7.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAIAAAAAAAQAAAA=</HashCode>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
       <FileName>Helpers\NavigationHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AddressbookNETFramework.Helpers.ContactHelper" Collapsed="true">
     <Position X="7.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAABAAAgAAgAAQAAAAAAAAAQEAAEIQIAAgQAACA=</HashCode>
+      <HashCode>IEAAACABAAIgAAoAAQAAAAARAgCQEAAEIQJAEgQQACA=</HashCode>
       <FileName>Helpers\ContactHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -66,14 +59,14 @@
   <Class Name="AddressbookNETFramework.SuiteFixture" Collapsed="true">
     <Position X="10" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Autotest\SuiteFixture.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AddressbookNETFramework.Model.GroupData" Collapsed="true">
     <Position X="0.5" Y="8" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAQEggAAAAAAAAAAAIAAIgAAAAAAAAE=</HashCode>
+      <HashCode>AAAiAAAAAAAAAAQEggAAAAAAAAAAAIAAIgAAAABAAAE=</HashCode>
       <FileName>Model\GroupData.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -81,7 +74,7 @@
   <Class Name="AddressbookNETFramework.Model.ContactData" Collapsed="true">
     <Position X="2.75" Y="8" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIAiAEAAoCAAAEQEgABQAAACAABAAMUCAAgFBEAIAAg=</HashCode>
+      <HashCode>AIAmAEAAoCAKAMQFgADQAAADAgBIAMUGAggFBEQIAAg=</HashCode>
       <FileName>Model\ContactData.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -89,22 +82,22 @@
   <Class Name="AddressbookNETFramework.TestingPackageForContacts" Collapsed="true">
     <Position X="3.5" Y="1.75" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAgAAAAAAAARAAAEEAAAgAAAEAAAABAAAAAAAAA=</HashCode>
-      <FileName>Autotest\TestingPackageForContacts.cs</FileName>
+      <HashCode>AAAACAgAAAAAAAARAAAEAAAAgAAAEAAAABAAAAAAAAA=</HashCode>
+      <FileName>Autotest\CheckDataUI\TestingPackageForContacts.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AddressbookNETFramework.TestingPackageForGroups" Collapsed="true">
     <Position X="3.5" Y="2.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAQgAAAAAAAAgAQAAAAAgQAAAAAAAAEAAAAAAAAAAAA=</HashCode>
-      <FileName>Autotest\TestingPackageForGroups.cs</FileName>
+      <HashCode>AAQgAAAAAAAAgAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Autotest\CheckDataUI\TestingPackageForGroups.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AddressbookNETFramework.TestingPackageForLogin" Collapsed="true">
     <Position X="3.5" Y="3.75" Width="2" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Autotest\TestingPackageForLogin.cs</FileName>
+      <FileName>Autotest\CheckDataUI\TestingPackageForLogin.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

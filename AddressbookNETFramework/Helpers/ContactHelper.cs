@@ -512,7 +512,7 @@ namespace AddressbookNETFramework.Helpers
             {
                 return null; // Если контакт найден, то завершаем проверку.
             }
-            return AddNewContactJson(fileName); // Создаем новый контакт, если элемент в условии "if" не найден.
+            return AddNewContactInFile(fileName); // Создаем новый контакт, если элемент в условии "if" не найден.
         }
 
         public Dictionary<string, string> DictionaryTest()

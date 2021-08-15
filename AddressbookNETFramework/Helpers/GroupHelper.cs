@@ -256,7 +256,7 @@ namespace AddressbookNETFramework.Helpers
             {
                 return null; // Если группа найдена, то завершаем проверку.
             }
-            return CreateNewGroupJson(fileName); // Создаем новую группу, если элемент в условии "if" не найден.
+            return CreateNewGroupInFile(fileName); // Создаем новую группу, если элемент в условии "if" не найден.
         }
     }
 }
