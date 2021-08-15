@@ -24,10 +24,10 @@ namespace AddressbookNETFramework.Helpers
         }
 
         /// <summary>
-        /// 
+        /// Определяет тип файла (json/xml) и 
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="fileName"></param>
+        /// <param name="fileName">Имя файла прим: contact.json</param>
         /// <returns></returns>
         public static IEnumerable<T> DataFromFile<T>(string fileName)
         {
@@ -39,7 +39,7 @@ namespace AddressbookNETFramework.Helpers
                 var fileJson = JsonConvert.DeserializeObject<List<T>>(path);
                 return fileJson;
             }
-            else
+            else if (typeFile == "xml")
             {
                 IEnumerable<T> xmlData;
                 var a = new XmlSerializer(typeof(List<T>));
@@ -49,6 +49,8 @@ namespace AddressbookNETFramework.Helpers
                 }
                 return xmlData;
             }
+            else
+                throw new Exception($"Тип файла указан некорректно: {typeFile}.");
         }
 
 
@@ -178,39 +180,7 @@ namespace AddressbookNETFramework.Helpers
             return generateContacntData;
         }
 
-        public ContactData ContactDataRandomJson(string fileName)
-        {
-            ContactData generateContacntData = new ContactData
-            {
-                BirthDay = DataFromFile<ContactData>(fileName).First().BirthDay,
-                BirthMonth = DataFromFile<ContactData>(fileName).First().BirthMonth,
-                YearOfBirth = DataFromFile<ContactData>(fileName).First().YearOfBirth,
-                AnniversDay = DataFromFile<ContactData>(fileName).First().AnniversDay,
-                AnniversMonth = DataFromFile<ContactData>(fileName).First().AnniversMonth,
-                YearOfAnnivers = DataFromFile<ContactData>(fileName).First().YearOfAnnivers,
-                FirstName = DataFromFile<ContactData>(fileName).First().FirstName,
-                MiddleName = DataFromFile<ContactData>(fileName).First().MiddleName,
-                LastName = DataFromFile<ContactData>(fileName).First().LastName,
-                NickName = DataFromFile<ContactData>(fileName).First().NickName,
-                Company = DataFromFile<ContactData>(fileName).First().Company,
-                Title = DataFromFile<ContactData>(fileName).First().Title,
-                Address = DataFromFile<ContactData>(fileName).First().Address,
-                HomePhone = DataFromFile<ContactData>(fileName).First().HomePhone,
-                MobilePhone = DataFromFile<ContactData>(fileName).First().MobilePhone,
-                WorkPhone = DataFromFile<ContactData>(fileName).First().WorkPhone,
-                Fax = DataFromFile<ContactData>(fileName).First().Fax,
-                Email = DataFromFile<ContactData>(fileName).First().Email,
-                Email2 = DataFromFile<ContactData>(fileName).First().Email2,
-                Email3 = DataFromFile<ContactData>(fileName).First().Email3,
-                Homepage = DataFromFile<ContactData>(fileName).First().Homepage,
-                SecondaryAddress = DataFromFile<ContactData>(fileName).First().SecondaryAddress,
-                HomeAddress = DataFromFile<ContactData>(fileName).First().HomeAddress,
-                Notes = DataFromFile<ContactData>(fileName).First().Notes
-            };
-            return generateContacntData;
-        }
-
-        public ContactData ContactDataRandomXML(string fileName)
+        public ContactData ContactDataRandom(string fileName)
         {
             ContactData generateContacntData = new ContactData
             {
@@ -253,18 +223,7 @@ namespace AddressbookNETFramework.Helpers
             return generateGroup;
         }
 
-        public GroupData GroupDataRandomJson(string fileName)
-        {
-            GroupData generateGroup = new GroupData
-            {
-                GroupName = DataFromFile<GroupData>(fileName).First().GroupName,
-                GroupHeader = DataFromFile<GroupData>(fileName).First().GroupHeader,
-                GroupFooter = DataFromFile<GroupData>(fileName).First().GroupFooter
-            };
-            return generateGroup;
-        }
-
-        public GroupData GroupDataRandomXML(string fileName)
+        public GroupData GroupDataRandom(string fileName)
         {
             GroupData generateGroup = new GroupData
             {
@@ -277,32 +236,7 @@ namespace AddressbookNETFramework.Helpers
 
         public Dictionary<string, string> ContactDataList()
         {
-            ContactData generateContacntData = new ContactData();
-
-            generateContacntData.BirthDay = generateContacntData.RandomAllYear(rnd).Day.ToString();
-            generateContacntData.BirthMonth = ((EnumClass.EnumMonths)generateContacntData.RandomAllYear(rnd).Month).ToString();
-            generateContacntData.YearOfBirth = generateContacntData.RandomAllYear(rnd).Year.ToString();
-            generateContacntData.AnniversDay = generateContacntData.RandomAllYear(rnd).Day.ToString();
-            generateContacntData.AnniversMonth = ((EnumClass.EnumMonths)generateContacntData.RandomAllYear(rnd).Month).ToString();
-            generateContacntData.YearOfAnnivers = generateContacntData.RandomAllYear(rnd).Year.ToString();
-            generateContacntData.FirstName = GenerateRandomString(10);
-            generateContacntData.MiddleName = GenerateRandomString(10);
-            generateContacntData.LastName = GenerateRandomString(10);
-            generateContacntData.NickName = GenerateRandomString(10);
-            generateContacntData.Company = GenerateRandomString(10);
-            generateContacntData.Title = GenerateRandomString(10);
-            generateContacntData.Address = GenerateRandomString(10);
-            generateContacntData.HomePhone = GenerateRandomString(10);
-            generateContacntData.MobilePhone = GenerateRandomString(10);
-            generateContacntData.WorkPhone = GenerateRandomString(10);
-            generateContacntData.Fax = GenerateRandomString(10);
-            generateContacntData.Email = GenerateRandomString(10);
-            generateContacntData.Email2 = GenerateRandomString(10);
-            generateContacntData.Email3 = GenerateRandomString(10);
-            generateContacntData.Homepage = GenerateRandomString(10);
-            generateContacntData.SecondaryAddress = GenerateRandomString(10);
-            generateContacntData.HomeAddress = GenerateRandomString(10);
-            generateContacntData.Notes = GenerateRandomString(10);
+            ContactData generateContacntData = ContactDataRandom();
 
             var elemAndProp = new Dictionary<string, string>
             {

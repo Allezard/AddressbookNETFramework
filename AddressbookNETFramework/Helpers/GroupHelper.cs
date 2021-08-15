@@ -86,30 +86,9 @@ namespace AddressbookNETFramework.Helpers
             return generateGroup;
         }
 
-        public GroupData CreateNewGroupJson(string fileName)
+        public GroupData CreateNewGroupInFile(string fileName)
         {
-            GroupData generateGroup = GroupDataRandomJson(fileName);
-
-            webDriver.FindElement(By.ClassName("admin")).Click();
-            // Переходим во вкладку "groups".
-            webDriver.FindElement(By.Name("new")).Click();
-            // Кликаем на кнопку "New group".
-            webDriver.FindElement(By.Name("group_name")).SendKeys(generateGroup.GroupName);
-            webDriver.FindElement(By.Name("group_header")).SendKeys(generateGroup.GroupHeader);
-            webDriver.FindElement(By.Name("group_footer")).SendKeys(generateGroup.GroupFooter);
-            // Заполняем поля: "Group name", (Logo), (Comment). 
-            webDriver.FindElement(By.Name("submit")).Click();
-            // Нажимаем на кнопку "Enter information".
-            webDriver.FindElement(By.LinkText("group page")).Click();
-            // Возвращаемся на вкладку /addressbook/group по текстовой ссылке "group page".
-            groupCache = null;
-            // Очищаем кэш.
-            return generateGroup;
-        }
-
-        public GroupData CreateNewGroupXML(string fileName)
-        {
-            GroupData generateGroup = GroupDataRandomXML(fileName);
+            GroupData generateGroup = GroupDataRandom(fileName);
 
             webDriver.FindElement(By.ClassName("admin")).Click();
             // Переходим во вкладку "groups".
@@ -168,35 +147,9 @@ namespace AddressbookNETFramework.Helpers
             return generateGroup;
         }
 
-        public GroupData EditFirstGroupJson(int index, string fileName)
+        public GroupData EditFirstGroupInFile(int index, string fileName)
         {
-            GroupData generateGroup = GroupDataRandomJson(fileName);
-
-            By locatorFooter = By.Name("group_footer");
-            string textFooter = generateGroup.GroupFooter;
-
-            webDriver.FindElement(By.ClassName("admin")).Click();
-            // Переходим во вкладку "groups".
-            webDriver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index + 1) + "]")).Click();
-            webDriver.FindElement(By.Name("edit")).Click();
-            // Выбираем и редактируем вторую группу
-            EditGropMethod(By.Name("group_name"), generateGroup.GroupName);
-            EditGropMethod(By.Name("group_header"), generateGroup.GroupHeader);
-            webDriver.FindElement(locatorFooter).Clear();
-            webDriver.FindElement(locatorFooter).SendKeys(textFooter);
-            // Очищаем и заполняем поля: "Group name", (Logo), (Comment). 
-            webDriver.FindElement(By.Name("update")).Click();
-            // Нажимаем на кнопку "Update".
-            webDriver.FindElement(By.LinkText("group page")).Click();
-            // Возвращаемся на вкладку /addressbook/group по текстовой ссылке "group page".
-            groupCache = null;
-            // Очищаем кэш.
-            return generateGroup;
-        }
-
-        public GroupData EditFirstGroupXML(int index, string fileName)
-        {
-            GroupData generateGroup = GroupDataRandomXML(fileName);
+            GroupData generateGroup = GroupDataRandom(fileName);
 
             By locatorFooter = By.Name("group_footer");
             string textFooter = generateGroup.GroupFooter;
@@ -295,7 +248,7 @@ namespace AddressbookNETFramework.Helpers
             return CreateNewGroup(); // Создаем новую группу, если элемент в условии "if" не найден.
         }
 
-        public GroupData PreAddGroupJson(int index, string fileName)
+        public GroupData PreAddGroupInFile(int index, string fileName)
         {
             webDriver.FindElement(By.ClassName("admin")).Click();
             // Переходим во вкладку "groups".
@@ -304,17 +257,6 @@ namespace AddressbookNETFramework.Helpers
                 return null; // Если группа найдена, то завершаем проверку.
             }
             return CreateNewGroupJson(fileName); // Создаем новую группу, если элемент в условии "if" не найден.
-        }
-
-        public GroupData PreAddGroupXML(int index, string fileName)
-        {
-            webDriver.FindElement(By.ClassName("admin")).Click();
-            // Переходим во вкладку "groups".
-            if (CheckElementPresent(index)) // Ищем первыую группу по индексу.
-            {
-                return null; // Если группа найдена, то завершаем проверку.
-            }
-            return CreateNewGroupXML(fileName); // Создаем новую группу, если элемент в условии "if" не найден.
         }
     }
 }

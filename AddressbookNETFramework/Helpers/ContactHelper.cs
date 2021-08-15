@@ -198,58 +198,9 @@ namespace AddressbookNETFramework.Helpers
             return generateContacntData;
         }
 
-        public ContactData AddNewContactJson(string fileName)
+        public ContactData AddNewContactInFile(string fileName)
         {
-            ContactData generateContacntData = ContactDataRandomJson(fileName);
-
-            webDriver.FindElement(By.LinkText("add new")).Click();
-            // Переходим на страницу для создания контакта.
-            webDriver.FindElement(By.Name("email")).SendKeys(generateContacntData.Email);
-            webDriver.FindElement(By.Name("email2")).SendKeys(generateContacntData.Email2);
-            webDriver.FindElement(By.Name("email3")).SendKeys(generateContacntData.Email3);
-            webDriver.FindElement(By.Name("firstname")).SendKeys(generateContacntData.FirstName);
-            webDriver.FindElement(By.Name("middlename")).SendKeys(generateContacntData.MiddleName);
-            webDriver.FindElement(By.Name("lastname")).SendKeys(generateContacntData.LastName);
-            webDriver.FindElement(By.Name("nickname")).SendKeys(generateContacntData.NickName);
-            webDriver.FindElement(By.Name("company")).SendKeys(generateContacntData.Company);
-            webDriver.FindElement(By.Name("title")).SendKeys(generateContacntData.Title);
-            webDriver.FindElement(By.Name("address")).SendKeys(generateContacntData.Address);
-            webDriver.FindElement(By.Name("home")).SendKeys(generateContacntData.HomePhone);
-            webDriver.FindElement(By.Name("mobile")).SendKeys(generateContacntData.MobilePhone);
-            webDriver.FindElement(By.Name("work")).SendKeys(generateContacntData.WorkPhone);
-            webDriver.FindElement(By.Name("fax")).SendKeys(generateContacntData.Fax);
-            webDriver.FindElement(By.Name("homepage")).SendKeys(generateContacntData.Homepage);
-            // Заполняем личные данные.
-            webDriver.FindElement(By.Name("bday")).Click();
-            new SelectElement(webDriver.FindElement(By.Name("bday"))).SelectByText(generateContacntData.BirthDay);
-            webDriver.FindElement(By.Name("bmonth")).Click();
-            new SelectElement(webDriver.FindElement(By.Name("bmonth"))).SelectByText(generateContacntData.BirthMonth);
-            webDriver.FindElement(By.Name("byear")).SendKeys(generateContacntData.YearOfBirth);
-            // Указываем день, месяц, год рождения.
-            webDriver.FindElement(By.Name("aday")).Click();
-            new SelectElement(webDriver.FindElement(By.Name("aday"))).SelectByText(generateContacntData.AnniversDay);
-            webDriver.FindElement(By.Name("amonth")).Click();
-            new SelectElement(webDriver.FindElement(By.Name("amonth"))).SelectByText(generateContacntData.AnniversMonth);
-            webDriver.FindElement(By.Name("ayear")).SendKeys(generateContacntData.YearOfAnnivers);
-            // Указываем день, месяц, год годовщины.
-            webDriver.FindElement(By.Name("new_group")).Click();
-            new SelectElement(webDriver.FindElement(By.Name("new_group"))).SelectByText("[none]");
-            // Выбираем ранее созданную группу.
-            webDriver.FindElement(By.Name("address2")).SendKeys(generateContacntData.SecondaryAddress);
-            webDriver.FindElement(By.Name("phone2")).SendKeys(generateContacntData.HomeAddress);
-            webDriver.FindElement(By.Name("notes")).SendKeys(generateContacntData.Notes);
-            webDriver.FindElement(By.Name("submit")).Submit();
-            // Добавляем вторичные личные данные.
-            webDriver.FindElement(By.LinkText("home")).Click();
-            // Возвращаемся на главную страницу (контакты) не дожидаясь редиректа.
-            contactCache = null;
-            // Очищаем кэш.
-            return generateContacntData;
-        }
-
-        public ContactData AddNewContactXML(string fileName)
-        {
-            ContactData generateContacntData = ContactDataRandomXML(fileName);
+            ContactData generateContacntData = ContactDataRandom(fileName);
 
             webDriver.FindElement(By.LinkText("add new")).Click();
             // Переходим на страницу для создания контакта.
@@ -367,80 +318,9 @@ namespace AddressbookNETFramework.Helpers
             return generateContacntData;
         }
 
-        public ContactData EditFirstContactJson(int index, string fileName)
+        public ContactData EditFirstContactInFile(int index, string fileName)
         {
-            ContactData generateContacntData = ContactDataRandomJson(fileName);
-
-            webDriver.FindElement(By.LinkText("home")).Click();
-            // Переходим на главную страницу со списком контактов.
-            // Делаем проверку на наличии контакта, если его нет, то создаем и повторяем тест.
-            webDriver.FindElements(By.Name("entry"))[index]
-                    .FindElements(By.TagName("td"))[7]
-                    .FindElement(By.TagName("a")).Click();
-            // Переходим в редактирование выбранного контакта.
-            webDriver.FindElement(By.Name("firstname")).Clear();
-            webDriver.FindElement(By.Name("firstname")).SendKeys(generateContacntData.FirstName);
-            webDriver.FindElement(By.Name("middlename")).Clear();
-            webDriver.FindElement(By.Name("middlename")).SendKeys(generateContacntData.MiddleName);
-            webDriver.FindElement(By.Name("lastname")).Clear();
-            webDriver.FindElement(By.Name("lastname")).SendKeys(generateContacntData.LastName);
-            webDriver.FindElement(By.Name("nickname")).Clear();
-            webDriver.FindElement(By.Name("nickname")).SendKeys(generateContacntData.NickName);
-            webDriver.FindElement(By.Name("company")).Clear();
-            webDriver.FindElement(By.Name("company")).SendKeys(generateContacntData.Company);
-            webDriver.FindElement(By.Name("title")).Clear();
-            webDriver.FindElement(By.Name("title")).SendKeys(generateContacntData.Title);
-            webDriver.FindElement(By.Name("address")).Clear();
-            webDriver.FindElement(By.Name("address")).SendKeys(generateContacntData.Address);
-            webDriver.FindElement(By.Name("home")).Clear();
-            webDriver.FindElement(By.Name("home")).SendKeys(generateContacntData.HomePhone);
-            webDriver.FindElement(By.Name("mobile")).Clear();
-            webDriver.FindElement(By.Name("mobile")).SendKeys(generateContacntData.MobilePhone);
-            webDriver.FindElement(By.Name("work")).Clear();
-            webDriver.FindElement(By.Name("work")).SendKeys(generateContacntData.WorkPhone);
-            webDriver.FindElement(By.Name("fax")).Clear();
-            webDriver.FindElement(By.Name("fax")).SendKeys(generateContacntData.Fax);
-            webDriver.FindElement(By.Name("email")).Clear();
-            webDriver.FindElement(By.Name("email")).SendKeys(generateContacntData.Email);
-            webDriver.FindElement(By.Name("email2")).Clear();
-            webDriver.FindElement(By.Name("email2")).SendKeys(generateContacntData.Email2);
-            webDriver.FindElement(By.Name("email3")).Clear();
-            webDriver.FindElement(By.Name("email3")).SendKeys(generateContacntData.Email3);
-            webDriver.FindElement(By.Name("homepage")).Clear();
-            webDriver.FindElement(By.Name("homepage")).SendKeys(generateContacntData.Homepage);
-            // Редактируем данные.
-            webDriver.FindElement(By.Name("bday")).Click();
-            new SelectElement(webDriver.FindElement(By.Name("bday"))).SelectByText(generateContacntData.BirthDay);
-            webDriver.FindElement(By.Name("bmonth")).Click();
-            new SelectElement(webDriver.FindElement(By.Name("bmonth"))).SelectByText(generateContacntData.BirthMonth);
-            webDriver.FindElement(By.Name("byear")).Clear();
-            webDriver.FindElement(By.Name("byear")).SendKeys(generateContacntData.YearOfBirth);
-            // Указываем день, месяц, год рождения.
-            webDriver.FindElement(By.Name("aday")).Click();
-            new SelectElement(webDriver.FindElement(By.Name("aday"))).SelectByText(generateContacntData.AnniversDay);
-            webDriver.FindElement(By.Name("amonth")).Click();
-            new SelectElement(webDriver.FindElement(By.Name("amonth"))).SelectByText(generateContacntData.AnniversMonth);
-            webDriver.FindElement(By.Name("ayear")).Clear();
-            webDriver.FindElement(By.Name("ayear")).SendKeys(generateContacntData.YearOfAnnivers);
-            // Указываем день, месяц, год годовщины.
-            webDriver.FindElement(By.Name("address2")).Clear();
-            webDriver.FindElement(By.Name("address2")).SendKeys(generateContacntData.SecondaryAddress);
-            webDriver.FindElement(By.Name("phone2")).Clear();
-            webDriver.FindElement(By.Name("phone2")).SendKeys(generateContacntData.HomeAddress);
-            webDriver.FindElement(By.Name("notes")).Clear();
-            webDriver.FindElement(By.Name("notes")).SendKeys(generateContacntData.Notes);
-            webDriver.FindElement(By.Name("update")).Click();
-            // Добавляем вторичные личные данные.
-            webDriver.FindElement(By.LinkText("home")).Click();
-            // Возвращаемся на главную страницу (контакты) не дожидаясь редиректа.
-            contactCache = null;
-            // Очищаем кэш.
-            return generateContacntData;
-        }
-
-        public ContactData EditFirstContactXML(int index, string fileName)
-        {
-            ContactData generateContacntData = ContactDataRandomXML(fileName);
+            ContactData generateContacntData = ContactDataRandom(fileName);
 
             webDriver.FindElement(By.LinkText("home")).Click();
             // Переходим на главную страницу со списком контактов.
@@ -624,7 +504,7 @@ namespace AddressbookNETFramework.Helpers
             return AddNewContact(); // Создаем новый контакт, если элемент в условии "if" не найден.
         }
 
-        public ContactData PreAddContactJson(int index, string fileName)
+        public ContactData PreAddContactInFile(int index, string fileName)
         {
             webDriver.FindElement(By.LinkText("home")).Click();
             // Переходим на главную страницу со списком контактов.
@@ -633,17 +513,6 @@ namespace AddressbookNETFramework.Helpers
                 return null; // Если контакт найден, то завершаем проверку.
             }
             return AddNewContactJson(fileName); // Создаем новый контакт, если элемент в условии "if" не найден.
-        }
-
-        public ContactData PreAddContactXML(int index, string fileName)
-        {
-            webDriver.FindElement(By.LinkText("home")).Click();
-            // Переходим на главную страницу со списком контактов.
-            if (CheckElementPresent(index)) // Ищем первый контакт по индексу.
-            {
-                return null; // Если контакт найден, то завершаем проверку.
-            }
-            return AddNewContactXML(fileName); // Создаем новый контакт, если элемент в условии "if" не найден.
         }
 
         public Dictionary<string, string> DictionaryTest()
